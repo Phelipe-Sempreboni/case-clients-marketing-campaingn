@@ -67,3 +67,62 @@ Lembrando que, cada análise tem sua peculiaridade, criticidade e tempo de entre
 Notar que para rodar localmente a análise de maneira mais fácil, utilizar o método de análise III, que utiliza diretamente o arquivo csv, que pode ser salvo na área de trabalho e utilizado diretamente no Jupyter Notebook.
 
 ---
+
+### Passo a passo do método de análise I :
+
+1º - Ter um usuário e login com privilégios para criação, inserção, drop e delete de databases, schema e tabelas.
+
+2º - Conectar a ferramenta Microsoft SQL Server 2019.
+
+3º - Criar um database que irá alocar o schema e a tabela. O comando abaixo irá criar um database de forma padrão, espelhado no database de sistema chamado (model), pois, não iremos destacar parâmetros neste caso.
+
+```
+-- Criação do database.
+
+CREATE DATABASE MARKETING;
+GO
+
+-- Caso queira excluir o database criado.
+
+USE master;
+GO
+
+DROP DATABASE MARKETING;
+GO
+
+```
+
+4º - Criação do schema que alocará a tabela.
+
+```
+-- Criação do schema.
+
+USE MARKETING;
+GO
+
+CREATE SCHEMA MARKETING_ANALISE_CAMPANHA;
+GO
+
+-- Caso queira excluir o schema criado.
+
+USE MARKETING;
+GO
+
+DROP SCHEMA MARKETING_ANALISE_CAMPANHA;
+GO
+
+```
+
+5º - Criação da tabela que alocará os dados para posteriormente realizar a análise.
+
+```
+```
+
+6º - Input dos dados na tabela no banco de dados Microsoft SQL Server 2019.
+
+- Neste passo, poderíamos utilizar um SSIS, por exemplo, como ferramenta para input dos dados (ETL), ou até um job do Python porém, utilizaremos um procedimento que carregará os dados diretamente os dados do arquivo Excel para a tabela criada que alocará os dados.
+
+- Observação importante deste passo: Caso trabalhe em uma empresa e não seja o administrador do sistema, consulte o DBA (Administrador do banco de dados) para saber se pode ser habilitada está configuração ou se tem algum procedimento para tal, pois, em servidores distribuídos temos a questão da segurança.
+
+
+
