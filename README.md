@@ -6,7 +6,7 @@ Este repositório é voltado para a realização do case enviado pelo Ifood, ond
 
 ---
 
-Haverá um registro do passo a passo realizado para desenvolvimento das análises e apresentação, que estará no arquivo de leitura chamado "Documentação".
+Haverá um registro do passo a passo realizado para desenvolvimento das análises e apresentação, que estará repositório "Documentação", no arquivo de leitura chamado "Documentação".
 
 ---
 
