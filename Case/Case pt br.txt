@@ -1,0 +1,105 @@
+Caso de analista de dados iFood CRM
+
+iFood é o aplicativo líder em delivery de alimentos do Brasil, presente em mais de mil cidades.
+
+Manter um alto envolvimento do cliente é fundamental para crescer e consolidar a posição da empresa como líder de mercado.
+
+Os analistas de dados que trabalham na equipe de dados são constantemente desafiados a fornecer insights e valor para a empresa por meio de projetos de escopo aberto.
+
+Este caso pretende simular isso.
+
+Neste caso, é apresentado a você um conjunto de dados de amostra, que simula metainformações sobre o cliente e sobre as interações da campanha iFood com esse cliente.
+
+É seu desafio entender os dados, encontrar oportunidades de negócios e insights e propor qualquer ação orientada a dados para otimizar os resultados das campanhas e gerar valor para a empresa.
+
+Este caso tem como objetivo avaliar suas habilidades e conhecimentos de dados para duas funções possíveis:
+
+Analista de negócios de dados:
+• Realizar análises exploratórias robustas, ricas em insights de negócios e propostas baseadas em dados para agregar valor à empresa e ter fortes habilidades de comunicação para influenciar a tomada de decisões Data Advanced Analytics.
+
+• Realizar análises exploratórias robustas, usando ferramentas analíticas avançadas e métodos estatísticos para gerar produtos de dados para otimizar os resultados de negócios (modelos preditivos e de agrupamento, por exemplo)
+Tenha um foco claro na função que deseja desempenhar no @ iFood e concentre sua energia para se destacar nos tópicos mais relevantes para isso.
+
+Abaixo você encontrará a descrição do caso e mais detalhes do que esperamos como sua solução.
+
+Por favor, leia com atenção até a última página.
+
+Depois de concluído, você pode enviar sua solução completa para ifoodbrain_hiring@ifood.com.br com o assunto: iFood DA / DArq Case Solution / “Nome do candidato”. Em circunstâncias normais, devemos dar uma resposta dentro de uma semana.
+
+Seja criativo e divirta-se. A Companhia se considera uma empresa consolidada atuando no setor varejista de alimentos.
+
+Atualmente, eles têm cerca de várias centenas de milhares de clientes registrados e atendem a quase um milhão de consumidores por ano.
+
+Eles vendem produtos de 5 categorias principais: vinhos, produtos de carnes raras, frutas exóticas, peixes especialmente preparados e produtos doces. Estes podem ser divididos em ouro e produtos regulares.
+
+Os clientes podem solicitar e adquirir produtos por meio de 3 canais de vendas: lojas físicas, catálogos e site da empresa.
+
+Globalmente, a empresa teve receitas sólidas e resultados financeiros saudáveis ​​nos últimos 3 anos, mas as perspectivas de crescimento dos lucros para os próximos 3 anos não são promissoras ... Por este motivo, estão a ser consideradas várias iniciativas estratégicas para inverter esta situação.
+
+Uma delas é melhorar o desempenho das atividades de marketing, com foco especial nas campanhas de marketing.
+
+O departamento de marketing:
+
+O departamento de marketing foi pressionado a gastar seu orçamento anual com mais sabedoria.
+
+O CMO percebe a importância de ter uma abordagem mais quantitativa na tomada de decisões, pelo que uma pequena equipa de cientistas de dados foi contratada com um objetivo claro: construir um modelo preditivo que apoie as iniciativas de marketing direto.
+
+Desejavelmente, o sucesso dessas atividades irá provar o valor da abordagem e convencer os mais céticos dentro da empresa.
+
+O objetivo:
+
+O objetivo da equipe é construir um modelo preditivo que produzirá o maior lucro para a próxima campanha de marketing direto, programada para o próximo mês.
+
+A nova campanha, sexta, visa a venda de um novo gadget para o Banco de Dados de Clientes.
+
+Para construir o modelo, foi realizada uma campanha piloto envolvendo 2.240 clientes.
+
+Os clientes foram selecionados aleatoriamente e contatados por telefone
+sobre a aquisição do gadget. Durante os meses seguintes, os clientes que compraram a oferta foram devidamente etiquetados.
+
+O custo total da campanha de amostra foi de 6,720MU e a receita
+gerado pelos clientes que aceitaram a oferta foi de 3.674MU.
+
+Globalmente, a campanha teve um lucro de -3,046MU.
+
+A taxa de sucesso da campanha foi de 15%.
+
+O objetivo da equipe é desenvolver um modelo que preveja o comportamento do cliente e aplicá-lo ao restante da base de clientes.
+
+Felizmente, o modelo permitirá que a empresa escolha a dedo os clientes com maior probabilidade de comprar a oferta, deixando de fora os não respondentes, tornando a próxima campanha altamente lucrativa.
+
+Além disso, além de maximizar o lucro da campanha, o CMO está interessado em estudar as características dos clientes que desejam comprar o gadget.
+
+Os dados:
+
+O conjunto de dados contém características sociodemográficas e firográficas de cerca de 2.240 clientes contatados.
+
+Além disso, contém um sinalizador para aqueles clientes que responderam à campanha, comprando o produto.
+
+Entregáveis:
+
+A seguir estão as entregas mínimas exigidas:
+
+1. Explore os dados - seja criativo e preste atenção aos detalhes. Você precisa fornecer à equipe de marketing um melhor entendimento das características dos entrevistados;
+
+2. Criar e descrever uma segmentação de clientes com base nos comportamentos dos clientes;
+
+3. Crie e descreva um modelo preditivo (classificação) que permite à empresa maximizar o lucro da próxima campanha de marketing.
+
+O que esperamos como sua solução a ser enviada:
+
+1. Um caderno detalhado e bem organizado (ou arquivo de código equivalente) para ser apresentado aos interessados ​​técnicos.
+
+2. Uma apresentação em Power Point (ou ferramenta semelhante) a ser apresentada às partes interessadas do negócio.
+
+Você pode usar qualquer linguagem de programação para esta tarefa (usamos python).
+
+Simplicidade e consciência do que está acontecendo são preferíveis às implementações de algoritmos complexos que você não domina.
+
+Se sua solução satisfizer nossos critérios mínimos, você deve ser convidado para uma apresentação técnica / comercial.
+
+Soluções que não atendam aos nossos critérios, mas que apresentem potencial, serão convidadas para uma breve reunião de feedback (30 min).
+
+Você deve receber uma resposta dentro de 1 a 2 semanas a partir do envio do caso.
+
+Se houver alguma dúvida, não hesite em nos contatar.
