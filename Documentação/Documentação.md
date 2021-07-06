@@ -18,7 +18,7 @@
 
 - Linguagem utilizada para análise dos dados: Microsoft SQL Server 2019 - (DQL, DML, DDL, DTL), principalmente T-SQL.
 
-- Apresentação dos dados: Power BI Desktop e Power BI Web.
+- Apresentação dos dados: Power BI Desktop, Power BI Web e Power Point.
 
 ---
 
@@ -30,7 +30,7 @@
 
 - Linguagem utilizada para análise dos dados: Python, com bibliotecas como Pandas e api do Power BI.
 
-- Apresentação dos dados: Jupyter Notebook, pela api do Power BI.
+- Apresentação dos dados: Jupyter Notebook, pela api do Power BI e Power Point.
 
 ---
 
@@ -42,7 +42,7 @@
 
 - Linguagem utilizada para análise dos dados: Python, com bibliotecas como Pandas e api do Power BI.
 
-- Apresentação dos dados: Jupyter Notebook, pela api do Power BI.
+- Apresentação dos dados: Jupyter Notebook, pela api do Power BI e Power Point.
 
 ---
 
