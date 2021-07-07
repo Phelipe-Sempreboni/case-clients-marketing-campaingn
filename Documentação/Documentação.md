@@ -662,6 +662,86 @@ GO
 -- 51.687.
 ```
 ---
+- Quantitade total de crianças e adoslecentes.
+```
+SELECT
+      SUM([KIDHOME]) AS [NUMBER_KIDHOME]
+     ,SUM([TEENHOME]) AS [NUMBER_TEENHOME]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW];
+
+-- 995 crianças.
+-- 1.134 adoslecentes.
+```
+---
+- Quantidade de clientes que não possuem crianças e adoslecentes.
+- Quantidade de clientes que possuem crianças e adoslecentes.
+- Quantidade de clientes que possuem crianças e não adoslecentes.
+- Quantidade de clientes que não possuem crianças e possuem adoslecentes.
+```
+DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
+
+SELECT
+     COUNT([ID]) AS [NUMBER_CUSTOMERS]
+    ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+    ,
+    CASE
+    WHEN COUNT([ID]) NOT IN ('') THEN 'NOT KID AND TEEN'
+    END AS [NOTE]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [KIDHOME] IN (0) AND [TEENHOME] IN (0)
+
+UNION ALL
+
+SELECT
+     COUNT([ID]) AS [NUMBER_CUSTOMERS]
+    ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+    ,
+    CASE
+    WHEN COUNT([ID]) NOT IN ('') THEN 'YES KID AND TEEN'
+    END AS [NOTE]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [KIDHOME] > 0 AND [TEENHOME] > 0
+
+UNION ALL
+
+SELECT
+      COUNT([ID]) AS [NUMBER_CUSTOMERS]
+     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,
+     CASE
+     WHEN COUNT([ID]) NOT IN ('') THEN 'YES KID AND NOT TEEN'
+     END AS [NOTE]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [KIDHOME] > 0 AND [TEENHOME] = 0
+
+UNION ALL
+
+SELECT
+      COUNT([ID]) AS [NUMBER_CUSTOMERS]
+     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,
+     CASE
+     WHEN COUNT([ID]) NOT IN ('') THEN 'NOT KID AND YES TEEN'
+     END AS [NOTE]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [KIDHOME] = 0 AND [TEENHOME] > 0;
+
+-- Não possuem crianças e adoslecentes -> 638 -> 28,482142857142858% -> 28%
+-- Possuem crianças e adoslecentes -> 427 -> 19,0625% -> 19%
+-- Possuem crianças e não possuem adoslecentes -> 520 -> 23,214285714285715% -> 23%
+-- Não possuem crianças e possuem adoslecentes -> 655 -> 29,241071428571427% -> 29%
+```
+---
+
 
 
 
