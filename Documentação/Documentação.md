@@ -577,11 +577,90 @@ ORDER BY
 ```
 ---
 - Quantidade de clientes pelo nível de educação e estado civil.
+```
+DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
+
+WITH [NUMBER_CUSTOMERS_EDUCATION_MARITAL_STATUS]
+AS
+(
+SELECT 
+      COUNT([ID]) AS [NUMBER_CUSTOMERS]
+     ,[EDUCATION]
+     ,[MARITAL_STATUS]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+GROUP BY
+       [EDUCATION]
+      ,[MARITAL_STATUS]
+)
+SELECT 
+      [NUMBER_CUSTOMERS]
+     ,[EDUCATION]
+     ,[MARITAL_STATUS]
+    ,([NUMBER_CUSTOMERS] * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+
+FROM [NUMBER_CUSTOMERS_EDUCATION_MARITAL_STATUS]
+
+GROUP BY
+       [NUMBER_CUSTOMERS]
+      ,[EDUCATION]
+      ,[MARITAL_STATUS]
+
+ORDER BY 
+        [NUMBER_CUSTOMERS]  
+       ,([NUMBER_CUSTOMERS] * 100)/(@NUMBER_CLIENTS)
+       ,[EDUCATION]
+       ,[MARITAL_STATUS]
+
+-- 1 cliente -> Basic -> Divorced -> 0,0446428571428571% -> 1%
+-- 1 cliente -> Basic -> Widow -> 0,0446428571428571% -> 1%
+-- 1 cliente -> Graduation -> Absurd -> 0,0446428571428571% -> 1%
+-- 1 cliente -> Graduation -> Alone -> 0,0446428571428571% -> 1%
+-- 1 cliente -> Master -> Absurd -> 0,0446428571428571% -> 1%
+-- 1 cliente -> Master -> Alone -> 0,0446428571428571% -> 1%
+-- 1 cliente -> PhD -> Alone -> 0,0446428571428571% -> 1%
+-- 2 cliente -> PhD -> YOLO -> 0,0892857142857143% -> 1%
+-- 5 cliente -> 2n Cycle -> Widow -> 0,2232142857142857% -> 1%
+-- 12 cliente -> Master -> Widow -> 0,5357142857142857 -> 1%
+-- 14 cliente -> Basic -> Together -> 0,625 -> 1%
+-- 18 cliente -> Basic -> Single -> 0,8035714285714286 -> 1%
+-- 20 cliente -> Basic -> Married -> 0,8928571428571429 -> 1%
+-- 23 cliente -> 2n Cycle -> Divorced -> 0,1034126163391934% -> 1%
+-- 24 cliente -> PhD -> Widow -> 1,0714285714285714% -> 1%
+-- 35 cliente -> Graduation -> Widow-> 1,5625% -> 1%
+-- 37 cliente -> 2n Cycle -> Single -> 1,6517857142857142% -> 1%
+-- 37 cliente -> Master -> Divorced -> 1,6517857142857142% -> 1%
+-- 52 cliente -> PhD -> Divorced -> 2,3214285714285716% -> 2%
+-- 57 cliente -> 2n Cycle -> Together -> 2,544642857142857% -> 2%
+-- 75 cliente -> Master -> Single -> 3,3482142857142856% -> 3%
+-- 81 cliente -> 2n Cycle -> Married -> 3,6160714285714284% -> 3%
+-- 98 cliente -> PhD -> Single -> 4,375% -> 4%
+-- 106 cliente -> Master -> Together -> 4,732142857142857% -> 4%
+-- 117 cliente -> PhD -> Together -> 5,223214285714286% -> 5%
+-- 119 cliente -> Graduation -> Divorced -> 5,3125% -> 5%
+-- 138 cliente -> Master -> Married -> 6,160714285714286% -> 6%
+-- 192 cliente -> PhD -> Married -> 8,571428571428571% -> 8%
+-- 252 cliente -> Graduation -> Single -> 11,25% -> 11%
+-- 286 cliente -> Graduation -> Together -> 12,767857142857142% -> 12%
+-- 433 cliente -> Graduation -> Married -> 19,330357142857142% -> 19%
+```
 ---
 - Renda média mensal familiar dos clientes.
+```
+SELECT ROUND(AVG([MONTHLY_INCOME]),0) AS [AVERAGE_MONTHLY_INCOME] FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW];
+GO
+
+-- 4.307.
+```
 ---
 - Renda média anual familiar dos clientes. 
+```
+SELECT ROUND(AVG([INCOME]),0) AS [AVERAGE_INCOME] FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW];
+GO
 
+-- 51.687.
+```
 ---
 
 
