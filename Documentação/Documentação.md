@@ -503,8 +503,78 @@ GO
 ```
 ---
 - Quantidade de clientes pelo nível de educação.
+```
+DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
+
+WITH [NUMBER_CUSTOMERS_EDUCATION]
+AS
+(
+SELECT 
+      COUNT([ID]) AS [NUMBER_CUSTOMERS]
+     ,[EDUCATION]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+GROUP BY
+	[EDUCATION]
+)
+SELECT 
+      [NUMBER_CUSTOMERS]
+     ,[EDUCATION]
+    ,([NUMBER_CUSTOMERS] * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+
+FROM [NUMBER_CUSTOMERS_EDUCATION]
+
+GROUP BY
+       [NUMBER_CUSTOMERS]
+      ,[EDUCATION]
+
+-- 1.127 clientes -> Graduation -> 50,3125% -> 50%
+-- 486 clientes -> PhD -> 21,696428571428573% -> 21%
+-- 370 clientes -> Master -> 16,517857142857142% -> 16%
+-- 203 clientes -> 2n Cycle -> 9.0625% -> 9%
+-- 54 clientes -> Basic -> 2,4107142857142856% -> 2%
+```
 ---
 - Quantidade de clientes pelo estado civil.
+```
+DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
+
+WITH [NUMBER_CUSTOMERS_MARITAL_STATUS]
+AS
+(
+SELECT 
+      COUNT([ID]) AS [NUMBER_CUSTOMERS]
+     ,[MARITAL_STATUS]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+GROUP BY
+	[MARITAL_STATUS]
+)
+SELECT 
+      [NUMBER_CUSTOMERS]
+     ,[MARITAL_STATUS]
+    ,([NUMBER_CUSTOMERS] * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+
+FROM [NUMBER_CUSTOMERS_MARITAL_STATUS]
+
+GROUP BY
+       [NUMBER_CUSTOMERS]
+      ,[MARITAL_STATUS]
+
+ORDER BY 
+       ([NUMBER_CUSTOMERS] * 100)/(@NUMBER_CLIENTS)
+
+-- 2 clientes -> YOLO -> 0,0892857142857143% -> 1%
+-- 3 clientes -> Alone -> 0,1339285714285714% -> 1%
+-- 2 clientes -> Absurd -> 0,0892857142857143% -> 1%
+-- 77 clientes -> Window -> 3.4375% -> 3%
+-- 232 clientes -> Divorced -> 10,357142857142858% -> 10%
+-- 480 clientes -> Single -> 21,428571428571427% -> 21%
+-- 580 clientes -> Together -> 25,892857142857142% -> 25%
+-- 864 clientes -> Married -> 38,57142857142857% -> 38%
+```
 ---
 - Quantidade de clientes pelo nível de educação e estado civil.
 ---
