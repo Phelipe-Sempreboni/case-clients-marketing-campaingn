@@ -12,7 +12,7 @@
 
 ### Ferramentas utilizadas no método de análise I :
 
-- Input dos dados: Microsoft SQL Server 2019.
+- Input dos dados: Por meio de job do Python.
 
 - Armazenamento dos dados: Microsoft SQL Server 2019.
 
@@ -24,7 +24,7 @@
 
 ### Ferramentas utilizadas no método de análise II :
 
-- Input dos dados: Microsoft SQL Server 2019.
+- Input dos dados: Por meio de job do Python.
 
 - Armazenamento dos dados: Microsoft SQL Server 2019.
 
@@ -113,7 +113,17 @@ GO
 
 ```
 
-5º - Criação da tabela que alocará os dados para posteriormente realizar a análise.
+5º - Criação da tabela que alocará os dados para posteriormente realizar a análise. Nesta etapas, temos alguns passos adicionais conforme explicação abaixo. Esses passos entram como o tratamento de dados antes da realização da análise, para que seja o mais real possível e os dados sejam de qualidade.
+
+- Passos adicionais:
+
+- Essa etapa é realizada em conjunto com o 6º passo do job de importação de dados do Python, pois, como os dados estão sendo importados de diretamente de um arquivo CSV, é necessário verificar os tipos de dados das colunas criadas e se o job consegue realizar a importação dos dados corretamente no banco de dados, sem nenhum erro de tipo de dado incorreto, inválido ou que o mecanismo do banco de dados não consiga realizar a conversão, por exemplo, de (nvarchar) para (numerico), inclusive é um erro que ocorreu e foi corrigido neste passo. Resultado posivito.
+
+- Foi inserido uma chave primária e indíce clusterizado nesta tabela, na coluna ID, pois, por lógica, um ID não se repete em uma tabela, logo, foi inserida chave primária para que o dado não se repita e seja o mais real possível. A chave primária e o indíce clusterizado também deixam as pesquisas na tabela mais ágeis e efetivas. Foi verificado se os 2.240 registros, após a inserção da chave primária se mantinham, e o resultado foi positivo, onde todos os registros foram mantidos.
+
+- Foram confirmados por meios de querys e visando a qualidade dos dados, se os tipos de dados das colunas foram criados corretamente e se a chave primária também foi criada corretamente. Resultado posivito.
+
+- Foram verificados os primeiros 25 registros entre arquivo CSV e tabela criada do banco de dados após a inserção dos dados pelo job do Python, do 6º passo, para garantir por amostras, que os dados estão corretos e assim será para os demais inseridos. Resultado positivo.
 
 ```
 -- Criação da tabela.
@@ -122,35 +132,36 @@ USE MARKETING;
 GO
 
 CREATE TABLE [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA] (
-	 ID VARCHAR (10)
-	,YEAR_BIRTH INT
-	,EDUCATION VARCHAR (20)
-	,MARITAL_STATUS VARCHAR (20)
-	,INCOME INT
-	,KIDHOME BINARY
-	,TEENHOME BINARY
+	 ID INT -- Tipo do dado da coluna validado.
+	,YEAR_BIRTH INT -- Tipo do dado da coluna validado.
+	,EDUCATION VARCHAR (20) -- Tipo do dado da coluna validado.
+	,MARITAL_STATUS VARCHAR (20) -- Tipo do dado da coluna validado.
+	,INCOME FLOAT -- Tipo do dado da coluna validado.
+	,KIDHOME INT -- Tipo do dado da coluna validado.
+	,TEENHOME INT -- Tipo do dado da coluna validado.
 	,DT_CUSTOMER DATE
-	,RECENCY INT
-	,MNT_WINES INT
-	,MNT_FRUITS INT
-	,MNT_MEAT_PRODUCTS INT
-	,MNT_FISH_PRODUCTS INT
-	,MNT_SWEET_PRODUCTS INT
-	,MNT_GOLD_PRODS INT
-	,NUM_DEALS_PURCHASES INT
-	,NUM_WEB_PURCHASES INT
-	,NUM_CATALOG_PURCHASES INT
-	,NUM_STORE_PURCHASES INT
-	,NUM_WEB_VISITS_MONTH INT
-	,ACCEPTED_CMP3 BINARY
-	,ACCEPTED_CMP4 BINARY
-	,ACCEPTED_CMP5 BINARY
-	,ACCEPTED_CMP1 BINARY
-	,ACCEPTED_CMP2 BINARY
-	,COMPLAIN BINARY
-	,Z_COST_CONTACT INT
-	,Z_REVENUE INT
-	,RESPONSE BINARY
+	,RECENCY INT -- Tipo do dado da coluna validado.
+	,MNT_WINES INT -- Tipo do dado da coluna validado.
+	,MNT_FRUITS INT -- Tipo do dado da coluna validado.
+	,MNT_MEAT_PRODUCTS INT -- Tipo do dado da coluna validado.
+	,MNT_FISH_PRODUCTS INT -- Tipo do dado da coluna validado.
+	,MNT_SWEET_PRODUCTS INT -- Tipo do dado da coluna validado.
+	,MNT_GOLD_PRODS INT -- Tipo do dado da coluna validado.
+	,NUM_DEALS_PURCHASES INT -- Tipo do dado da coluna validado.
+	,NUM_WEB_PURCHASES INT -- Tipo do dado da coluna validado.
+	,NUM_CATALOG_PURCHASES INT -- Tipo do dado da coluna validado.
+	,NUM_STORE_PURCHASES INT -- Tipo do dado da coluna validado.
+	,NUM_WEB_VISITS_MONTH INT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP3 INT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP4 INT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP5 INT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP1 INT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP2 INT -- Tipo do dado da coluna validado.
+	,COMPLAIN INT -- Tipo do dado da coluna validado.
+	,Z_COST_CONTACT INT -- Tipo do dado da coluna validado.
+	,Z_REVENUE INT -- Tipo do dado da coluna validado.
+	,RESPONSE INT -- Tipo do dado da coluna validado.
+	,CONSTRAINT PK_ID PRIMARY KEY CLUSTERED (ID) -- Chave primária criada para não duplicar dados e facilitar em buscas com índice clusterizado.
 );
 GO
 
@@ -160,6 +171,14 @@ USE MARKETING;
 GO
 
 DROP TABLE [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA];
+GO
+
+-- Caso queira deletar dados da tabela criada.
+DELETE FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA];
+GO
+
+- Caso queira truncar dados da tabela criada.
+TRUNCA TABLE [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA];
 GO
 ```
 
