@@ -484,18 +484,32 @@ GO
 
 8º - Levantamento inicial dos KPI's. Nesta etapa, será feito um levantamento inicial dos KPI's que os dados podem nos fornecer.
 
+---
 - Quantidade de clientes.
+```
+SELECT COUNT([ID]) AS [NUMBER_CUSTOMERS] FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW];
+GO
 
-- Idade média dos clientes. 
+-- 2.240 clientes.
 
+```
+---
+- Idade média dos clientes.
+```
+SELECT AVG([YEARS_OLD]) AS [AVERAGE_AGE_CUSTOMERS] FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW];
+GO
+
+-- 52 anos.
+```
+---
 - Quantidade de clientes pelo nível de educação.
-
+---
 - Quantidade de clientes pelo estado civil.
-
+---
 - Quantidade de clientes pelo nível de educação e estado civil.
-
+---
 - Renda média mensal familiar dos clientes.
-
+---
 - Renda média anual familiar dos clientes. 
 
 ---
