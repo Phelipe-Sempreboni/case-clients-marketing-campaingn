@@ -125,6 +125,9 @@ GO
 
 - Foram verificados os primeiros 25 registros entre arquivo CSV e tabela criada do banco de dados após a inserção dos dados pelo job do Python, do 6º passo, para garantir por amostras, que os dados estão corretos e assim será para os demais inseridos. Resultado positivo.
 
+- Nesta etapa também foram verificados os valores que estavam vazios no arquivo CSV e feito uma trativa, conforme descrito abaixo:
+- Coluna (INCOME): Registros vazios foram preenchidos com (0) e o restante dos registros estavam preenchidos corretamente.
+
 ```
 -- Criação da tabela.
 
@@ -165,10 +168,18 @@ CREATE TABLE [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA] (
 );
 GO
 
--- Caso queria excluir a tabela criada.
-
 USE MARKETING;
 GO
+
+-- Verificar informações da tabela, onde, a principal verificada neste caso, seria a (COLUMN_NAME) e (DATA_TYPE) para validar os tipos dos dados na criação da tabela.
+SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'TBL_DADOS_CAMPANHA';
+GO
+
+-- Verificar se informações da tabela, onde, a principal verificada neste caso, seria se a tabela possuí uma chave primária, visando não duplicar registros.
+SELECT * FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE TABLE_NAME = 'TBL_DADOS_CAMPANHA';
+GO
+
+-- Caso queria excluir a tabela criada.
 
 DROP TABLE [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA];
 GO
@@ -182,11 +193,82 @@ TRUNCA TABLE [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA];
 GO
 ```
 
-6º - Input dos dados na tabela no banco de dados Microsoft SQL Server 2019.
+6º - Input dos dados na tabela criada no banco de dados Microsoft SQL Server 2019 com um job do Python.
 
-- Neste passo, poderíamos utilizar um SSIS, por exemplo, como ferramenta para input dos dados (ETL), ou até um job do Python porém, utilizaremos um procedimento que carregará os dados diretamente os dados do arquivo Excel para a tabela criada que alocará os dados.
+- Atentar para as informações comentadas dentro do script abaixo.
 
-- Observação importante deste passo: Caso trabalhe em uma empresa e não seja o administrador do sistema, consulte o DBA (Administrador do banco de dados) para saber se pode ser habilitada está configuração ou se tem algum procedimento para tal, pois, em servidores distribuídos temos a questão da segurança.
+```
+# Se não houver instalado, instalar a biblioteca (pyodbc) para realizar a conexão com o banco de dados. Abra o prompt de comando e digite: pip install pyodbc.
+# Se não houver instalado, instalar a biblioteca (pandas) para tratar o arquivo CSV. Abra o prompt de comando e digite: pip install pandas.
+# Biblioteca (csv) é nativa do Python.
+
+# Importações de bibliotecas.
+import pyodbc
+import pandas as pd
+import csv
+
+# Criação da conexão com o Microsoft SQL Server.
+conexao = pyodbc.connect(
+Driver='{SQL Server Native Client 11.0}',
+Server='', # Insira o server.
+Database='', # Insira o banco de dados.
+uid='', # Insira o usuário.
+pwd='', # Insira a senha.
+rusted_Connection='no' # Se o login no banco de dados é realizados com Autentição SQL Server, ou seja, com login e senha, deixe marcado como (no), caso contrário, retire o comando da linha de senha (pwd) e deixe este campo como (yes), informando que a conexão é por meio de Autentição Windows, ou seja, não necessita da senha.
+)
+cursor = conexao.cursor() # Criação do cursor para executar comandos no banco de dados.
+
+# Manipulação do arquivo CSV.
+df = pd.read_csv(r'Desktop\data.csv') # Realizada a leitura.
+df.to_csv(r'Desktop\data.csv', header=False, index=False) # Retirado o cabeçalho e possíveis index criados na leitura da linha de comando acima.
+
+# Inserção dos dados do arquivo CSV na tabela criada no banco de dados.
+with open(r'Desktop\data.csv', encoding="utf8") as csv_file:
+    csv_reader = csv.reader(csv_file, delimiter=",")
+    for row in csv_reader:
+        to_db = [(row[0]), (row[1]), (row[2]), (row[3]), (row[4]), (row[5]), (row[6]), (row[7]), (row[8]), (row[9]), (row[10]), (row[11]), (row[12]), (row[13]), (row[14]), (row[15]), (row[16]), (row[17]), (row[18]), (row[19]), (row[20]), (row[21]), (row[22]), (row[23]), (row[24]), (row[25]), (row[26]), (row[27]), (row[28])]
+        conexao.execute(
+        """
+        INSERT INTO [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA] (
+        ID
+        ,YEAR_BIRTH
+        ,EDUCATION
+        ,MARITAL_STATUS
+        ,INCOME
+        ,KIDHOME
+        ,TEENHOME
+        ,DT_CUSTOMER
+        ,RECENCY
+        ,MNT_WINES
+        ,MNT_FRUITS
+        ,MNT_MEAT_PRODUCTS
+        ,MNT_FISH_PRODUCTS
+        ,MNT_SWEET_PRODUCTS
+        ,MNT_GOLD_PRODS
+        ,NUM_DEALS_PURCHASES
+        ,NUM_WEB_PURCHASES
+        ,NUM_CATALOG_PURCHASES
+        ,NUM_STORE_PURCHASES
+        ,NUM_WEB_VISITS_MONTH
+        ,ACCEPTED_CMP3
+        ,ACCEPTED_CMP4
+        ,ACCEPTED_CMP5
+        ,ACCEPTED_CMP1
+        ,ACCEPTED_CMP2
+        ,COMPLAIN
+        ,Z_COST_CONTACT
+        ,Z_REVENUE
+        ,RESPONSE
+        ) 
+        VALUES 
+        (
+        ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?
+        );
+        """
+        ,to_db
+        )
+conexao.commit() # Commit para validar e executar as ações.
+```
 
 
 
