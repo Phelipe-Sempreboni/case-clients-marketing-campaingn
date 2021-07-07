@@ -741,7 +741,28 @@ WHERE [KIDHOME] = 0 AND [TEENHOME] > 0;
 -- Não possuem crianças e possuem adoslecentes -> 655 -> 29,241071428571427% -> 29%
 ```
 ---
+- Quantidade de clientes pelo tempo de registro na empresa (em anos).
+```
+DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
 
+SELECT 
+      COUNT([ID]) AS [NUMBER_CUSTOMERS]
+     ,[REGISTERED_CUSTOMER_TIME]
+     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+GROUP BY
+	[REGISTERED_CUSTOMER_TIME]
+
+ORDER BY
+	[REGISTERED_CUSTOMER_TIME]
+
+-- 557 clientes -> 7 anos -> 24,866071428571427% -> 24%
+-- 1.189 clientes -> 8 anos -> 53,080357142857146 -> 53%
+-- 494 clientes -> 9 anos -> 22,053571428571427 -> 22%
+```
+---
 
 
 
