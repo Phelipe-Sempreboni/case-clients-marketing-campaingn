@@ -176,7 +176,7 @@ CREATE TABLE [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA] (
 	,INCOME FLOAT -- Tipo do dado da coluna validado.
 	,KIDHOME INT -- Tipo do dado da coluna validado.
 	,TEENHOME INT -- Tipo do dado da coluna validado.
-	,DT_CUSTOMER DATE - Tipo do dado da coluna validado.
+	,DT_CUSTOMER DATE -- Tipo do dado da coluna validado.
 	,RECENCY INT -- Tipo do dado da coluna validado.
 	,MNT_WINES INT -- Tipo do dado da coluna validado.
 	,MNT_FRUITS INT -- Tipo do dado da coluna validado.
@@ -244,13 +244,52 @@ import csv
 # Criação da conexão com o Microsoft SQL Server.
 conexao = pyodbc.connect(
 Driver='{SQL Server Native Client 11.0}',
-Server='', # Insira o server.
-Database='', # Insira o banco de dados.
-uid='', # Insira o usuário.
-pwd='', # Insira a senha.
+Server='NI-55077-6P', # Insira o server.
+Database='MARKETING', # Insira o banco de dados.
+uid='SEMPREBONI', # Insira o usuário.
+pwd='Kfm758AJ@1', # Insira a senha.
 rusted_Connection='no' # Se o login no banco de dados é realizados com Autentição SQL Server, ou seja, com login e senha, deixe marcado como (no), caso contrário, retire o comando da linha de senha (pwd) e deixe este campo como (yes), informando que a conexão é por meio de Autentição Windows, ou seja, não necessita da senha.
 )
 cursor = conexao.cursor() # Criação do cursor para executar comandos no banco de dados.
+
+# Dropar/deletar a tabela se ela já existir e recria-lá com os critérios validados.
+conexao.execute("""
+DROP TABLE IF EXISTS [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA];
+
+CREATE TABLE [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA] (
+	 ID INT -- Tipo do dado da coluna validado.
+	,YEAR_BIRTH INT -- Tipo do dado da coluna validado.
+	,EDUCATION VARCHAR (20) -- Tipo do dado da coluna validado.
+	,MARITAL_STATUS VARCHAR (20) -- Tipo do dado da coluna validado.
+	,INCOME FLOAT -- Tipo do dado da coluna validado.
+	,KIDHOME INT -- Tipo do dado da coluna validado.
+	,TEENHOME INT -- Tipo do dado da coluna validado.
+	,DT_CUSTOMER DATE -- Tipo do dado da coluna validado.
+	,RECENCY INT -- Tipo do dado da coluna validado.
+	,MNT_WINES INT -- Tipo do dado da coluna validado.
+	,MNT_FRUITS INT -- Tipo do dado da coluna validado.
+	,MNT_MEAT_PRODUCTS INT -- Tipo do dado da coluna validado.
+	,MNT_FISH_PRODUCTS INT -- Tipo do dado da coluna validado.
+	,MNT_SWEET_PRODUCTS INT -- Tipo do dado da coluna validado.
+	,MNT_GOLD_PRODS INT -- Tipo do dado da coluna validado.
+	,NUM_DEALS_PURCHASES INT -- Tipo do dado da coluna validado.
+	,NUM_WEB_PURCHASES INT -- Tipo do dado da coluna validado.
+	,NUM_CATALOG_PURCHASES INT -- Tipo do dado da coluna validado.
+	,NUM_STORE_PURCHASES INT -- Tipo do dado da coluna validado.
+	,NUM_WEB_VISITS_MONTH INT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP3 INT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP4 INT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP5 INT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP1 INT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP2 INT -- Tipo do dado da coluna validado.
+	,COMPLAIN INT -- Tipo do dado da coluna validado.
+	,Z_COST_CONTACT INT -- Tipo do dado da coluna validado.
+	,Z_REVENUE INT -- Tipo do dado da coluna validado.
+	,RESPONSE INT -- Tipo do dado da coluna validado.
+	,CONSTRAINT PK_ID PRIMARY KEY CLUSTERED (ID) -- Chave primária criada para não duplicar dados e facilitar em buscas com índice clusterizado.
+);
+"""
+)
 
 # Manipulação do arquivo CSV.
 df = pd.read_csv(r'Desktop\data.csv') # Realizada a leitura.
