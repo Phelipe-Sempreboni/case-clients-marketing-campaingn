@@ -269,6 +269,26 @@ with open(r'Desktop\data.csv', encoding="utf8") as csv_file:
         )
 conexao.commit() # Commit para validar e executar as ações.
 ```
+7º - Criação de uma view com algumas adições de novas colunas conforme explicado abaixo.
 
+- A criação da view será feita como se fosse uma boa prática análise de dados em banco de dados, onde temos alguns motivos abaixo.
 
+- Motivo 1: Imaginemos que essa tabela criada seja uma tabela de atualização diária em um Datalake, sendo apagada e recriada todos os dias, logo, se a tabela estiver conectada em alguma ferramenta de visualização, por exemplo, pode causar falhas de atualização da tabela. Criando uma view não teremos esse problema, pois, não temos conexão diretamente na tabela.
+
+- Motivo 2: Caso essa tabela, seja por exemplo, uma tabela de um Datalake, onde normalmente os dados são extraídos e inseridos na base de dados sem tratamentos, podemos criar uma view com nossos próprios tratamentos e não necessitar diretamente da tabela sem tratamentos carregada no Datalake.
+
+- Motivo 3: Na criação da view, podemos adicionar colunas, como colunas calculadas e encapsular esse script caso seja mais restrito.
+
+- Motivo 4: Facilidade de alteração da view, onde caso a tabela não tenha nomes de colunas alteradas, a view sempre será fiel a base origem.
+
+- Motivo 5: Conseguir realizar a transformação de dados sem necessidade de alteração da tabela principal.
+
+- Coluna adicionda: 
+- Coluna adicionda: 
+- Coluna adicionda: 
+
+```
+-- Criação da view.
+
+```
 
