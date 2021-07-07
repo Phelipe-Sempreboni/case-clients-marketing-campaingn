@@ -106,7 +106,11 @@ Notar que para rodar localmente a análise de maneira mais fácil, utilizar o m�
 
 1º - Ter um usuário e login com privilégios para criação, inserção, drop e delete de databases, schema e tabelas.
 
+---
+
 2º - Conectar a ferramenta Microsoft SQL Server 2019.
+
+---
 
 3º - Criar um database que irá alocar o schema e a tabela. O comando abaixo irá criar um database de forma padrão, espelhado no database de sistema chamado (model), pois, não iremos destacar parâmetros neste caso.
 
@@ -125,6 +129,8 @@ DROP DATABASE MARKETING;
 GO
 
 ```
+
+---
 
 4º - Criação do schema que alocará a tabela.
 
@@ -146,6 +152,8 @@ DROP SCHEMA MARKETING_ANALISE_CAMPANHA;
 GO
 
 ```
+
+---
 
 5º - Criação da tabela que alocará os dados para posteriormente realizar a análise. Nesta etapas, temos alguns passos adicionais conforme explicação abaixo. Esses passos entram como o tratamento de dados antes da realização da análise, para que seja o mais real possível e os dados sejam de qualidade.
 
@@ -226,6 +234,7 @@ GO
 TRUNCA TABLE [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA];
 GO
 ```
+---
 
 6º - Input dos dados na tabela criada no banco de dados Microsoft SQL Server 2019 com um job do Python.
 
@@ -244,10 +253,10 @@ import csv
 # Criação da conexão com o Microsoft SQL Server.
 conexao = pyodbc.connect(
 Driver='{SQL Server Native Client 11.0}',
-Server='NI-55077-6P', # Insira o server.
-Database='MARKETING', # Insira o banco de dados.
-uid='SEMPREBONI', # Insira o usuário.
-pwd='Kfm758AJ@1', # Insira a senha.
+Server='', # Insira o server.
+Database='', # Insira o banco de dados.
+uid='', # Insira o usuário.
+pwd='', # Insira a senha.
 rusted_Connection='no' # Se o login no banco de dados é realizados com Autentição SQL Server, ou seja, com login e senha, deixe marcado como (no), caso contrário, retire o comando da linha de senha (pwd) e deixe este campo como (yes), informando que a conexão é por meio de Autentição Windows, ou seja, não necessita da senha.
 )
 cursor = conexao.cursor() # Criação do cursor para executar comandos no banco de dados.
@@ -342,6 +351,8 @@ with open(r'Desktop\data.csv', encoding="utf8") as csv_file:
         )
 conexao.commit() # Commit para validar e executar as ações.
 ```
+---
+
 7º - Criação de uma view com algumas adições de novas colunas conforme explicado abaixo.
 
 - A criação da view será feita como se fosse uma boa prática análise de dados em banco de dados, onde temos alguns motivos abaixo.
@@ -356,12 +367,145 @@ conexao.commit() # Commit para validar e executar as ações.
 
 - Motivo 5: Conseguir realizar a transformação de dados sem necessidade de alteração da tabela principal.
 
-- Coluna adicionda: 
-- Coluna adicionda: 
-- Coluna adicionda: 
+#### Colunas adicionadas e descrições:
+
+| Campo                    | Descrição us-es                                                      | Descrição pt-br                                                       |
+| :-----------------------:|---------------------------------------------------------------------:|:---------------------------------------------------------------------:|
+| YEARS OLD                | customer age.                                                        | idade do cliente.                                                     |
+| MONTHLY INCOME           | monthly income of the client's family.                               | renda mensal familia do cliente.                                      |
+| REGISTERED CUSTOMER TIME | time the customer is registered with the company.                    | tempo que o cliente é registrado na empresa.                          |
 
 ```
 -- Criação da view.
 
+USE [MARKETING];
+GO
+
+CREATE VIEW [MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+AS
+WITH [TBL_DADOS_CAMPANHA_MKT] AS
+(
+SELECT
+       [ID]
+      ,[YEAR_BIRTH]
+      ,[EDUCATION]
+      ,[MARITAL_STATUS]
+      ,[INCOME]
+      ,[KIDHOME]
+      ,[TEENHOME]
+      ,[DT_CUSTOMER]
+      ,[RECENCY]
+      ,[MNT_WINES]
+      ,[MNT_FRUITS]
+      ,[MNT_MEAT_PRODUCTS]
+      ,[MNT_FISH_PRODUCTS]
+      ,[MNT_SWEET_PRODUCTS]
+      ,[MNT_GOLD_PRODS]
+      ,[NUM_DEALS_PURCHASES]
+      ,[NUM_WEB_PURCHASES]
+      ,[NUM_CATALOG_PURCHASES]
+      ,[NUM_STORE_PURCHASES]
+      ,[NUM_WEB_VISITS_MONTH]
+      ,[ACCEPTED_CMP3]
+      ,[ACCEPTED_CMP4]
+      ,[ACCEPTED_CMP5]
+      ,[ACCEPTED_CMP1]
+      ,[ACCEPTED_CMP2]
+      ,[COMPLAIN]
+      ,[Z_COST_CONTACT]
+      ,[Z_REVENUE]
+      ,[RESPONSE]
+      ,
+      CASE
+      WHEN [YEAR_BIRTH] NOT IN ('') THEN (YEAR(GETDATE()) - [YEAR_BIRTH])
+      WHEN [YEAR_BIRTH] IN ('') THEN 0
+      WHEN [YEAR_BIRTH] IN (0) THEN 0
+      END AS [YEARS_OLD]
+      ,
+      CASE
+      WHEN [INCOME] NOT IN ('') THEN ROUND(([INCOME] / 12), 0)
+      WHEN [INCOME] IN ('') THEN 0
+      WHEN [INCOME] IN (0) THEN 0
+      END AS [MONTHLY_INCOME]
+      ,
+      CASE
+      WHEN [DT_CUSTOMER] NOT IN ('') THEN (YEAR(GETDATE()) - YEAR([DT_CUSTOMER]))
+      END AS [REGISTERED_CUSTOMER_TIME]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA]
+),
+[TBL_DADOS_CAMPANHA] AS
+(
+SELECT
+      [ID]
+     ,[YEAR_BIRTH]
+     ,[YEARS_OLD]
+     ,[EDUCATION]
+     ,[MARITAL_STATUS]
+     ,[MONTHLY_INCOME]
+     ,[INCOME]
+     ,[KIDHOME]
+     ,[TEENHOME]
+     ,[DT_CUSTOMER]
+     ,[REGISTERED_CUSTOMER_TIME]
+     ,[RECENCY]
+     ,[MNT_WINES]
+     ,[MNT_FRUITS]
+     ,[MNT_MEAT_PRODUCTS]
+     ,[MNT_FISH_PRODUCTS]
+     ,[MNT_SWEET_PRODUCTS]
+     ,[MNT_GOLD_PRODS]
+     ,[NUM_DEALS_PURCHASES]
+     ,[NUM_WEB_PURCHASES]
+     ,[NUM_CATALOG_PURCHASES]
+     ,[NUM_STORE_PURCHASES]
+     ,[NUM_WEB_VISITS_MONTH]
+     ,[ACCEPTED_CMP3]
+     ,[ACCEPTED_CMP4]
+     ,[ACCEPTED_CMP5]
+     ,[ACCEPTED_CMP1]
+     ,[ACCEPTED_CMP2]
+     ,[COMPLAIN]
+     ,[Z_COST_CONTACT]
+     ,[Z_REVENUE]
+     ,[RESPONSE]
+	  
+FROM [TBL_DADOS_CAMPANHA_MKT]
+)
+SELECT * FROM [TBL_DADOS_CAMPANHA];
+GO
+
+-- Caso queira excluir a view.
+
+DROP VIEW [MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW];
+GO  
 ```
+---
+
+8º - Levantamento inicial dos KPI's. Nesta etapa, será feito um levantamento inicial dos KPI's que os dados podem nos fornecer.
+
+- Quantidade de clientes.
+
+- Idade média dos clientes. 
+
+- Quantidade de clientes pelo nível de educação.
+
+- Quantidade de clientes pelo estado civil.
+
+- Quantidade de clientes pelo nível de educação e estado civil.
+
+- Renda média mensal familiar dos clientes.
+
+- Renda média anual familiar dos clientes. 
+
+---
+
+
+
+
+
+
+
+
+
 
