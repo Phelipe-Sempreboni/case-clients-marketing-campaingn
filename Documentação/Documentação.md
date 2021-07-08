@@ -1060,19 +1060,19 @@ ORDER BY
 	COUNT([ID])
        ,[NUM_CATALOG_PURCHASES] ASC
 
---  1 clientes -> 22 compras pelo site - Equivalente a (dos 1654 clientes que já compraram pelo catálogo): 0,060459492140266% -> 1%
---  3 clientes -> 28 compras pelo site - Equivalente a (dos 1654 clientes que já compraram pelo catálogo): 0,1813784764207981% -> 1%
---  19 clientes -> 11 compras pelo site - Equivalente a (dos 1654 clientes que já compraram pelo catálogo): 1,1487303506650544% -> 1%
---  42 clientes -> 9 compras pelo site - Equivalente a (dos 1654 clientes que já compraram pelo catálogo): 2,539298669891173% -> 2%
---  48 clientes -> 10 compras pelo site - Equivalente a (dos 1654 clientes que já compraram pelo catálogo): 2,902055622732769% -> 2%
---  55 clientes -> 8 compras pelo site - Equivalente a (dos 1654 clientes que já compraram pelo catálogo): 3,3252720677146312% -> 3%
---  79 clientes -> 7 compras pelo site - Equivalente a (dos 1654 clientes que já compraram pelo catálogo): 4,776299879081016% -> 4%
---  128 clientes -> 6 compras pelo site - Equivalente a (dos 1654 clientes que já compraram pelo catálogo): 7,738814993954051% -> 7%
---  140 clientes -> 5 compras pelo site - Equivalente a (dos 1654 clientes que já compraram pelo catálogo): 8,464328899637243% -> 8%
---  182 clientes -> 4 compras pelo site - Equivalente a (dos 1654 clientes que já compraram pelo catálogo): 11,003627569528415% -> 11%
---  184 clientes -> 3 compras pelo site - Equivalente a (dos 1654 clientes que já compraram pelo catálogo): 11,124546553808948% -> 11%
---  276 clientes -> 2 compras pelo site - Equivalente a (dos 1654 clientes que já compraram pelo catálogo): 16,68681983071342% -> 16%
---  497 clientes -> 1 compras pelo site - Equivalente a (dos 1654 clientes que já compraram pelo catálogo): 30,048367593712214% -> 30%
+--  1 clientes -> 22 compras pelo catálogo - Equivalente a (dos 1654 clientes que já compraram pelo catálogo): 0,060459492140266% -> 1%
+--  3 clientes -> 28 compras pelo catálogo - Equivalente a (dos 1654 clientes que já compraram pelo catálogo): 0,1813784764207981% -> 1%
+--  19 clientes -> 11 compras pelo catálogo - Equivalente a (dos 1654 clientes que já compraram pelo catálogo): 1,1487303506650544% -> 1%
+--  42 clientes -> 9 compras pelo catálogo - Equivalente a (dos 1654 clientes que já compraram pelo catálogo): 2,539298669891173% -> 2%
+--  48 clientes -> 10 compras pelo catálogo - Equivalente a (dos 1654 clientes que já compraram pelo catálogo): 2,902055622732769% -> 2%
+--  55 clientes -> 8 compras pelo catálogo - Equivalente a (dos 1654 clientes que já compraram pelo catálogo): 3,3252720677146312% -> 3%
+--  79 clientes -> 7 compras pelo catálogo - Equivalente a (dos 1654 clientes que já compraram pelo catálogo): 4,776299879081016% -> 4%
+--  128 clientes -> 6 compras pelo catálogo - Equivalente a (dos 1654 clientes que já compraram pelo catálogo): 7,738814993954051% -> 7%
+--  140 clientes -> 5 compras pelo catálogo - Equivalente a (dos 1654 clientes que já compraram pelo catálogo): 8,464328899637243% -> 8%
+--  182 clientes -> 4 compras pelo catálogo - Equivalente a (dos 1654 clientes que já compraram pelo catálogo): 11,003627569528415% -> 11%
+--  184 clientes -> 3 compras pelo catálogo - Equivalente a (dos 1654 clientes que já compraram pelo catálogo): 11,124546553808948% -> 11%
+--  276 clientes -> 2 compras pelo catálogo - Equivalente a (dos 1654 clientes que já compraram pelo catálogo): 16,68681983071342% -> 16%
+--  497 clientes -> 1 compras pelo catálogo - Equivalente a (dos 1654 clientes que já compraram pelo catálogo): 30,048367593712214% -> 30%
 ```
 ---
 - Quantidade de clientes que compraram na loja.
@@ -1110,3 +1110,39 @@ WHERE [NUM_STORE_PURCHASES] = 0;
 -- 15 clientes -> 0,6696428571428571% -> 1% -> Clientes que não compraram na loja.
 ```
 ---
+- Quantidade de clientes pelo número de vezes que ele comprou na loja.
+```
+DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW] WHERE [NUM_STORE_PURCHASES] > 0);
+
+SELECT 
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+     ,[NUM_STORE_PURCHASES]
+     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [NUM_STORE_PURCHASES] > 0
+
+GROUP BY
+	[NUM_STORE_PURCHASES]
+
+ORDER BY
+	COUNT([ID])
+       ,[NUM_STORE_PURCHASES] ASC
+
+--  7 clientes -> 1 compras pela loja - Equivalente a (dos 2225 clientes que já compraram pela loja): 0,3146067415730337% -> 1%
+--  81 clientes -> 11 compras pela loja - Equivalente a (dos 2225 clientes que já compraram pela loja): 3,640449438202247% -> 3%
+--  83 clientes -> 13 compras pela loja - Equivalente a (dos 2225 clientes que já compraram pela loja): 3,730337078651685% -> 3%
+--  105 clientes -> 12 compras pela loja - Equivalente a (dos 2225 clientes que já compraram pela loja): 4,719101123595506% -> 4%
+--  106 clientes -> 9 compras pela loja - Equivalente a (dos 2225 clientes que já compraram pela loja): 4,764044943820225% -> 4%
+--  125 clientes -> 10 compras pela loja - Equivalente a (dos 2225 clientes que já compraram pela loja): 5,617977528089888% -> 5%
+--  143 clientes -> 7 compras pela loja - Equivalente a (dos 2225 clientes que já compraram pela loja): 6,426966292134831% -> 6%
+--  149 clientes -> 8 compras pela loja - Equivalente a (dos 2225 clientes que já compraram pela loja): 6,696629213483146% -> 6%
+--  178 clientes -> 6 compras pela loja - Equivalente a (dos 2225 clientes que já compraram pela loja): 8% -> 8%
+--  212 clientes -> 5 compras pela loja - Equivalente a (dos 2225 clientes que já compraram pela loja): 9,52808988764045% -> 9%
+--  223 clientes -> 2 compras pela loja - Equivalente a (dos 2225 clientes que já compraram pela loja): 10,02247191011236% -> 10%
+--  323 clientes -> 4 compras pela loja - Equivalente a (dos 2225 clientes que já compraram pela loja): 14,51685393258427% -> 14%
+--  490 clientes -> 3 compras pela loja - Equivalente a (dos 2225 clientes que já compraram pela loja): 22,02247191011236% -> 22%
+```
+---
+
