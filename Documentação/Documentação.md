@@ -974,20 +974,20 @@ WHERE [NUM_WEB_PURCHASES] = 0;
 DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW] WHERE [NUM_WEB_PURCHASES] > 0);
 
 SELECT 
-	  COUNT([ID]) AS [NUMBER_CLIENTS]
-	 ,[NUM_WEB_PURCHASES]
-	 ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+     ,[NUM_WEB_PURCHASES]
+     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
 
 FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
 
 WHERE [NUM_WEB_PURCHASES] > 0
 
 GROUP BY
-		[NUM_WEB_PURCHASES]
+	[NUM_WEB_PURCHASES]
 
 ORDER BY
-		COUNT([ID])
-	   ,[NUM_WEB_PURCHASES] ASC
+	COUNT([ID])
+       ,[NUM_WEB_PURCHASES] ASC
 
 --  1 clientes -> 23 compras pelo site - Equivalente a (dos 2191 clientes que já compraram pelo site): 0,0456412596987677% -> 1%
 --  1 clientes -> 25 compras pelo site - Equivalente a (dos 2191 clientes que já compraram pelo site): 0,0456412596987677% -> 1%
@@ -1003,5 +1003,75 @@ ORDER BY
 --  336 clientes -> 23 compras pelo site - Equivalente a (dos 2191 clientes que já compraram pelo site): 15,335463258785943% -> 15%
 --  354 clientes -> 23 compras pelo site - Equivalente a (dos 2191 clientes que já compraram pelo site): 16,15700593336376% -> 16%
 --  373 clientes -> 23 compras pelo site - Equivalente a (dos 2191 clientes que já compraram pelo site): 17,024189867640345% -> 17%
+```
+---
+- Quantidade de clientes que compraram pelo catálogo.
+- Quantidade de clientes que não compraram pelo catálogo.
+```
+DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
+
+SELECT 
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,
+     CASE
+     WHEN COUNT([ID]) NOT IN ('') THEN 'bought from the catalog.'
+     END AS [DISCOUNT]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [NUM_CATALOG_PURCHASES] > 0
+
+UNION ALL
+
+SELECT 
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,
+     CASE
+     WHEN COUNT([ID]) NOT IN ('') THEN 'they dont buy from the catalog.'
+     END AS [DISCOUNT]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [NUM_CATALOG_PURCHASES] = 0;
+
+-- 1654 clientes -> 73,83928571428571% -> 73% -> Clientes que compraram pelo catálogo.
+-- 586 clientes -> 26,160714285714285% -> 26% -> Clientes que não compraram pelo catálogo.
+```
+---
+- Quantidade de clientes pelo número de vezes que ele comprou pelo catálogo.
+```
+DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW] WHERE [NUM_CATALOG_PURCHASES] > 0);
+
+SELECT 
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+     ,[NUM_CATALOG_PURCHASES]
+     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [NUM_CATALOG_PURCHASES] > 0
+
+GROUP BY
+	[NUM_CATALOG_PURCHASES]
+
+ORDER BY
+	COUNT([ID])
+       ,[NUM_CATALOG_PURCHASES] ASC
+
+--  1 clientes -> 22 compras pelo site - Equivalente a (dos 1654 clientes que já compraram pelo catálogo): 0,060459492140266% -> 1%
+--  3 clientes -> 28 compras pelo site - Equivalente a (dos 1654 clientes que já compraram pelo catálogo): 0,1813784764207981% -> 1%
+--  19 clientes -> 11 compras pelo site - Equivalente a (dos 1654 clientes que já compraram pelo catálogo): 1,1487303506650544% -> 1%
+--  42 clientes -> 9 compras pelo site - Equivalente a (dos 1654 clientes que já compraram pelo catálogo): 2,539298669891173% -> 2%
+--  48 clientes -> 10 compras pelo site - Equivalente a (dos 1654 clientes que já compraram pelo catálogo): 2,902055622732769% -> 2%
+--  55 clientes -> 8 compras pelo site - Equivalente a (dos 1654 clientes que já compraram pelo catálogo): 3,3252720677146312% -> 3%
+--  79 clientes -> 7 compras pelo site - Equivalente a (dos 1654 clientes que já compraram pelo catálogo): 4,776299879081016% -> 4%
+--  128 clientes -> 6 compras pelo site - Equivalente a (dos 1654 clientes que já compraram pelo catálogo): 7,738814993954051% -> 7%
+--  140 clientes -> 5 compras pelo site - Equivalente a (dos 1654 clientes que já compraram pelo catálogo): 8,464328899637243% -> 8%
+--  182 clientes -> 4 compras pelo site - Equivalente a (dos 1654 clientes que já compraram pelo catálogo): 11,003627569528415% -> 11%
+--  184 clientes -> 3 compras pelo site - Equivalente a (dos 1654 clientes que já compraram pelo catálogo): 11,124546553808948% -> 11%
+--  276 clientes -> 2 compras pelo site - Equivalente a (dos 1654 clientes que já compraram pelo catálogo): 16,68681983071342% -> 16%
+--  497 clientes -> 1 compras pelo site - Equivalente a (dos 1654 clientes que já compraram pelo catálogo): 30,048367593712214% -> 30%
 ```
 ---
