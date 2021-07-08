@@ -890,7 +890,50 @@ WHERE [NUM_DEALS_PURCHASES] = 0;
 -- 46 clientes -> 2,0535714285714284 -> 2% -> Clientes que não usaram ou tiveram desconto
 ```
 ---
+- Média de compras com desconto.
+```
+SELECT AVG([NUM_DEALS_PURCHASES]) AS [AVERAGE_NUM_DEALS_PURCHASES] FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW] WHERE [NUM_DEALS_PURCHASES] <> 0;
 
+-- 2.
+-- Cada cliente, dos que compraram com desconto, teria uma média de 2 compras por desconto recebido. 
+```
+---
+- Quantidade de clientes pelo número de vezes que ele comprou com desconto.
+```
+DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW] WHERE [NUM_DEALS_PURCHASES] > 0);
+
+SELECT 
+	  COUNT([ID]) AS [NUMBER_CLIENTS]
+	 ,[NUM_DEALS_PURCHASES]
+	 ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [NUM_DEALS_PURCHASES] > 0
+
+GROUP BY
+		[NUM_DEALS_PURCHASES]
+
+ORDER BY
+		COUNT([ID])
+	   ,[NUM_DEALS_PURCHASES] ASC
+
+--  3 clientes -> 13 compras com desconto - Equivalente a (dos 2194 clientes que já compraram com desconto): 0,1367365542388332% -> 1%
+--  4 clientes -> 12 compras com desconto - Equivalente a (dos 2194 clientes que já compraram com desconto): 0,1823154056517776% -> 1%
+--  5 clientes -> 10 compras com desconto - Equivalente a (dos 2194 clientes que já compraram com desconto): 0,227894257064722%  -> 1%
+--  5 clientes -> 11 compras com desconto - Equivalente a (dos 2194 clientes que já compraram com desconto): 0,227894257064722%  -> 1%
+--  7 clientes -> 15 compras com desconto - Equivalente a (dos 2194 clientes que já compraram com desconto): 0,3190519598906107% -> 1%
+--  8 clientes ->  9 compras com desconto - Equivalente a (dos 2194 clientes que já compraram com desconto): 0,3646308113035551% -> 1%
+--  14 clientes -> 8 compras com desconto - Equivalente a (dos 2194 clientes que já compraram com desconto): 0,6381039197812215% -> 1%
+--  40 clientes -> 7 compras com desconto - Equivalente a (dos 2194 clientes que já compraram com desconto): 1,8231540565177757% -> 1%
+--  61 clientes -> 6 compras com desconto - Equivalente a (dos 2194 clientes que já compraram com desconto): 2,780309936189608% -> 2%
+--  94 clientes -> 5 compras com desconto - Equivalente a (dos 2194 clientes que já compraram com desconto): 4,284412032816773% -> 4%
+--  189 clientes -> 4 compras com desconto - Equivalente a (dos 2194 clientes que já compraram com desconto): 8,61440291704649% -> 8%
+--  297 clientes -> 3 compras com desconto - Equivalente a (dos 2194 clientes que já compraram com desconto): 13,536918869644484% -> 13%
+--  497 clientes -> 2 compras com desconto - Equivalente a (dos 2194 clientes que já compraram com desconto): 22,652689152233364% -> 22%
+--  970 clientes -> 1 compra com desconto - Equivalente a (dos 2194 clientes que já compraram com desconto): 44,21148587055606% -> 44%
+```
+---
 
 
 
