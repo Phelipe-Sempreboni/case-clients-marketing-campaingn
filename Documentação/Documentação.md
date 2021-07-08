@@ -1188,7 +1188,7 @@ SELECT
 
 FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
 
-WHERE NUM_WEB_VISITS_MONTH > 0
+WHERE [NUM_WEB_VISITS_MONTH] > 0
 
 UNION ALL
 
@@ -1202,9 +1202,22 @@ SELECT
 
 FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
 
-WHERE NUM_WEB_VISITS_MONTH = 0;
+WHERE [NUM_WEB_VISITS_MONTH] = 0;
 
 -- 2229 clientes -> 99,50892857142857% -> 99% -> Clientes que visitaram o site da loja no último mês.
 -- 11 clientes -> 0,4910714285714285% -> 1% -> Clientes que não visitaram o site da loja no último mês.
 ```
 ---
+- Quantidade de clientes pelo número de vezes visitaram o site no último mês.
+```
+
+```
+---
+- Quantidade total de visitas no site no último mês.
+```
+SELECT SUM([NUM_WEB_VISITS_MONTH]) AS [NUM_GENERAL_WEB_VISITS_MONTH] FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW];
+
+-- 11.909 de visitas no site no último mês.
+```
+---
+
