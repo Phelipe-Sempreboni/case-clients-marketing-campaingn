@@ -969,4 +969,39 @@ WHERE [NUM_WEB_PURCHASES] = 0;
 -- 49 clientes -> 2,0081967213114753% -> 2% -> Clientes que não compraram pelo site.
 ```
 ---
+- Quantidade de clientes pelo número de vezes que ele comprou pelo site.
+```
+DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW] WHERE [NUM_WEB_PURCHASES] > 0);
 
+SELECT 
+	  COUNT([ID]) AS [NUMBER_CLIENTS]
+	 ,[NUM_WEB_PURCHASES]
+	 ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [NUM_WEB_PURCHASES] > 0
+
+GROUP BY
+		[NUM_WEB_PURCHASES]
+
+ORDER BY
+		COUNT([ID])
+	   ,[NUM_WEB_PURCHASES] ASC
+
+--  1 clientes -> 23 compras pelo site - Equivalente a (dos 2191 clientes que já compraram pelo site): 0,0456412596987677% -> 1%
+--  1 clientes -> 25 compras pelo site - Equivalente a (dos 2191 clientes que já compraram pelo site): 0,0456412596987677% -> 1%
+--  2 clientes -> 23 compras pelo site - Equivalente a (dos 2191 clientes que já compraram pelo site): 0,0912825193975354% -> 1%
+--  43 clientes -> 23 compras pelo site - Equivalente a (dos 2191 clientes que já compraram pelo site): 1,9625741670470105% -> 1%
+--  44 clientes -> 23 compras pelo site - Equivalente a (dos 2191 clientes que já compraram pelo site): 2,008215426745778% -> 2%
+--  75 clientes -> 23 compras pelo site - Equivalente a (dos 2191 clientes que já compraram pelo site): 3,4230944774075764% -> 3%
+--  102 clientes -> 23 compras pelo site - Equivalente a (dos 2191 clientes que já compraram pelo site): 4,655408489274304% -> 4%
+--  155 clientes -> 23 compras pelo site - Equivalente a (dos 2191 clientes que já compraram pelo site): 7,0743952533089915% -> 7%
+--  205 clientes -> 23 compras pelo site - Equivalente a (dos 2191 clientes que já compraram pelo site): 9,356458238247376% -> 9%
+--  220 clientes -> 23 compras pelo site - Equivalente a (dos 2191 clientes que já compraram pelo site): 10,04107713372889% -> 10%
+--  280 clientes -> 23 compras pelo site - Equivalente a (dos 2191 clientes que já compraram pelo site): 12,779552715654953% -> 12%
+--  336 clientes -> 23 compras pelo site - Equivalente a (dos 2191 clientes que já compraram pelo site): 15,335463258785943% -> 15%
+--  354 clientes -> 23 compras pelo site - Equivalente a (dos 2191 clientes que já compraram pelo site): 16,15700593336376% -> 16%
+--  373 clientes -> 23 compras pelo site - Equivalente a (dos 2191 clientes que já compraram pelo site): 17,024189867640345% -> 17%
+```
+---
