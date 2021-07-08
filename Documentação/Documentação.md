@@ -1253,4 +1253,12 @@ SELECT SUM([NUM_WEB_VISITS_MONTH]) AS [NUM_GENERAL_WEB_VISITS_MONTH] FROM [MARKE
 -- 11.909 de visitas no site no último mês.
 ```
 ---
+- Quantidade de clientes que aceitaram e não aceitaram a oferta na 1º campanha.
+- Quantidade de clientes que aceitaram e não aceitaram a oferta na 2º campanha.
+- Quantidade de clientes que aceitaram e não aceitaram a oferta na 3º campanha.
+- Quantidade de clientes que aceitaram e não aceitaram a oferta na 4º campanha.
+- Quantidade de clientes que aceitaram e não aceitaram a oferta na 5º campanha.
+- Quantidade de clientes que aceitaram e não aceitaram a oferta na 6º campanha.
+
+
 
