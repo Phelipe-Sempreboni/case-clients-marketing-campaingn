@@ -855,9 +855,41 @@ FROM [TBL_SUM_PRODUCTS] ORDER BY [NUMBERS_PRODUCTS];
 -- MNT_WINES -> 680.816 -> 50,171114261879985 -> 50%
 ```
 ---
+- Quantidade de clientes que compraram com desconto.
+- Quantidade de clientes que não usaram ou tiveram desconto.
+```
+DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
 
+SELECT 
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,
+     CASE
+     WHEN COUNT([ID]) NOT IN ('') THEN 'bought at a discount'
+     END AS [DISCOUNT]
 
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
 
+WHERE [NUM_DEALS_PURCHASES] > 0
+
+UNION ALL
+
+SELECT 
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,
+     CASE
+     WHEN COUNT([ID]) NOT IN ('') THEN 'dont buy with a discount'
+     END AS [DISCOUNT]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [NUM_DEALS_PURCHASES] = 0;
+
+-- 2194 clientes -> 97,94642857142857% -> 97% -> Clientes que compraram com desconto.
+-- 46 clientes -> 2,0535714285714284 -> 2% -> Clientes que não usaram ou tiveram desconto
+```
+---
 
 
 
