@@ -1075,3 +1075,38 @@ ORDER BY
 --  497 clientes -> 1 compras pelo site - Equivalente a (dos 1654 clientes que já compraram pelo catálogo): 30,048367593712214% -> 30%
 ```
 ---
+- Quantidade de clientes que compraram na loja.
+- Quantidade de clientes que não compraram na loja.
+```
+DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
+
+SELECT 
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,
+     CASE
+     WHEN COUNT([ID]) NOT IN ('') THEN 'bought by the store.'
+     END AS [DISCOUNT]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [NUM_STORE_PURCHASES] > 0
+
+UNION ALL
+
+SELECT 
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,
+     CASE
+     WHEN COUNT([ID]) NOT IN ('') THEN 'not bought by the store.'
+     END AS [DISCOUNT]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [NUM_STORE_PURCHASES] = 0;
+
+-- 2225 clientes -> 99,33035714285714% -> 99% -> Clientes que compraram na loja.
+-- 15 clientes -> 0,6696428571428571% -> 1% -> Clientes que não compraram na loja.
+```
+---
