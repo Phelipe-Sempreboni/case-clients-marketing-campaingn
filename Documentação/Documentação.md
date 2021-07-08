@@ -1210,7 +1210,39 @@ WHERE [NUM_WEB_VISITS_MONTH] = 0;
 ---
 - Quantidade de clientes pelo número de vezes visitaram o site no último mês.
 ```
+DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW] WHERE [NUM_WEB_VISITS_MONTH] > 0);
 
+SELECT 
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+     ,[NUM_WEB_VISITS_MONTH]
+     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [NUM_WEB_VISITS_MONTH] > 0
+
+GROUP BY
+	[NUM_WEB_VISITS_MONTH]
+
+ORDER BY
+	COUNT([ID])
+   ,[NUM_WEB_VISITS_MONTH] ASC
+
+--  1 clientes -> 13 visitas no site no último mês - Equivalente a (dos 2229 clientes que visitaram o site no último mês): 0,0448631673396142% -> 1%
+--  1 clientes -> 17 visitas no site no último mês - Equivalente a (dos 2229 clientes que visitaram o site no último mês): 0,0448631673396142% -> 1%
+--  2 clientes -> 14 visitas no site no último mês - Equivalente a (dos 2229 clientes que visitaram o site no último mês): 0,0897263346792284% -> 1%
+--  2 clientes -> 19 visitas no site no último mês - Equivalente a (dos 2229 clientes que visitaram o site no último mês): 0,0897263346792284% -> 1%
+--  3 clientes -> 10 visitas no site no último mês - Equivalente a (dos 2229 clientes que visitaram o site no último mês): 0,1345895020188425% -> 1%
+--  3 clientes -> 20 visitas no site no último mês - Equivalente a (dos 2229 clientes que visitaram o site no último mês): 0,1345895020188425% -> 1%
+--  83 clientes -> 9 visitas no site no último mês - Equivalente a (dos 2229 clientes que visitaram o site no último mês): 3,7236428891879765% -> 3%
+--  153 clientes -> 1 visitas no site no último mês - Equivalente a (dos 2229 clientes que visitaram o site no último mês): 6,864064602960969% -> 6%
+--  202 clientes -> 2 visitas no site no último mês - Equivalente a (dos 2229 clientes que visitaram o site no último mês): 9,062359802602064% -> 9%
+--  205 clientes -> 3 visitas no site no último mês - Equivalente a (dos 2229 clientes que visitaram o site no último mês): 9,196949304620906% -> 9%
+--  218 clientes -> 4 visitas no site no último mês - Equivalente a (dos 2229 clientes que visitaram o site no último mês): 9,78017048003589% -> 9%
+--  281 clientes -> 5 visitas no site no último mês - Equivalente a (dos 2229 clientes que visitaram o site no último mês): 12,606550022431584% -> 12%
+--  340 clientes -> 6 visitas no site no último mês - Equivalente a (dos 2229 clientes que visitaram o site no último mês): 15,25347689546882% -> 15%
+--  342 clientes -> 8 visitas no site no último mês - Equivalente a (dos 2229 clientes que visitaram o site no último mês): 15,343203230148049% -> 15%
+--  393 clientes -> 7 visitas no site no último mês - Equivalente a (dos 2229 clientes que visitaram o site no último mês): 17,63122476446837% -> 17%
 ```
 ---
 - Quantidade total de visitas no site no último mês.
