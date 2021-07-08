@@ -934,6 +934,13 @@ ORDER BY
 --  970 clientes -> 1 compra com desconto - Equivalente a (dos 2194 clientes que já compraram com desconto): 44,21148587055606% -> 44%
 ```
 ---
+- Quantidade total de descontos utilizados pelos clientes.
+```
+SELECT SUM([NUM_DEALS_PURCHASES]) AS [NUM_GENERAL_DEALS_PURCHASES] FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW];
+
+-- 5.208 descontos.
+```
+---
 - Quantidade de clientes que compraram pelo site.
 - Quantidade de clientes que não compraram pelo site.
 ```
@@ -1003,6 +1010,13 @@ ORDER BY
 --  336 clientes -> 23 compras pelo site - Equivalente a (dos 2191 clientes que já compraram pelo site): 15,335463258785943% -> 15%
 --  354 clientes -> 23 compras pelo site - Equivalente a (dos 2191 clientes que já compraram pelo site): 16,15700593336376% -> 16%
 --  373 clientes -> 23 compras pelo site - Equivalente a (dos 2191 clientes que já compraram pelo site): 17,024189867640345% -> 17%
+```
+---
+- Quantidade total de compras pelo site.
+```
+SELECT SUM([NUM_WEB_PURCHASES]) AS [NUM_GENERAL_WEB_PURCHASES] FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW];
+
+-- 9.150 de compras pelo site.
 ```
 ---
 - Quantidade de clientes que compraram pelo catálogo.
@@ -1075,6 +1089,13 @@ ORDER BY
 --  497 clientes -> 1 compras pelo catálogo - Equivalente a (dos 1654 clientes que já compraram pelo catálogo): 30,048367593712214% -> 30%
 ```
 ---
+- Quantidade total de compras pelo catálogo.
+```
+SELECT SUM([NUM_CATALOG_PURCHASES]) AS [NUM_GENERAL_CATALOG_PURCHASES] FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW];
+
+-- 5.963 compras pelo catálogo.
+```
+---
 - Quantidade de clientes que compraram na loja.
 - Quantidade de clientes que não compraram na loja.
 ```
@@ -1145,4 +1166,45 @@ ORDER BY
 --  490 clientes -> 3 compras pela loja - Equivalente a (dos 2225 clientes que já compraram pela loja): 22,02247191011236% -> 22%
 ```
 ---
+- Quantidade total de compras na loja.
+```
+SELECT SUM([NUM_STORE_PURCHASES]) AS [NUM_GENERAL_STORE_PURCHASES] FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW];
 
+-- 12.970 de compras pela loja.
+```
+--
+- Quantidade de clientes que visitaram o site no último mês.
+- Quantidade de clientes que não visitaram o site no último mês.
+```
+DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
+
+SELECT 
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,
+     CASE
+     WHEN COUNT([ID]) NOT IN ('') THEN 'visited the site in the last month.'
+     END AS [DISCOUNT]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE NUM_WEB_VISITS_MONTH > 0
+
+UNION ALL
+
+SELECT 
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,
+     CASE
+     WHEN COUNT([ID]) NOT IN ('') THEN 'dont visited the site in the last month.'
+     END AS [DISCOUNT]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE NUM_WEB_VISITS_MONTH = 0;
+
+-- 2229 clientes -> 99,50892857142857% -> 99% -> Clientes que visitaram o site da loja no último mês.
+-- 11 clientes -> 0,4910714285714285% -> 1% -> Clientes que não visitaram o site da loja no último mês.
+```
+---
