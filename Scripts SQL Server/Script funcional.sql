@@ -1,0 +1,1357 @@
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- Criação do database.
+
+CREATE DATABASE MARKETING;
+GO
+
+-- Caso queira excluir o database criado.
+
+USE master;
+GO
+
+DROP DATABASE MARKETING;
+GO
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+-- Criação do schema.
+
+USE MARKETING;
+GO
+
+CREATE SCHEMA MARKETING_ANALISE_CAMPANHA;
+GO
+
+-- Caso queira excluir o schema criado.
+
+USE MARKETING;
+GO
+
+DROP SCHEMA MARKETING_ANALISE_CAMPANHA;
+GO
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- Criação da tabela.
+
+USE MARKETING;
+GO
+
+CREATE TABLE [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA] (
+	 ID INT -- Tipo do dado da coluna validado.
+	,YEAR_BIRTH INT -- Tipo do dado da coluna validado.
+	,EDUCATION VARCHAR (20) -- Tipo do dado da coluna validado.
+	,MARITAL_STATUS VARCHAR (20) -- Tipo do dado da coluna validado.
+	,INCOME FLOAT -- Tipo do dado da coluna validado.
+	,KIDHOME INT -- Tipo do dado da coluna validado.
+	,TEENHOME INT -- Tipo do dado da coluna validado.
+	,DT_CUSTOMER DATE -- Tipo do dado da coluna validado.
+	,RECENCY INT -- Tipo do dado da coluna validado.
+	,MNT_WINES INT -- Tipo do dado da coluna validado.
+	,MNT_FRUITS INT -- Tipo do dado da coluna validado.
+	,MNT_MEAT_PRODUCTS INT -- Tipo do dado da coluna validado.
+	,MNT_FISH_PRODUCTS INT -- Tipo do dado da coluna validado.
+	,MNT_SWEET_PRODUCTS INT -- Tipo do dado da coluna validado.
+	,MNT_GOLD_PRODS INT -- Tipo do dado da coluna validado.
+	,NUM_DEALS_PURCHASES INT -- Tipo do dado da coluna validado.
+	,NUM_WEB_PURCHASES INT -- Tipo do dado da coluna validado.
+	,NUM_CATALOG_PURCHASES INT -- Tipo do dado da coluna validado.
+	,NUM_STORE_PURCHASES INT -- Tipo do dado da coluna validado.
+	,NUM_WEB_VISITS_MONTH INT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP3 INT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP4 INT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP5 INT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP1 INT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP2 INT -- Tipo do dado da coluna validado.
+	,COMPLAIN INT -- Tipo do dado da coluna validado.
+	,Z_COST_CONTACT INT -- Tipo do dado da coluna validado.
+	,Z_REVENUE INT -- Tipo do dado da coluna validado.
+	,RESPONSE INT -- Tipo do dado da coluna validado.
+	,CONSTRAINT PK_ID PRIMARY KEY CLUSTERED (ID) -- Chave primária criada para não duplicar dados e facilitar em buscas com índice clusterizado.
+);
+GO
+
+USE MARKETING;
+GO
+
+-- Verificar informações da tabela, onde, a principal verificada neste caso, seria a (COLUMN_NAME) e (DATA_TYPE) para validar os tipos dos dados na criação da tabela.
+SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'TBL_DADOS_CAMPANHA';
+GO
+
+-- Verificar se informações da tabela, onde, a principal verificada neste caso, seria se a tabela possuí uma chave primária, visando não duplicar registros.
+SELECT * FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE TABLE_NAME = 'TBL_DADOS_CAMPANHA';
+GO
+
+-- Caso queria excluir a tabela criada.
+
+DROP TABLE [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA];
+GO
+
+-- Caso queira deletar dados da tabela criada.
+DELETE FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA];
+GO
+
+- Caso queira truncar dados da tabela criada.
+TRUNCA TABLE [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA];
+GO
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- Criação da view.
+
+USE [MARKETING];
+GO
+
+CREATE VIEW [MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+AS
+WITH [TBL_DADOS_CAMPANHA_MKT] AS
+(
+SELECT
+       [ID]
+      ,[YEAR_BIRTH]
+      ,[EDUCATION]
+      ,[MARITAL_STATUS]
+      ,[INCOME]
+      ,[KIDHOME]
+      ,[TEENHOME]
+      ,[DT_CUSTOMER]
+      ,[RECENCY]
+      ,[MNT_WINES]
+      ,[MNT_FRUITS]
+      ,[MNT_MEAT_PRODUCTS]
+      ,[MNT_FISH_PRODUCTS]
+      ,[MNT_SWEET_PRODUCTS]
+      ,[MNT_GOLD_PRODS]
+      ,[NUM_DEALS_PURCHASES]
+      ,[NUM_WEB_PURCHASES]
+      ,[NUM_CATALOG_PURCHASES]
+      ,[NUM_STORE_PURCHASES]
+      ,[NUM_WEB_VISITS_MONTH]
+      ,[COMPLAIN]
+      ,[Z_COST_CONTACT]
+      ,[Z_REVENUE]
+      ,[ACCEPTED_CMP1]
+      ,[ACCEPTED_CMP2]
+      ,[ACCEPTED_CMP3]
+      ,[ACCEPTED_CMP4]
+      ,[ACCEPTED_CMP5]
+      ,[RESPONSE]
+      ,
+      CASE
+      WHEN [YEAR_BIRTH] NOT IN ('') THEN (YEAR(GETDATE()) - [YEAR_BIRTH])
+      WHEN [YEAR_BIRTH] IN ('') THEN 0
+      WHEN [YEAR_BIRTH] IN (0) THEN 0
+      END AS [YEARS_OLD]
+      ,
+      CASE
+      WHEN [INCOME] NOT IN ('') THEN ROUND(([INCOME] / 12), 0)
+      WHEN [INCOME] IN ('') THEN 0
+      WHEN [INCOME] IN (0) THEN 0
+      END AS [MONTHLY_INCOME]
+      ,
+      CASE
+      WHEN [DT_CUSTOMER] NOT IN ('') THEN (YEAR(GETDATE()) - YEAR([DT_CUSTOMER]))
+      END AS [REGISTERED_CUSTOMER_TIME]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA]
+),
+[TBL_DADOS_CAMPANHA] AS
+(
+SELECT
+      [ID]
+     ,[YEAR_BIRTH]
+     ,[YEARS_OLD]
+     ,[EDUCATION]
+     ,[MARITAL_STATUS]
+     ,[MONTHLY_INCOME]
+     ,[INCOME]
+     ,[KIDHOME]
+     ,[TEENHOME]
+     ,[DT_CUSTOMER]
+     ,[REGISTERED_CUSTOMER_TIME]
+     ,[RECENCY]
+     ,[MNT_WINES]
+     ,[MNT_FRUITS]
+     ,[MNT_MEAT_PRODUCTS]
+     ,[MNT_FISH_PRODUCTS]
+     ,[MNT_SWEET_PRODUCTS]
+     ,[MNT_GOLD_PRODS]
+     ,[NUM_DEALS_PURCHASES]
+     ,[NUM_WEB_PURCHASES]
+     ,[NUM_CATALOG_PURCHASES]
+     ,[NUM_STORE_PURCHASES]
+     ,[NUM_WEB_VISITS_MONTH]
+     ,[COMPLAIN]
+     ,[Z_COST_CONTACT]
+     ,[Z_REVENUE]
+     ,[ACCEPTED_CMP1]
+     ,[ACCEPTED_CMP2]
+     ,[ACCEPTED_CMP3]
+     ,[ACCEPTED_CMP4]
+     ,[ACCEPTED_CMP5]
+     ,[RESPONSE]
+
+	  
+FROM [TBL_DADOS_CAMPANHA_MKT]
+)
+SELECT * FROM [TBL_DADOS_CAMPANHA];
+GO
+
+-- Caso queira excluir a view.
+
+DROP VIEW [MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW];
+GO  
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- Quantidade de clientes.
+SELECT COUNT([ID]) AS [NUMBER_CUSTOMERS] FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW];
+GO
+
+-- 2.240 clientes.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+--Idade média dos clientes.
+SELECT AVG([YEARS_OLD]) AS [AVERAGE_AGE_CUSTOMERS] FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW];
+GO
+
+-- 52 anos.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- Quantidade de clientes pelo nível de educação.
+DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
+
+WITH [NUMBER_CUSTOMERS_EDUCATION]
+AS
+(
+SELECT 
+      COUNT([ID]) AS [NUMBER_CUSTOMERS]
+     ,[EDUCATION]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+GROUP BY
+	[EDUCATION]
+)
+SELECT 
+      [NUMBER_CUSTOMERS]
+     ,[EDUCATION]
+    ,([NUMBER_CUSTOMERS] * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+
+FROM [NUMBER_CUSTOMERS_EDUCATION]
+
+GROUP BY
+       [NUMBER_CUSTOMERS]
+      ,[EDUCATION]
+
+-- 1.127 clientes -> Graduation -> 50,3125% -> 50%
+-- 486 clientes -> PhD -> 21,696428571428573% -> 21%
+-- 370 clientes -> Master -> 16,517857142857142% -> 16%
+-- 203 clientes -> 2n Cycle -> 9.0625% -> 9%
+-- 54 clientes -> Basic -> 2,4107142857142856% -> 2%
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- Quantidade de clientes pelo estado civil.
+DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
+
+WITH [NUMBER_CUSTOMERS_MARITAL_STATUS]
+AS
+(
+SELECT 
+      COUNT([ID]) AS [NUMBER_CUSTOMERS]
+     ,[MARITAL_STATUS]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+GROUP BY
+	[MARITAL_STATUS]
+)
+SELECT 
+      [NUMBER_CUSTOMERS]
+     ,[MARITAL_STATUS]
+    ,([NUMBER_CUSTOMERS] * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+
+FROM [NUMBER_CUSTOMERS_MARITAL_STATUS]
+
+GROUP BY
+       [NUMBER_CUSTOMERS]
+      ,[MARITAL_STATUS]
+
+ORDER BY 
+       ([NUMBER_CUSTOMERS] * 100)/(@NUMBER_CLIENTS)
+
+-- 2 clientes -> YOLO -> 0,0892857142857143% -> 1%
+-- 3 clientes -> Alone -> 0,1339285714285714% -> 1%
+-- 2 clientes -> Absurd -> 0,0892857142857143% -> 1%
+-- 77 clientes -> Window -> 3.4375% -> 3%
+-- 232 clientes -> Divorced -> 10,357142857142858% -> 10%
+-- 480 clientes -> Single -> 21,428571428571427% -> 21%
+-- 580 clientes -> Together -> 25,892857142857142% -> 25%
+-- 864 clientes -> Married -> 38,57142857142857% -> 38%
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- Quantidade de clientes pelo nível de educação e estado civil.
+DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
+
+WITH [NUMBER_CUSTOMERS_EDUCATION_MARITAL_STATUS]
+AS
+(
+SELECT 
+      COUNT([ID]) AS [NUMBER_CUSTOMERS]
+     ,[EDUCATION]
+     ,[MARITAL_STATUS]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+GROUP BY
+       [EDUCATION]
+      ,[MARITAL_STATUS]
+)
+SELECT 
+      [NUMBER_CUSTOMERS]
+     ,[EDUCATION]
+     ,[MARITAL_STATUS]
+    ,([NUMBER_CUSTOMERS] * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+
+FROM [NUMBER_CUSTOMERS_EDUCATION_MARITAL_STATUS]
+
+GROUP BY
+       [NUMBER_CUSTOMERS]
+      ,[EDUCATION]
+      ,[MARITAL_STATUS]
+
+ORDER BY 
+        [NUMBER_CUSTOMERS]  
+       ,([NUMBER_CUSTOMERS] * 100)/(@NUMBER_CLIENTS)
+       ,[EDUCATION]
+       ,[MARITAL_STATUS]
+
+-- 1 cliente -> Basic -> Divorced -> 0,0446428571428571% -> 1%
+-- 1 cliente -> Basic -> Widow -> 0,0446428571428571% -> 1%
+-- 1 cliente -> Graduation -> Absurd -> 0,0446428571428571% -> 1%
+-- 1 cliente -> Graduation -> Alone -> 0,0446428571428571% -> 1%
+-- 1 cliente -> Master -> Absurd -> 0,0446428571428571% -> 1%
+-- 1 cliente -> Master -> Alone -> 0,0446428571428571% -> 1%
+-- 1 cliente -> PhD -> Alone -> 0,0446428571428571% -> 1%
+-- 2 cliente -> PhD -> YOLO -> 0,0892857142857143% -> 1%
+-- 5 cliente -> 2n Cycle -> Widow -> 0,2232142857142857% -> 1%
+-- 12 cliente -> Master -> Widow -> 0,5357142857142857 -> 1%
+-- 14 cliente -> Basic -> Together -> 0,625 -> 1%
+-- 18 cliente -> Basic -> Single -> 0,8035714285714286 -> 1%
+-- 20 cliente -> Basic -> Married -> 0,8928571428571429 -> 1%
+-- 23 cliente -> 2n Cycle -> Divorced -> 0,1034126163391934% -> 1%
+-- 24 cliente -> PhD -> Widow -> 1,0714285714285714% -> 1%
+-- 35 cliente -> Graduation -> Widow-> 1,5625% -> 1%
+-- 37 cliente -> 2n Cycle -> Single -> 1,6517857142857142% -> 1%
+-- 37 cliente -> Master -> Divorced -> 1,6517857142857142% -> 1%
+-- 52 cliente -> PhD -> Divorced -> 2,3214285714285716% -> 2%
+-- 57 cliente -> 2n Cycle -> Together -> 2,544642857142857% -> 2%
+-- 75 cliente -> Master -> Single -> 3,3482142857142856% -> 3%
+-- 81 cliente -> 2n Cycle -> Married -> 3,6160714285714284% -> 3%
+-- 98 cliente -> PhD -> Single -> 4,375% -> 4%
+-- 106 cliente -> Master -> Together -> 4,732142857142857% -> 4%
+-- 117 cliente -> PhD -> Together -> 5,223214285714286% -> 5%
+-- 119 cliente -> Graduation -> Divorced -> 5,3125% -> 5%
+-- 138 cliente -> Master -> Married -> 6,160714285714286% -> 6%
+-- 192 cliente -> PhD -> Married -> 8,571428571428571% -> 8%
+-- 252 cliente -> Graduation -> Single -> 11,25% -> 11%
+-- 286 cliente -> Graduation -> Together -> 12,767857142857142% -> 12%
+-- 433 cliente -> Graduation -> Married -> 19,330357142857142% -> 19%
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- Renda média mensal familiar dos clientes.
+SELECT ROUND(AVG([MONTHLY_INCOME]),0) AS [AVERAGE_MONTHLY_INCOME] FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW];
+GO
+
+-- 4.307.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- Renda média anual familiar dos clientes.
+SELECT ROUND(AVG([INCOME]),0) AS [AVERAGE_INCOME] FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW];
+GO
+
+-- 51.687.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- Quantitade total de crianças e adoslecentes.
+SELECT
+      SUM([KIDHOME]) AS [NUMBER_KIDHOME]
+     ,SUM([TEENHOME]) AS [NUMBER_TEENHOME]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW];
+
+-- 995 crianças.
+-- 1.134 adoslecentes.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- Quantidade de clientes que não possuem crianças e adoslecentes.
+-- Quantidade de clientes que possuem crianças e adoslecentes.
+-- Quantidade de clientes que possuem crianças e não adoslecentes.
+-- Quantidade de clientes que não possuem crianças e possuem adoslecentes.
+DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
+
+SELECT
+     COUNT([ID]) AS [NUMBER_CUSTOMERS]
+    ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+    ,
+    CASE
+    WHEN COUNT([ID]) NOT IN ('') THEN 'NOT KID AND TEEN'
+    END AS [NOTE]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [KIDHOME] IN (0) AND [TEENHOME] IN (0)
+
+UNION ALL
+
+SELECT
+     COUNT([ID]) AS [NUMBER_CUSTOMERS]
+    ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+    ,
+    CASE
+    WHEN COUNT([ID]) NOT IN ('') THEN 'YES KID AND TEEN'
+    END AS [NOTE]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [KIDHOME] > 0 AND [TEENHOME] > 0
+
+UNION ALL
+
+SELECT
+      COUNT([ID]) AS [NUMBER_CUSTOMERS]
+     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,
+     CASE
+     WHEN COUNT([ID]) NOT IN ('') THEN 'YES KID AND NOT TEEN'
+     END AS [NOTE]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [KIDHOME] > 0 AND [TEENHOME] = 0
+
+UNION ALL
+
+SELECT
+      COUNT([ID]) AS [NUMBER_CUSTOMERS]
+     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,
+     CASE
+     WHEN COUNT([ID]) NOT IN ('') THEN 'NOT KID AND YES TEEN'
+     END AS [NOTE]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [KIDHOME] = 0 AND [TEENHOME] > 0;
+
+-- Não possuem crianças e adoslecentes -> 638 -> 28,482142857142858% -> 28%
+-- Possuem crianças e adoslecentes -> 427 -> 19,0625% -> 19%
+-- Possuem crianças e não possuem adoslecentes -> 520 -> 23,214285714285715% -> 23%
+-- Não possuem crianças e possuem adoslecentes -> 655 -> 29,241071428571427% -> 29%
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- Quantidade de clientes pelo tempo de registro na empresa (em anos).
+DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
+
+SELECT 
+      COUNT([ID]) AS [NUMBER_CUSTOMERS]
+     ,[REGISTERED_CUSTOMER_TIME]
+     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+GROUP BY
+	[REGISTERED_CUSTOMER_TIME]
+
+ORDER BY
+	[REGISTERED_CUSTOMER_TIME]
+
+-- 557 clientes -> 7 anos -> 24,866071428571427% -> 24%
+-- 1.189 clientes -> 8 anos -> 53,080357142857146 -> 53%
+-- 494 clientes -> 9 anos -> 22,053571428571427 -> 22%
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- Média do tempo (em dias) que um cliente passa sem comprar desde a última compra.
+SELECT AVG([RECENCY]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW];
+
+-- 49 dias.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- Produtos mais vendidos e menos vendidos.
+DECLARE @SUM_GENERAL_PRODUCTS INT = 1356988
+
+WITH [TBL_SUM_PRODUCTS]
+AS
+(
+SELECT 
+      SUM([MNT_WINES]) AS [NUMBERS_PRODUCTS]
+      ,
+      CASE
+      WHEN SUM([MNT_WINES]) NOT IN ('') THEN 'MNT_WINES'
+      END AS [TYPE_PRODUCT]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+UNION ALL
+
+SELECT 
+      SUM([MNT_FRUITS]) AS [NUMBERS_PRODUCTS]
+     ,
+     CASE
+     WHEN SUM([MNT_FRUITS]) NOT IN ('') THEN 'MNT_FRUITS'
+     END AS [TYPE_PRODUCT]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+UNION ALL
+
+SELECT 
+      SUM([MNT_MEAT_PRODUCTS]) AS [NUMBERS_PRODUCTS]
+     ,
+     CASE
+     WHEN SUM([MNT_FRUITS]) NOT IN ('') THEN 'MNT_MEAT_PRODUCTS'
+     END AS [TYPE_PRODUCT]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+UNION ALL
+
+SELECT 
+      SUM([MNT_FISH_PRODUCTS]) AS [NUMBERS_PRODUCTS]
+     ,
+     CASE
+     WHEN SUM([MNT_FISH_PRODUCTS]) NOT IN ('') THEN 'MNT_FISH_PRODUCTS'
+     END AS [TYPE_PRODUCT]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+UNION ALL
+
+SELECT 
+      SUM([MNT_SWEET_PRODUCTS]) AS [NUMBERS_PRODUCTS]
+      ,
+      CASE
+      WHEN SUM([MNT_SWEET_PRODUCTS]) NOT IN ('') THEN 'MNT_SWEET_PRODUCTS'
+      END AS [TYPE_PRODUCT]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+UNION ALL
+
+SELECT 
+      SUM([MNT_GOLD_PRODS]) AS [NUMBERS_PRODUCTS]
+      ,
+      CASE
+      WHEN SUM([MNT_GOLD_PRODS]) NOT IN ('') THEN 'MNT_GOLD_PRODS'
+      END AS [TYPE_PRODUCT]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+)
+SELECT
+	  [NUMBERS_PRODUCTS]
+	 ,[TYPE_PRODUCT]
+	 ,([NUMBERS_PRODUCTS] * 100)/(@SUM_GENERAL_PRODUCTS) AS [PERCENT]
+
+FROM [TBL_SUM_PRODUCTS] ORDER BY [NUMBERS_PRODUCTS];
+
+-- MNT_FRUITS -> 58.917 -> 4,341748047882517 -> 4%
+-- MNT_SWEET_PRODUCTS -> 60.621 -> 4,467320271070931 -> 4%
+-- MNT_FISH_PRODUCTS -> 84.057 -> 6,19438049562708 -> 6%
+-- MNT_GOLD_PRODS -> 98.609 -> 7,26675549083706 -> 7%
+-- MNT_MEAT_PRODUCTS -> 373.968 -> 27,558681432702425 -> 27%
+-- MNT_WINES -> 680.816 -> 50,171114261879985 -> 50%
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- Quantidade de clientes que compraram com desconto.
+-- Quantidade de clientes que não usaram ou tiveram desconto.
+DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
+
+SELECT 
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,
+     CASE
+     WHEN COUNT([ID]) NOT IN ('') THEN 'bought at a discount'
+     END AS [DISCOUNT]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [NUM_DEALS_PURCHASES] > 0
+
+UNION ALL
+
+SELECT 
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,
+     CASE
+     WHEN COUNT([ID]) NOT IN ('') THEN 'dont buy with a discount'
+     END AS [DISCOUNT]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [NUM_DEALS_PURCHASES] = 0;
+
+-- 2194 clientes -> 97,94642857142857% -> 97% -> Clientes que compraram com desconto.
+-- 46 clientes -> 2,0535714285714284 -> 2% -> Clientes que não usaram ou tiveram desconto
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- Média de compras com desconto.
+SELECT AVG([NUM_DEALS_PURCHASES]) AS [AVERAGE_NUM_DEALS_PURCHASES] FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW] WHERE [NUM_DEALS_PURCHASES] <> 0;
+
+-- 2.
+-- Cada cliente, dos que compraram com desconto, teria uma média de 2 compras por desconto recebido.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- Quantidade de clientes pelo número de vezes que ele comprou com desconto.
+DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW] WHERE [NUM_DEALS_PURCHASES] > 0);
+
+SELECT 
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+     ,[NUM_DEALS_PURCHASES]
+     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [NUM_DEALS_PURCHASES] > 0
+
+GROUP BY
+	[NUM_DEALS_PURCHASES]
+
+ORDER BY
+	COUNT([ID])
+       ,[NUM_DEALS_PURCHASES] ASC
+
+--  3 clientes -> 13 compras com desconto - Equivalente a (dos 2194 clientes que já compraram com desconto): 0,1367365542388332% -> 1%
+--  4 clientes -> 12 compras com desconto - Equivalente a (dos 2194 clientes que já compraram com desconto): 0,1823154056517776% -> 1%
+--  5 clientes -> 10 compras com desconto - Equivalente a (dos 2194 clientes que já compraram com desconto): 0,227894257064722%  -> 1%
+--  5 clientes -> 11 compras com desconto - Equivalente a (dos 2194 clientes que já compraram com desconto): 0,227894257064722%  -> 1%
+--  7 clientes -> 15 compras com desconto - Equivalente a (dos 2194 clientes que já compraram com desconto): 0,3190519598906107% -> 1%
+--  8 clientes ->  9 compras com desconto - Equivalente a (dos 2194 clientes que já compraram com desconto): 0,3646308113035551% -> 1%
+--  14 clientes -> 8 compras com desconto - Equivalente a (dos 2194 clientes que já compraram com desconto): 0,6381039197812215% -> 1%
+--  40 clientes -> 7 compras com desconto - Equivalente a (dos 2194 clientes que já compraram com desconto): 1,8231540565177757% -> 1%
+--  61 clientes -> 6 compras com desconto - Equivalente a (dos 2194 clientes que já compraram com desconto): 2,780309936189608% -> 2%
+--  94 clientes -> 5 compras com desconto - Equivalente a (dos 2194 clientes que já compraram com desconto): 4,284412032816773% -> 4%
+--  189 clientes -> 4 compras com desconto - Equivalente a (dos 2194 clientes que já compraram com desconto): 8,61440291704649% -> 8%
+--  297 clientes -> 3 compras com desconto - Equivalente a (dos 2194 clientes que já compraram com desconto): 13,536918869644484% -> 13%
+--  497 clientes -> 2 compras com desconto - Equivalente a (dos 2194 clientes que já compraram com desconto): 22,652689152233364% -> 22%
+--  970 clientes -> 1 compra com desconto - Equivalente a (dos 2194 clientes que já compraram com desconto): 44,21148587055606% -> 44%
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- Quantidade total de descontos utilizados pelos clientes.
+SELECT SUM([NUM_DEALS_PURCHASES]) AS [NUM_GENERAL_DEALS_PURCHASES] FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW];
+
+-- 5.208 descontos.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- Quantidade de clientes que compraram pelo site.
+-- Quantidade de clientes que não compraram pelo site.
+DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
+
+SELECT 
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,
+     CASE
+     WHEN COUNT([ID]) NOT IN ('') THEN 'bought on the site'
+     END AS [DISCOUNT]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [NUM_WEB_PURCHASES] > 0
+
+UNION ALL
+
+SELECT 
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,
+     CASE
+     WHEN COUNT([ID]) NOT IN ('') THEN 'dont buy on the site'
+     END AS [DISCOUNT]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [NUM_WEB_PURCHASES] = 0;
+
+-- 2191 clientes -> 97,8125% -> 97% -> Clientes que compraram pelo site.
+-- 49 clientes -> 2,0081967213114753% -> 2% -> Clientes que não compraram pelo site.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- Quantidade de clientes pelo número de vezes que ele comprou pelo site.
+DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW] WHERE [NUM_WEB_PURCHASES] > 0);
+
+SELECT 
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+     ,[NUM_WEB_PURCHASES]
+     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [NUM_WEB_PURCHASES] > 0
+
+GROUP BY
+	[NUM_WEB_PURCHASES]
+
+ORDER BY
+	COUNT([ID])
+       ,[NUM_WEB_PURCHASES] ASC
+
+--  1 clientes -> 23 compras pelo site - Equivalente a (dos 2191 clientes que já compraram pelo site): 0,0456412596987677% -> 1%
+--  1 clientes -> 25 compras pelo site - Equivalente a (dos 2191 clientes que já compraram pelo site): 0,0456412596987677% -> 1%
+--  2 clientes -> 23 compras pelo site - Equivalente a (dos 2191 clientes que já compraram pelo site): 0,0912825193975354% -> 1%
+--  43 clientes -> 23 compras pelo site - Equivalente a (dos 2191 clientes que já compraram pelo site): 1,9625741670470105% -> 1%
+--  44 clientes -> 23 compras pelo site - Equivalente a (dos 2191 clientes que já compraram pelo site): 2,008215426745778% -> 2%
+--  75 clientes -> 23 compras pelo site - Equivalente a (dos 2191 clientes que já compraram pelo site): 3,4230944774075764% -> 3%
+--  102 clientes -> 23 compras pelo site - Equivalente a (dos 2191 clientes que já compraram pelo site): 4,655408489274304% -> 4%
+--  155 clientes -> 23 compras pelo site - Equivalente a (dos 2191 clientes que já compraram pelo site): 7,0743952533089915% -> 7%
+--  205 clientes -> 23 compras pelo site - Equivalente a (dos 2191 clientes que já compraram pelo site): 9,356458238247376% -> 9%
+--  220 clientes -> 23 compras pelo site - Equivalente a (dos 2191 clientes que já compraram pelo site): 10,04107713372889% -> 10%
+--  280 clientes -> 23 compras pelo site - Equivalente a (dos 2191 clientes que já compraram pelo site): 12,779552715654953% -> 12%
+--  336 clientes -> 23 compras pelo site - Equivalente a (dos 2191 clientes que já compraram pelo site): 15,335463258785943% -> 15%
+--  354 clientes -> 23 compras pelo site - Equivalente a (dos 2191 clientes que já compraram pelo site): 16,15700593336376% -> 16%
+--  373 clientes -> 23 compras pelo site - Equivalente a (dos 2191 clientes que já compraram pelo site): 17,024189867640345% -> 17%
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- Quantidade total de compras pelo site.
+SELECT SUM([NUM_WEB_PURCHASES]) AS [NUM_GENERAL_WEB_PURCHASES] FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW];
+
+-- 9.150 de compras pelo site.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- Quantidade de clientes que compraram pelo catálogo.
+-- Quantidade de clientes que não compraram pelo catálogo.
+DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
+
+SELECT 
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,
+     CASE
+     WHEN COUNT([ID]) NOT IN ('') THEN 'bought from the catalog.'
+     END AS [DISCOUNT]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [NUM_CATALOG_PURCHASES] > 0
+
+UNION ALL
+
+SELECT 
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,
+     CASE
+     WHEN COUNT([ID]) NOT IN ('') THEN 'they dont buy from the catalog.'
+     END AS [DISCOUNT]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [NUM_CATALOG_PURCHASES] = 0;
+
+-- 1654 clientes -> 73,83928571428571% -> 73% -> Clientes que compraram pelo catálogo.
+-- 586 clientes -> 26,160714285714285% -> 26% -> Clientes que não compraram pelo catálogo.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- Quantidade de clientes pelo número de vezes que ele comprou pelo catálogo.
+DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW] WHERE [NUM_CATALOG_PURCHASES] > 0);
+
+SELECT 
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+     ,[NUM_CATALOG_PURCHASES]
+     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [NUM_CATALOG_PURCHASES] > 0
+
+GROUP BY
+	[NUM_CATALOG_PURCHASES]
+
+ORDER BY
+	COUNT([ID])
+       ,[NUM_CATALOG_PURCHASES] ASC
+
+--  1 clientes -> 22 compras pelo catálogo - Equivalente a (dos 1654 clientes que já compraram pelo catálogo): 0,060459492140266% -> 1%
+--  3 clientes -> 28 compras pelo catálogo - Equivalente a (dos 1654 clientes que já compraram pelo catálogo): 0,1813784764207981% -> 1%
+--  19 clientes -> 11 compras pelo catálogo - Equivalente a (dos 1654 clientes que já compraram pelo catálogo): 1,1487303506650544% -> 1%
+--  42 clientes -> 9 compras pelo catálogo - Equivalente a (dos 1654 clientes que já compraram pelo catálogo): 2,539298669891173% -> 2%
+--  48 clientes -> 10 compras pelo catálogo - Equivalente a (dos 1654 clientes que já compraram pelo catálogo): 2,902055622732769% -> 2%
+--  55 clientes -> 8 compras pelo catálogo - Equivalente a (dos 1654 clientes que já compraram pelo catálogo): 3,3252720677146312% -> 3%
+--  79 clientes -> 7 compras pelo catálogo - Equivalente a (dos 1654 clientes que já compraram pelo catálogo): 4,776299879081016% -> 4%
+--  128 clientes -> 6 compras pelo catálogo - Equivalente a (dos 1654 clientes que já compraram pelo catálogo): 7,738814993954051% -> 7%
+--  140 clientes -> 5 compras pelo catálogo - Equivalente a (dos 1654 clientes que já compraram pelo catálogo): 8,464328899637243% -> 8%
+--  182 clientes -> 4 compras pelo catálogo - Equivalente a (dos 1654 clientes que já compraram pelo catálogo): 11,003627569528415% -> 11%
+--  184 clientes -> 3 compras pelo catálogo - Equivalente a (dos 1654 clientes que já compraram pelo catálogo): 11,124546553808948% -> 11%
+--  276 clientes -> 2 compras pelo catálogo - Equivalente a (dos 1654 clientes que já compraram pelo catálogo): 16,68681983071342% -> 16%
+--  497 clientes -> 1 compras pelo catálogo - Equivalente a (dos 1654 clientes que já compraram pelo catálogo): 30,048367593712214% -> 30%
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- Quantidade total de compras pelo catálogo.
+SELECT SUM([NUM_CATALOG_PURCHASES]) AS [NUM_GENERAL_CATALOG_PURCHASES] FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW];
+
+-- 5.963 compras pelo catálogo.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- Quantidade de clientes que compraram na loja.
+-- Quantidade de clientes que não compraram na loja.
+DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
+
+SELECT 
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,
+     CASE
+     WHEN COUNT([ID]) NOT IN ('') THEN 'bought by the store.'
+     END AS [DISCOUNT]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [NUM_STORE_PURCHASES] > 0
+
+UNION ALL
+
+SELECT 
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,
+     CASE
+     WHEN COUNT([ID]) NOT IN ('') THEN 'not bought by the store.'
+     END AS [DISCOUNT]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [NUM_STORE_PURCHASES] = 0;
+
+-- 2225 clientes -> 99,33035714285714% -> 99% -> Clientes que compraram na loja.
+-- 15 clientes -> 0,6696428571428571% -> 1% -> Clientes que não compraram na loja.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- Quantidade de clientes pelo número de vezes que ele comprou na loja.
+DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW] WHERE [NUM_STORE_PURCHASES] > 0);
+
+SELECT 
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+     ,[NUM_STORE_PURCHASES]
+     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [NUM_STORE_PURCHASES] > 0
+
+GROUP BY
+	[NUM_STORE_PURCHASES]
+
+ORDER BY
+	COUNT([ID])
+       ,[NUM_STORE_PURCHASES] ASC
+
+--  7 clientes -> 1 compras pela loja - Equivalente a (dos 2225 clientes que já compraram pela loja): 0,3146067415730337% -> 1%
+--  81 clientes -> 11 compras pela loja - Equivalente a (dos 2225 clientes que já compraram pela loja): 3,640449438202247% -> 3%
+--  83 clientes -> 13 compras pela loja - Equivalente a (dos 2225 clientes que já compraram pela loja): 3,730337078651685% -> 3%
+--  105 clientes -> 12 compras pela loja - Equivalente a (dos 2225 clientes que já compraram pela loja): 4,719101123595506% -> 4%
+--  106 clientes -> 9 compras pela loja - Equivalente a (dos 2225 clientes que já compraram pela loja): 4,764044943820225% -> 4%
+--  125 clientes -> 10 compras pela loja - Equivalente a (dos 2225 clientes que já compraram pela loja): 5,617977528089888% -> 5%
+--  143 clientes -> 7 compras pela loja - Equivalente a (dos 2225 clientes que já compraram pela loja): 6,426966292134831% -> 6%
+--  149 clientes -> 8 compras pela loja - Equivalente a (dos 2225 clientes que já compraram pela loja): 6,696629213483146% -> 6%
+--  178 clientes -> 6 compras pela loja - Equivalente a (dos 2225 clientes que já compraram pela loja): 8% -> 8%
+--  212 clientes -> 5 compras pela loja - Equivalente a (dos 2225 clientes que já compraram pela loja): 9,52808988764045% -> 9%
+--  223 clientes -> 2 compras pela loja - Equivalente a (dos 2225 clientes que já compraram pela loja): 10,02247191011236% -> 10%
+--  323 clientes -> 4 compras pela loja - Equivalente a (dos 2225 clientes que já compraram pela loja): 14,51685393258427% -> 14%
+--  490 clientes -> 3 compras pela loja - Equivalente a (dos 2225 clientes que já compraram pela loja): 22,02247191011236% -> 22%
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- Quantidade total de compras na loja.
+SELECT SUM([NUM_STORE_PURCHASES]) AS [NUM_GENERAL_STORE_PURCHASES] FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW];
+
+-- 12.970 de compras pela loja.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- Quantidade de clientes que visitaram o site no último mês.
+-- Quantidade de clientes que não visitaram o site no último mês.
+DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
+
+SELECT 
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,
+     CASE
+     WHEN COUNT([ID]) NOT IN ('') THEN 'visited the site in the last month.'
+     END AS [DISCOUNT]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [NUM_WEB_VISITS_MONTH] > 0
+
+UNION ALL
+
+SELECT 
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,
+     CASE
+     WHEN COUNT([ID]) NOT IN ('') THEN 'dont visited the site in the last month.'
+     END AS [DISCOUNT]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [NUM_WEB_VISITS_MONTH] = 0;
+
+-- 2229 clientes -> 99,50892857142857% -> 99% -> Clientes que visitaram o site da loja no último mês.
+-- 11 clientes -> 0,4910714285714285% -> 1% -> Clientes que não visitaram o site da loja no último mês.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- Quantidade de clientes pelo número de vezes visitaram o site no último mês.
+DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW] WHERE [NUM_WEB_VISITS_MONTH] > 0);
+
+SELECT 
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+     ,[NUM_WEB_VISITS_MONTH]
+     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [NUM_WEB_VISITS_MONTH] > 0
+
+GROUP BY
+	[NUM_WEB_VISITS_MONTH]
+
+ORDER BY
+	COUNT([ID])
+   ,[NUM_WEB_VISITS_MONTH] ASC
+
+--  1 clientes -> 13 visitas no site no último mês - Equivalente a (dos 2229 clientes que visitaram o site no último mês): 0,0448631673396142% -> 1%
+--  1 clientes -> 17 visitas no site no último mês - Equivalente a (dos 2229 clientes que visitaram o site no último mês): 0,0448631673396142% -> 1%
+--  2 clientes -> 14 visitas no site no último mês - Equivalente a (dos 2229 clientes que visitaram o site no último mês): 0,0897263346792284% -> 1%
+--  2 clientes -> 19 visitas no site no último mês - Equivalente a (dos 2229 clientes que visitaram o site no último mês): 0,0897263346792284% -> 1%
+--  3 clientes -> 10 visitas no site no último mês - Equivalente a (dos 2229 clientes que visitaram o site no último mês): 0,1345895020188425% -> 1%
+--  3 clientes -> 20 visitas no site no último mês - Equivalente a (dos 2229 clientes que visitaram o site no último mês): 0,1345895020188425% -> 1%
+--  83 clientes -> 9 visitas no site no último mês - Equivalente a (dos 2229 clientes que visitaram o site no último mês): 3,7236428891879765% -> 3%
+--  153 clientes -> 1 visitas no site no último mês - Equivalente a (dos 2229 clientes que visitaram o site no último mês): 6,864064602960969% -> 6%
+--  202 clientes -> 2 visitas no site no último mês - Equivalente a (dos 2229 clientes que visitaram o site no último mês): 9,062359802602064% -> 9%
+--  205 clientes -> 3 visitas no site no último mês - Equivalente a (dos 2229 clientes que visitaram o site no último mês): 9,196949304620906% -> 9%
+--  218 clientes -> 4 visitas no site no último mês - Equivalente a (dos 2229 clientes que visitaram o site no último mês): 9,78017048003589% -> 9%
+--  281 clientes -> 5 visitas no site no último mês - Equivalente a (dos 2229 clientes que visitaram o site no último mês): 12,606550022431584% -> 12%
+--  340 clientes -> 6 visitas no site no último mês - Equivalente a (dos 2229 clientes que visitaram o site no último mês): 15,25347689546882% -> 15%
+--  342 clientes -> 8 visitas no site no último mês - Equivalente a (dos 2229 clientes que visitaram o site no último mês): 15,343203230148049% -> 15%
+--  393 clientes -> 7 visitas no site no último mês - Equivalente a (dos 2229 clientes que visitaram o site no último mês): 17,63122476446837% -> 17%
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- Quantidade total de visitas no site no último mês.
+SELECT SUM([NUM_WEB_VISITS_MONTH]) AS [NUM_GENERAL_WEB_VISITS_MONTH] FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW];
+
+-- 11.909 de visitas no site no último mês.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- Quantidade de clientes que aceitaram e não aceitaram a oferta na 1º campanha.
+-- Quantidade de clientes que aceitaram e não aceitaram a oferta na 2º campanha.
+-- Quantidade de clientes que aceitaram e não aceitaram a oferta na 3º campanha.
+-- Quantidade de clientes que aceitaram e não aceitaram a oferta na 4º campanha.
+-- Quantidade de clientes que aceitaram e não aceitaram a oferta na 5º campanha.
+-- Quantidade de clientes que aceitaram e não aceitaram a oferta na 6º campanha.
+DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
+
+SELECT 
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+    ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+    ,
+    CASE
+    WHEN COUNT([ID]) NOT IN ('') THEN '1º - CLIENTS NOT ACCEPTED CMP1'
+    END AS [RESPONSE]
+	  
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [ACCEPTED_CMP1] = 0
+
+UNION ALL 
+
+SELECT 
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,
+     CASE
+     WHEN COUNT([ID]) NOT IN ('') THEN '1º - CLIENTS ACCEPTED CMP1'
+     END AS [RESPONSE]
+	  
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [ACCEPTED_CMP1] > 0
+
+UNION ALL
+
+SELECT 
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,
+     CASE
+     WHEN COUNT([ID]) NOT IN ('') THEN '2º - CLIENTS NOT ACCEPTED CMP2'
+     END AS [RESPONSE]
+	  
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [ACCEPTED_CMP2] = 0
+
+UNION ALL
+
+SELECT 
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+    ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+    ,
+     CASE
+     WHEN COUNT([ID]) NOT IN ('') THEN '2º - CLIENTS ACCEPTED CMP2'
+     END AS [RESPONSE]
+	  
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [ACCEPTED_CMP2] > 0
+
+UNION ALL
+
+SELECT 
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,
+     CASE
+     WHEN COUNT([ID]) NOT IN ('') THEN '3º - CLIENTS NOT ACCEPTED CMP3'
+     END AS [RESPONSE]
+	  
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [ACCEPTED_CMP3] = 0
+
+UNION ALL
+
+SELECT 
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,
+     CASE
+     WHEN COUNT([ID]) NOT IN ('') THEN '3º - CLIENTS ACCEPTED CMP3'
+     END AS [RESPONSE]
+	  
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [ACCEPTED_CMP3] > 0
+
+UNION ALL
+
+SELECT 
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,
+     CASE
+     WHEN COUNT([ID]) NOT IN ('') THEN '4º - CLIENTS NOT ACCEPTED CMP4'
+     END AS [RESPONSE]
+	  
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [ACCEPTED_CMP4] = 0
+
+UNION ALL
+
+SELECT 
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,
+     CASE
+     WHEN COUNT([ID]) NOT IN ('') THEN '4º - CLIENTS ACCEPTED CMP4'
+     END AS [RESPONSE]
+	  
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [ACCEPTED_CMP4] > 0
+
+UNION ALL
+
+SELECT 
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,
+     CASE
+     WHEN COUNT([ID]) NOT IN ('') THEN '5º - CLIENTS NOT ACCEPTED CMP5'
+     END AS [RESPONSE]
+	  
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [ACCEPTED_CMP5] = 0
+
+UNION ALL
+
+SELECT 
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,
+     CASE
+     WHEN COUNT([ID]) NOT IN ('') THEN '5º - CLIENTS ACCEPTED CMP5'
+     END AS [RESPONSE]
+	  
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [ACCEPTED_CMP5] > 0
+
+UNION ALL
+
+SELECT 
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,
+     CASE
+     WHEN COUNT([ID]) NOT IN ('') THEN '6º - CLIENTS NOT ACCEPTED (RESPONSE - TARGET)'
+     END AS [RESPONSE]
+	  
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [RESPONSE] = 0
+
+UNION ALL
+
+SELECT 
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,
+     CASE
+     WHEN COUNT([ID]) NOT IN ('') THEN '6º - CLIENTS ACCEPTED (RESPONSE - TARGET)'
+     END AS [RESPONSE]
+	  
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [RESPONSE] > 0
+
+-- 1º Campanha:
+-- 2096 -> 93,57142857142857% -> 93% -> Clientes que não aceitaram a oferta na 1º campanha.
+-- 144 -> 6,428571428571429% -> 6% -> Clientes que aceitaram a oferta na 1º campanha.
+
+-- 2º Campanha:
+-- 2096 -> 98,66071428571429% -> 98% -> Clientes que não aceitaram a oferta na 2º campanha.
+-- 30 -> 1,3392857142857142% -> 1% -> Clientes que aceitaram a oferta na 2º campanha.
+
+-- 3º Campanha:
+-- 2077 -> 92,72321428571429% -> 92% -> Clientes que não aceitaram a oferta na 3º campanha.
+-- 163 -> 7,276785714285714% -> 7% -> Clientes que aceitaram a oferta na 3º campanha.
+
+-- 4º Campanha:
+-- 2073 -> 92,54464285714286% -> 92% -> Clientes que não aceitaram a oferta na 4º campanha.
+-- 167 -> 7,455357142857143% -> 7% -> Clientes que aceitaram a oferta na 4º campanha.
+
+-- 5º Campanha:
+-- 2077 -> 92,72321428571429% -> 92% -> Clientes que não aceitaram a oferta na 5º campanha.
+-- 163 -> 7,276785714285714% -> 7% -> Clientes que aceitaram a oferta na 5º campanha.
+
+-- 6º Campanha (Última):
+-- 1906 -> 85,08928571428571% -> 85% -> Clientes que não aceitaram a oferta na 6º Campanha (última).
+-- 334 -> 14,910714285714286% -> 14% -> Clientes que aceitaram a oferta na 6º Campanha (última).
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- Média de sucesso da campanha.
+DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
+
+WITH [TBL_ACCEPTED_NOT_ACCEPTED_CMPS_RESPONSE] AS
+(
+SELECT 
+	  COUNT([ID]) AS [NUMBER_CLIENTS]
+	 ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+	 ,
+	 CASE
+	 WHEN COUNT([ID]) NOT IN ('') THEN '1º - CLIENTS NOT ACCEPTED CMP1'
+	 END AS [RESPONSE]
+	  
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [ACCEPTED_CMP1] = 0
+
+UNION ALL 
+
+SELECT 
+	  COUNT([ID]) AS [NUMBER_CLIENTS]
+	 ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+	 ,
+	 CASE
+     WHEN COUNT([ID]) NOT IN ('') THEN '1º - CLIENTS ACCEPTED CMP1'
+     END AS [RESPONSE]
+	  
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [ACCEPTED_CMP1] > 0
+
+UNION ALL
+
+SELECT 
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+	 ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,
+     CASE
+     WHEN COUNT([ID]) NOT IN ('') THEN '2º - CLIENTS NOT ACCEPTED CMP2'
+     END AS [RESPONSE]
+	  
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [ACCEPTED_CMP2] = 0
+
+UNION ALL
+
+SELECT 
+	  COUNT([ID]) AS [NUMBER_CLIENTS]
+	 ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+	 ,
+	 CASE
+     WHEN COUNT([ID]) NOT IN ('') THEN '2º - CLIENTS ACCEPTED CMP2'
+     END AS [RESPONSE]
+	  
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [ACCEPTED_CMP2] > 0
+
+UNION ALL
+
+SELECT 
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+	 ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,
+     CASE
+     WHEN COUNT([ID]) NOT IN ('') THEN '3º - CLIENTS NOT ACCEPTED CMP3'
+     END AS [RESPONSE]
+	  
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [ACCEPTED_CMP3] = 0
+
+UNION ALL
+
+SELECT 
+	  COUNT([ID]) AS [NUMBER_CLIENTS]
+	 ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+	 ,
+	 CASE
+     WHEN COUNT([ID]) NOT IN ('') THEN '3º - CLIENTS ACCEPTED CMP3'
+     END AS [RESPONSE]
+	  
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [ACCEPTED_CMP3] > 0
+
+UNION ALL
+
+SELECT 
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+	 ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,
+     CASE
+     WHEN COUNT([ID]) NOT IN ('') THEN '4º - CLIENTS NOT ACCEPTED CMP4'
+     END AS [RESPONSE]
+	  
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [ACCEPTED_CMP4] = 0
+
+UNION ALL
+
+SELECT 
+	  COUNT([ID]) AS [NUMBER_CLIENTS]
+	 ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+	 ,
+	 CASE
+     WHEN COUNT([ID]) NOT IN ('') THEN '4º - CLIENTS ACCEPTED CMP4'
+     END AS [RESPONSE]
+	  
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [ACCEPTED_CMP4] > 0
+
+UNION ALL
+
+SELECT 
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+	 ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,
+     CASE
+     WHEN COUNT([ID]) NOT IN ('') THEN '5º - CLIENTS NOT ACCEPTED CMP5'
+     END AS [RESPONSE]
+	  
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [ACCEPTED_CMP5] = 0
+
+UNION ALL
+
+SELECT 
+	  COUNT([ID]) AS [NUMBER_CLIENTS]
+	 ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+	 ,
+	 CASE
+     WHEN COUNT([ID]) NOT IN ('') THEN '5º - CLIENTS ACCEPTED CMP5'
+     END AS [RESPONSE]
+	  
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [ACCEPTED_CMP5] > 0
+
+UNION ALL
+
+SELECT 
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+	 ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,
+     CASE
+     WHEN COUNT([ID]) NOT IN ('') THEN '6º - CLIENTS NOT ACCEPTED (RESPONSE - TARGET)'
+     END AS [RESPONSE]
+	  
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [RESPONSE] = 0
+
+UNION ALL
+
+SELECT 
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+	 ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,
+     CASE
+     WHEN COUNT([ID]) NOT IN ('') THEN '6º - CLIENTS ACCEPTED (RESPONSE - TARGET)'
+     END AS [RESPONSE]
+	  
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [RESPONSE] > 0
+)
+SELECT 
+	  AVG([PERCENT]) AS [AVG_PERCENT_SUCESS_CAMPAIGN]
+
+FROM [TBL_ACCEPTED_NOT_ACCEPTED_CMPS_RESPONSE]
+
+WHERE [RESPONSE] LIKE '%CLIENTS ACCEPTED%'
+
+-- Média de sucesso da campanha.
+-- Analisando da primeira a última campanha, temos uma média de sucesso de 7%.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
