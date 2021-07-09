@@ -1705,6 +1705,7 @@ WHERE [RESPONSE] LIKE '%CLIENTS ACCEPTED%'
 - Quantidade de clientes que não possuem crianças e possuem adoslecentes.
 - Quantidade de clientes pelo tempo de registro na empresa (em anos).
 - Média do tempo (em dias) que um cliente passa sem comprar desde a última compra.
+- Total de produtos vendidos agrupados.
 - Produtos mais vendidos e menos vendidos.
 - Quantidade de clientes que compraram com desconto.
 - Quantidade de clientes que não usaram ou tiveram desconto.
