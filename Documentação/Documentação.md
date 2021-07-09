@@ -1259,6 +1259,199 @@ SELECT SUM([NUM_WEB_VISITS_MONTH]) AS [NUM_GENERAL_WEB_VISITS_MONTH] FROM [MARKE
 - Quantidade de clientes que aceitaram e não aceitaram a oferta na 4º campanha.
 - Quantidade de clientes que aceitaram e não aceitaram a oferta na 5º campanha.
 - Quantidade de clientes que aceitaram e não aceitaram a oferta na 6º campanha.
+```
+DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
 
+SELECT 
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+    ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+    ,
+    CASE
+    WHEN COUNT([ID]) NOT IN ('') THEN '1º - CLIENTS NOT ACCEPTED CMP1'
+    END AS [RESPONSE]
+	  
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [ACCEPTED_CMP1] = 0
+
+UNION ALL 
+
+SELECT 
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,
+     CASE
+     WHEN COUNT([ID]) NOT IN ('') THEN '1º - CLIENTS ACCEPTED CMP1'
+     END AS [RESPONSE]
+	  
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [ACCEPTED_CMP1] > 0
+
+UNION ALL
+
+SELECT 
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,
+     CASE
+     WHEN COUNT([ID]) NOT IN ('') THEN '2º - CLIENTS NOT ACCEPTED CMP2'
+     END AS [RESPONSE]
+	  
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [ACCEPTED_CMP2] = 0
+
+UNION ALL
+
+SELECT 
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+    ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+    ,
+     CASE
+     WHEN COUNT([ID]) NOT IN ('') THEN '2º - CLIENTS ACCEPTED CMP2'
+     END AS [RESPONSE]
+	  
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [ACCEPTED_CMP2] > 0
+
+UNION ALL
+
+SELECT 
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,
+     CASE
+     WHEN COUNT([ID]) NOT IN ('') THEN '3º - CLIENTS NOT ACCEPTED CMP3'
+     END AS [RESPONSE]
+	  
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [ACCEPTED_CMP3] = 0
+
+UNION ALL
+
+SELECT 
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,
+     CASE
+     WHEN COUNT([ID]) NOT IN ('') THEN '3º - CLIENTS ACCEPTED CMP3'
+     END AS [RESPONSE]
+	  
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [ACCEPTED_CMP3] > 0
+
+UNION ALL
+
+SELECT 
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,
+     CASE
+     WHEN COUNT([ID]) NOT IN ('') THEN '4º - CLIENTS NOT ACCEPTED CMP4'
+     END AS [RESPONSE]
+	  
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [ACCEPTED_CMP4] = 0
+
+UNION ALL
+
+SELECT 
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,
+     CASE
+     WHEN COUNT([ID]) NOT IN ('') THEN '4º - CLIENTS ACCEPTED CMP4'
+     END AS [RESPONSE]
+	  
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [ACCEPTED_CMP4] > 0
+
+UNION ALL
+
+SELECT 
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,
+     CASE
+     WHEN COUNT([ID]) NOT IN ('') THEN '5º - CLIENTS NOT ACCEPTED CMP5'
+     END AS [RESPONSE]
+	  
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [ACCEPTED_CMP5] = 0
+
+UNION ALL
+
+SELECT 
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,
+     CASE
+     WHEN COUNT([ID]) NOT IN ('') THEN '5º - CLIENTS ACCEPTED CMP5'
+     END AS [RESPONSE]
+	  
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [ACCEPTED_CMP5] > 0
+
+UNION ALL
+
+SELECT 
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,
+     CASE
+     WHEN COUNT([ID]) NOT IN ('') THEN '6º - CLIENTS NOT ACCEPTED (RESPONSE - TARGET)'
+     END AS [RESPONSE]
+	  
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [RESPONSE] = 0
+
+UNION ALL
+
+SELECT 
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,
+     CASE
+     WHEN COUNT([ID]) NOT IN ('') THEN '6º - CLIENTS ACCEPTED (RESPONSE - TARGET)'
+     END AS [RESPONSE]
+	  
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [RESPONSE] > 0
+
+-- 1º Campanha:
+-- 2096 -> 93,57142857142857% -> 93% -> Clientes que não aceitaram a oferta na 1º campanha.
+-- 144 -> 6,428571428571429% -> 6% -> Clientes que aceitaram a oferta na 1º campanha.
+
+-- 2º Campanha:
+-- 2096 -> 98,66071428571429% -> 98% -> Clientes que não aceitaram a oferta na 2º campanha.
+-- 30 -> 1,3392857142857142% -> 1% -> Clientes que aceitaram a oferta na 2º campanha.
+
+-- 3º Campanha:
+-- 2077 -> 92,72321428571429% -> 92% -> Clientes que não aceitaram a oferta na 3º campanha.
+-- 163 -> 7,276785714285714% -> 7% -> Clientes que aceitaram a oferta na 3º campanha.
+
+-- 4º Campanha:
+-- 2073 -> 92,54464285714286% -> 92% -> Clientes que não aceitaram a oferta na 4º campanha.
+-- 167 -> 7,455357142857143% -> 7% -> Clientes que aceitaram a oferta na 4º campanha.
+
+-- 5º Campanha:
+-- 2077 -> 92,72321428571429% -> 92% -> Clientes que não aceitaram a oferta na 5º campanha.
+-- 163 -> 7,276785714285714% -> 7% -> Clientes que aceitaram a oferta na 5º campanha.
+
+-- 6º Campanha (Última):
+-- 1906 -> 85,08928571428571% -> 85% -> Clientes que não aceitaram a oferta na 6º Campanha (última).
+-- 334 -> 14,910714285714286% -> 14% -> Clientes que aceitaram a oferta na 6º Campanha (última).
+```
+---
 
 
