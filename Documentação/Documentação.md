@@ -1682,5 +1682,7 @@ WHERE [RESPONSE] LIKE '%CLIENTS ACCEPTED%'
 - Quantidade de clientes que aceitaram e não aceitaram a oferta na 6º campanha.
 - Média de sucesso da campanha.
 ---
-
+9º - Criação das visualizações e tabelas que serão utilizadas para as análises e apresentação comercial.
+#### A ferramenta utilizada para criação das visualizações será o Power BI Desktop e Power BI Web, diretamente conectado a base de dados importado pelo job do Python para o Microsoft SQL Server.
+---
 
