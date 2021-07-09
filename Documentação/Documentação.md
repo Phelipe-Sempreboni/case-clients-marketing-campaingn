@@ -1736,7 +1736,68 @@ WHERE [RESPONSE] LIKE '%CLIENTS ACCEPTED%'
 - Quantidade de clientes que aceitaram e não aceitaram a oferta na 6º campanha.
 - Média de sucesso da campanha.
 ---
-9º - Criação das visualizações e tabelas que serão utilizadas para as análises e apresentação comercial.
-#### A ferramenta utilizada para criação das visualizações será o Power BI Desktop e Power BI Web, diretamente conectado a base de dados importado pelo job do Python para o Microsoft SQL Server.
+9º - Cruzamento dos KPI's levantados no 8º passo, visando iniciar a análise de perfil dos clientes.
+
+- Quantidade de clientes pelo nível de educação por quantidade de compras por produtos.
+```
+DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
+
+WITH [NUMBER_CUSTOMERS_EDUCATION]
+AS
+(
+SELECT 
+      COUNT([ID]) AS [NUMBER_CUSTOMERS]
+     ,[EDUCATION]
+     ,SUM([MNT_WINES]) AS [TOTAL_WINES]
+     ,SUM([MNT_FRUITS]) AS [TOTAL_FRUITS]
+     ,SUM([MNT_MEAT_PRODUCTS]) AS [TOTAL_MNT_MEAT_PRODUCTS]
+     ,SUM([MNT_FISH_PRODUCTS]) AS [TOTAL_MNT_FISH_PRODUCTS]
+     ,SUM([MNT_SWEET_PRODUCTS]) AS [TOTAL_MNT_SWEET_PRODUCTS]
+     ,SUM([MNT_GOLD_PRODS]) AS [TOTAL_MNT_GOLD_PRODUCTS]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+GROUP BY
+	[EDUCATION]
+)
+SELECT 
+      [NUMBER_CUSTOMERS]
+     ,[EDUCATION]
+     ,([NUMBER_CUSTOMERS] * 100)/(@NUMBER_CLIENTS) AS [EDUCATION_PERCENT]
+     ,[TOTAL_WINES]
+     ,[TOTAL_FRUITS]
+     ,[TOTAL_MNT_MEAT_PRODUCTS]
+     ,[TOTAL_MNT_FISH_PRODUCTS]
+     ,[TOTAL_MNT_SWEET_PRODUCTS]
+     ,[TOTAL_MNT_GOLD_PRODUCTS]
+
+
+FROM [NUMBER_CUSTOMERS_EDUCATION]
+
+GROUP BY
+       [NUMBER_CUSTOMERS]
+      ,[EDUCATION]
+      ,[TOTAL_WINES]
+      ,[TOTAL_FRUITS]
+      ,[TOTAL_MNT_MEAT_PRODUCTS]
+      ,[TOTAL_MNT_FISH_PRODUCTS]
+      ,[TOTAL_MNT_SWEET_PRODUCTS]
+      ,[TOTAL_MNT_GOLD_PRODUCTS]
+
+ORDER BY
+        [TOTAL_WINES] DESC
+	,[TOTAL_FRUITS] DESC
+	,[TOTAL_MNT_MEAT_PRODUCTS] DESC
+	,[TOTAL_MNT_FISH_PRODUCTS] DESC
+	,[TOTAL_MNT_SWEET_PRODUCTS] DESC
+	,[TOTAL_MNT_GOLD_PRODUCTS] DESC
+
+
+-- 1.127 clientes -> Graduation -> 50% -> Wines: 320.371 -> Fruits: 34.683 -> Meat: 202.284 -> Fish: 48.630 -> Sweet: 35.351 -> Gold: 57.307.
+-- 486 clientes -> PhD -> 21% -> Wines: 196.585 -> Fruits: 97.44 -> Meat: 81.941 -> Fish: 12.990 -> Sweet: 9.828 -> Gold: 15.703.
+-- 370 clientes -> Master -> 16% -> Wines: 123.238 -> Fruits: 8.012 -> Meat: 60.450 -> Fish: 11.877 -> Sweet: 7.835 -> Gold: 14.947.
+-- 203 clientes -> 2n Cycle -> 9% -> Wines: 40.231 -> Fruits: 5.878 -> Meat: 28.675 -> Fish: 9.639 -> Sweet: 6.953 -> Gold: 9.419
+-- 54 clientes -> Basic -> 2% -> Wines: 391 -> Fruits: 600 -> Meat: 618 -> Fish: 921 -> Sweet: 654 -> Gold: 1.233
+```
 ---
 
