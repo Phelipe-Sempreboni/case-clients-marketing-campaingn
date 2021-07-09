@@ -1636,6 +1636,51 @@ WHERE [RESPONSE] LIKE '%CLIENTS ACCEPTED%'
 -- Analisando da primeira a última campanha, temos uma média de sucesso de 7%.
 ```
 ---
-
+#### Resumo do levantamento inicial de KPI's para as próximas análises mais apuradas e assertivas.
+#### Á partir destes indicadores iniciais serão realizadas as análises para melhoria da próxima campanha.
+- Quantidade de clientes.
+- Idade média dos clientes.
+- Quantidade de clientes pelo nível de educação.
+- Quantidade de clientes pelo estado civil.
+- Quantidade de clientes pelo nível de educação e estado civil.
+- Renda média mensal familiar dos clientes.
+- Renda média anual familiar dos clientes.
+- Quantitade total de crianças e adoslecentes.
+- Quantidade de clientes que não possuem crianças e adoslecentes.
+- Quantidade de clientes que possuem crianças e adoslecentes.
+- Quantidade de clientes que possuem crianças e não adoslecentes.
+- Quantidade de clientes que não possuem crianças e possuem adoslecentes.
+- Quantidade de clientes pelo tempo de registro na empresa (em anos).
+- Média do tempo (em dias) que um cliente passa sem comprar desde a última compra.
+- Produtos mais vendidos e menos vendidos.
+- Quantidade de clientes que compraram com desconto.
+- Quantidade de clientes que não usaram ou tiveram desconto.
+- Média de compras com desconto.
+- Quantidade de clientes pelo número de vezes que ele comprou com desconto.
+- Quantidade total de descontos utilizados pelos clientes.
+- Quantidade de clientes que compraram pelo site.
+- Quantidade de clientes que não compraram pelo site.
+- Quantidade de clientes pelo número de vezes que ele comprou pelo site.
+- Quantidade total de compras pelo site.
+- Quantidade de clientes que compraram pelo catálogo.
+- Quantidade de clientes que não compraram pelo catálogo.
+- Quantidade de clientes pelo número de vezes que ele comprou pelo catálogo.
+- Quantidade total de compras pelo catálogo.
+- Quantidade de clientes que compraram na loja.
+- Quantidade de clientes que não compraram na loja.
+- Quantidade de clientes pelo número de vezes que ele comprou na loja.
+- Quantidade total de compras na loja.
+- Quantidade de clientes que visitaram o site no último mês.
+- Quantidade de clientes que não visitaram o site no último mês.
+- Quantidade de clientes pelo número de vezes visitaram o site no último mês.
+- Quantidade total de visitas no site no último mês.
+- Quantidade de clientes que aceitaram e não aceitaram a oferta na 1º campanha.
+- Quantidade de clientes que aceitaram e não aceitaram a oferta na 2º campanha.
+- Quantidade de clientes que aceitaram e não aceitaram a oferta na 3º campanha.
+- Quantidade de clientes que aceitaram e não aceitaram a oferta na 4º campanha.
+- Quantidade de clientes que aceitaram e não aceitaram a oferta na 5º campanha.
+- Quantidade de clientes que aceitaram e não aceitaram a oferta na 6º campanha.
+- Média de sucesso da campanha.
+---
 
 
