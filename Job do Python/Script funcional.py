@@ -10,7 +10,7 @@ import csv
 # Criação da conexão com o Microsoft SQL Server.
 conexao = pyodbc.connect(
 Driver='{SQL Server Native Client 11.0}',
-Server='N', # Insira o server.
+Server='', # Insira o server.
 Database='', # Insira o banco de dados.
 uid='', # Insira o usuário.
 pwd='', # Insira a senha.
