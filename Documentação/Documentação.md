@@ -1800,4 +1800,183 @@ ORDER BY
 -- 54 clientes -> Basic -> 2% -> Wines: 391 -> Fruits: 600 -> Meat: 618 -> Fish: 921 -> Sweet: 654 -> Gold: 1.233
 ```
 ---
+- Quantidade de clientes pelo estado civil por quantidade de compras por produtos.
+```
+DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
 
+WITH [NUMBER_CUSTOMERS_EDUCATION]
+AS
+(
+SELECT 
+      COUNT([ID]) AS [NUMBER_CUSTOMERS]
+     ,[MARITAL_STATUS]
+     ,SUM([MNT_WINES]) AS [TOTAL_WINES]
+     ,SUM([MNT_FRUITS]) AS [TOTAL_FRUITS]
+     ,SUM([MNT_MEAT_PRODUCTS]) AS [TOTAL_MNT_MEAT_PRODUCTS]
+     ,SUM([MNT_FISH_PRODUCTS]) AS [TOTAL_MNT_FISH_PRODUCTS]
+     ,SUM([MNT_SWEET_PRODUCTS]) AS [TOTAL_MNT_SWEET_PRODUCTS]
+     ,SUM([MNT_GOLD_PRODS]) AS [TOTAL_MNT_GOLD_PRODUCTS]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+GROUP BY
+		[MARITAL_STATUS]
+)
+SELECT 
+      [NUMBER_CUSTOMERS]
+     ,[MARITAL_STATUS]
+     ,([NUMBER_CUSTOMERS] * 100)/(@NUMBER_CLIENTS) AS [MARITAL_STATUS_PERCENT]
+     ,[TOTAL_WINES]
+     ,[TOTAL_FRUITS]
+     ,[TOTAL_MNT_MEAT_PRODUCTS]
+     ,[TOTAL_MNT_FISH_PRODUCTS]
+     ,[TOTAL_MNT_SWEET_PRODUCTS]
+     ,[TOTAL_MNT_GOLD_PRODUCTS]
+
+
+FROM [NUMBER_CUSTOMERS_EDUCATION]
+
+GROUP BY
+       [NUMBER_CUSTOMERS]
+      ,[MARITAL_STATUS]
+      ,[TOTAL_WINES]
+      ,[TOTAL_FRUITS]
+      ,[TOTAL_MNT_MEAT_PRODUCTS]
+      ,[TOTAL_MNT_FISH_PRODUCTS]
+      ,[TOTAL_MNT_SWEET_PRODUCTS]
+      ,[TOTAL_MNT_GOLD_PRODUCTS]
+
+ORDER BY
+	[TOTAL_WINES] DESC
+	,[TOTAL_FRUITS] DESC
+	,[TOTAL_MNT_MEAT_PRODUCTS] DESC
+	,[TOTAL_MNT_FISH_PRODUCTS] DESC
+	,[TOTAL_MNT_SWEET_PRODUCTS] DESC
+	,[TOTAL_MNT_GOLD_PRODUCTS] DESC
+
+-- 864 clientes -> Married -> 38% -> Wines: 258.751 -> Fruits: 22.235 -> Meat: 138.829 -> Fish: 30.569 -> Sweet: 23070 -> Gold: 36999.
+-- 580 clientes -> Together -> 25% -> Wines: 177.959 -> Fruits: 14.703 -> Meat: 97.500 -> Fish: 22.615 -> Sweet: 15151 -> Gold: 24937.
+-- 480 clientes -> Single -> 21% -> Wines: 138.399 -> Fruits: 12.881 -> Meat: 87.412 -> Fish: 18.344 -> Sweet: 13086 -> Gold: 20990.
+-- 232 clientes -> Divorced -> 10% -> Wines: 75.364 -> Fruits: 6.363 -> Meat: 34.848 -> Fish: 8.130 -> Sweet: 6222 -> Gold: 10739.
+-- 77 clientes -> Widow -> 3% -> Wines: 28.434 -> Fruits: 2.548 -> Meat: 14.575 -> Fish: 3.957 -> Sweet: 3004 -> Gold: 4371.
+-- 2 clientes -> Absurd -> 1% -> Wines: 711 -> Fruits: 169 -> Meat: 625 -> Fish: 411 -> Sweet: 61 -> Gold: 408.
+-- 2 clientes -> YOLO -> 1% -> Wines: 644 -> Fruits: 6 -> Meat: 100 -> Fish: 8 -> Sweet: 6 -> Gold: 84.
+-- 3 clientes -> Alone -> 1% -> Wines: 554 -> Fruits: 554 -> Meat: 79 -> Fish: 23 -> Sweet: 21 -> Gold: 81.
+```
+---
+- Quantidade de clientes pela quantidade de crianças por quantidade de compras por produtos.
+```
+DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
+
+WITH [NUMBER_CUSTOMERS_EDUCATION]
+AS
+(
+SELECT 
+      COUNT([ID]) AS [NUMBER_CUSTOMERS]
+     ,[KIDHOME]
+     ,SUM([MNT_WINES]) AS [TOTAL_WINES]
+     ,SUM([MNT_FRUITS]) AS [TOTAL_FRUITS]
+     ,SUM([MNT_MEAT_PRODUCTS]) AS [TOTAL_MNT_MEAT_PRODUCTS]
+     ,SUM([MNT_FISH_PRODUCTS]) AS [TOTAL_MNT_FISH_PRODUCTS]
+     ,SUM([MNT_SWEET_PRODUCTS]) AS [TOTAL_MNT_SWEET_PRODUCTS]
+     ,SUM([MNT_GOLD_PRODS]) AS [TOTAL_MNT_GOLD_PRODUCTS]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+GROUP BY
+       [KIDHOME]
+)
+SELECT 
+      [NUMBER_CUSTOMERS]
+     ,[KIDHOME]
+     ,([NUMBER_CUSTOMERS] * 100)/(@NUMBER_CLIENTS) AS [KIDHOME_PERCENT]
+     ,[TOTAL_WINES]
+     ,[TOTAL_FRUITS]
+     ,[TOTAL_MNT_MEAT_PRODUCTS]
+     ,[TOTAL_MNT_FISH_PRODUCTS]
+     ,[TOTAL_MNT_SWEET_PRODUCTS]
+     ,[TOTAL_MNT_GOLD_PRODUCTS]
+
+FROM [NUMBER_CUSTOMERS_EDUCATION]
+
+GROUP BY
+       [NUMBER_CUSTOMERS]
+      ,[KIDHOME]
+      ,[TOTAL_WINES]
+      ,[TOTAL_FRUITS]
+      ,[TOTAL_MNT_MEAT_PRODUCTS]
+      ,[TOTAL_MNT_FISH_PRODUCTS]
+      ,[TOTAL_MNT_SWEET_PRODUCTS]
+      ,[TOTAL_MNT_GOLD_PRODUCTS]
+
+ORDER BY
+	 [TOTAL_WINES] DESC
+	,[TOTAL_FRUITS] DESC
+	,[TOTAL_MNT_MEAT_PRODUCTS] DESC
+	,[TOTAL_MNT_FISH_PRODUCTS] DESC
+	,[TOTAL_MNT_SWEET_PRODUCTS] DESC
+	,[TOTAL_MNT_GOLD_PRODUCTS] DESC
+
+-- 1293 clientes -> Kidhome: 0 -> 57% -> Wines: 583.367 -> Fruits: 50.935 -> Meat: 328.417 -> Fish: 72.618 -> Sweet: 52.365 -> Gold: 77.628.
+-- 899 clientes -> Kidhome: 1 -> 40% -> Wines: 93.859 -> Fruits: 7.657 -> Meat: 43.927 -> Fish: 11.068 -> Sweet: 8.030 -> Gold: 20.145.
+-- 48 clientes -> Kidhome: 2 -> 2% -> Wines: 3.590 -> Fruits: 325 -> Meat: 1.624 -> Fish: 371 -> Sweet: 226 -> Gold: 836.
+```
+---
+- Quantidade de clientes pela quantidade de adolescentes por quantidade de compras por produtos.
+```
+DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
+
+WITH [NUMBER_CUSTOMERS_EDUCATION]
+AS
+(
+SELECT 
+      COUNT([ID]) AS [NUMBER_CUSTOMERS]
+     ,[TEENHOME]
+     ,SUM([MNT_WINES]) AS [TOTAL_WINES]
+     ,SUM([MNT_FRUITS]) AS [TOTAL_FRUITS]
+     ,SUM([MNT_MEAT_PRODUCTS]) AS [TOTAL_MNT_MEAT_PRODUCTS]
+     ,SUM([MNT_FISH_PRODUCTS]) AS [TOTAL_MNT_FISH_PRODUCTS]
+     ,SUM([MNT_SWEET_PRODUCTS]) AS [TOTAL_MNT_SWEET_PRODUCTS]
+     ,SUM([MNT_GOLD_PRODS]) AS [TOTAL_MNT_GOLD_PRODUCTS]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+GROUP BY
+       [TEENHOME]
+)
+SELECT 
+      [NUMBER_CUSTOMERS]
+     ,[TEENHOME]
+     ,([NUMBER_CUSTOMERS] * 100)/(@NUMBER_CLIENTS) AS [TEENHOME_PERCENT]
+     ,[TOTAL_WINES]
+     ,[TOTAL_FRUITS]
+     ,[TOTAL_MNT_MEAT_PRODUCTS]
+     ,[TOTAL_MNT_FISH_PRODUCTS]
+     ,[TOTAL_MNT_SWEET_PRODUCTS]
+     ,[TOTAL_MNT_GOLD_PRODUCTS]
+
+FROM [NUMBER_CUSTOMERS_EDUCATION]
+
+GROUP BY
+       [NUMBER_CUSTOMERS]
+      ,[TEENHOME]
+      ,[TOTAL_WINES]
+      ,[TOTAL_FRUITS]
+      ,[TOTAL_MNT_MEAT_PRODUCTS]
+      ,[TOTAL_MNT_FISH_PRODUCTS]
+      ,[TOTAL_MNT_SWEET_PRODUCTS]
+      ,[TOTAL_MNT_GOLD_PRODUCTS]
+
+ORDER BY
+         [TOTAL_WINES] DESC
+	,[TOTAL_FRUITS] DESC
+	,[TOTAL_MNT_MEAT_PRODUCTS] DESC
+	,[TOTAL_MNT_FISH_PRODUCTS] DESC
+	,[TOTAL_MNT_SWEET_PRODUCTS] DESC
+	,[TOTAL_MNT_GOLD_PRODUCTS] DESC
+
+-- 1158 clientes -> Teenhome: 0 -> 51% -> Wines: 352.985 -> Fruits: 38.573 -> Meat: 263.005 -> Fish: 56.346 -> Sweet: 38.945 -> Gold: 52.407.
+-- 1030 clientes -> Teenhome: 1 -> 45% -> Wines: 309.010 -> Fruits: 19.433 -> Meat: 104.475 -> Fish: 26.468 -> Sweet: 20.840 -> Gold: 43.865.
+-- 52 clientes -> Teenhome: 2 -> 2% -> Wines: 18.821 -> Fruits: 911 -> Meat: 6.488 -> Fish: 1.243 -> Sweet: 836 -> Gold: 2.337.
+```
+---
