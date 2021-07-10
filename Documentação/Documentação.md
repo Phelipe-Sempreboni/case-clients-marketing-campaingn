@@ -155,17 +155,17 @@ GO
 
 ---
 
-5º - Criação da tabela que alocará os dados para posteriormente realizar a análise. Nesta etapas, temos alguns passos adicionais conforme explicação abaixo. Esses passos entram como o tratamento de dados antes da realização da análise, para que seja o mais real possível e os dados sejam de qualidade.
+5º - Criação da tabela que alocará os dados para posteriormente realizar a análise. Nesta etapa, temos alguns passos adicionais conforme explicação abaixo. Esses passos entram como o tratamento de dados antes da realização da análise, para que seja a mais assertiva possível e os dados sejam de qualidade no momento da análise.
 
 - Passos adicionais:
 
-- Essa etapa é realizada em conjunto com o 6º passo do job de importação de dados do Python, pois, como os dados estão sendo importados de diretamente de um arquivo CSV, é necessário verificar os tipos de dados das colunas criadas e se o job consegue realizar a importação dos dados corretamente no banco de dados, sem nenhum erro de tipo de dado incorreto, inválido ou que o mecanismo do banco de dados não consiga realizar a conversão, por exemplo, de (nvarchar) para (numerico), inclusive é um erro que ocorreu e foi corrigido neste passo. Resultado posivito.
+- Essa etapa é realizada em conjunto com o 6º passo do job de importação de dados do Python, pois, como os dados estão sendo importados de diretamente de um arquivo CSV, é necessário verificar os tipos de dados das colunas que serão criadas, e, se o job consegue realizar a importação dos dados corretamente para o banco de dados Microsoft SQL Server, sem nenhum erro de tipo de dado incorreto, inválido ou que o mecanismo do banco de dados não consiga realizar a conversão, por exemplo, de (nvarchar) para (numerico), inclusive é um erro que ocorreu e foi corrigido neste passo.
 
-- Foi inserido uma chave primária e indíce clusterizado nesta tabela, na coluna ID, pois, por lógica, um ID não se repete em uma tabela, logo, foi inserida chave primária para que o dado não se repita e seja o mais real possível. A chave primária e o indíce clusterizado também deixam as pesquisas na tabela mais ágeis e efetivas. Foi verificado se os 2.240 registros, após a inserção da chave primária se mantinham, e o resultado foi positivo, onde todos os registros foram mantidos.
+- Foi inserido uma chave primária e indíce clusterizado nesta tabela, na coluna ID, pois, por lógica, um ID não se repete em uma tabela, logo, foi inserida chave primária para que o dado não se repita e seja o mais assertivo possível. A chave primária e o indíce clusterizado também deixam as pesquisas na tabela mais ágeis e efetivas, como na busca de um ID. Foi verificado se os 2.240 registros após a inserção da chave primária iriam se manter, e o resultado foi positivo, onde todos os registros foram mantidos.
 
-- Foram confirmados por meios de querys e visando a qualidade dos dados, se os tipos de dados das colunas foram criados corretamente e se a chave primária também foi criada corretamente. Resultado posivito.
+- Foram confirmados por meios de querys e visando a qualidade dos dados, se os tipos de dados das colunas foram criados corretamente e se a chave primária também foi criada corretamente.
 
-- Foram verificados os primeiros 25 registros entre arquivo CSV e tabela criada do banco de dados após a inserção dos dados pelo job do Python, do 6º passo, para garantir por amostras, que os dados estão corretos e assim será para os demais inseridos. Resultado positivo.
+- Foram verificados os primeiros 25 registros entre arquivo CSV e a tabela criada no banco de dados Microsoft SQL Server, após a inserção dos dados pelo job do Python do 6º passo, para garantir por amostras, que os dados estão corretos e assim será para os demais inseridos.
 
 - Nesta etapa também foram verificados os valores que estavam vazios no arquivo CSV e feito uma trativa, conforme descrito abaixo:
 - Coluna (INCOME): Registros vazios foram preenchidos com (0) e o restante dos registros estavam preenchidos corretamente.
@@ -236,7 +236,7 @@ GO
 ```
 ---
 
-6º - Input dos dados na tabela criada no banco de dados Microsoft SQL Server 2019 com um job do Python.
+6º - Input dos dados na tabela criada no banco de dados Microsoft SQL Server com um job do Python.
 
 - Atentar para as informações comentadas dentro do script abaixo.
 
@@ -355,19 +355,19 @@ conexao.commit() # Commit para validar e executar as ações.
 
 7º - Criação de uma view com algumas adições de novas colunas conforme explicado abaixo.
 
-- A criação da view será feita como se fosse uma boa prática análise de dados em banco de dados, onde temos alguns motivos abaixo.
+- A criação da view será feita como se fosse uma boa prática no banco de dados, na tabela origem e na análise de dados, onde temos alguns motivos abaixo.
 
-- Motivo 1: Imaginemos que essa tabela criada seja uma tabela de atualização diária em um Datalake, sendo apagada e recriada todos os dias, logo, se a tabela estiver conectada em alguma ferramenta de visualização, por exemplo, pode causar falhas de atualização da tabela. Criando uma view não teremos esse problema, pois, não temos conexão diretamente na tabela.
+- Motivo 1: Imaginemos que essa tabela criada tenha uma carga de atualização diária em um Datalake, sendo apagada e recriada todos os dias, logo, se a tabela estiver conectada em alguma ferramenta de visualização, ou uma outra ferramenta de banco de dados, como Microsoft Access, por exemplo, pode causar falhas de atualização da tabela devido as conexões abertas/pendentes nessas ferramentas. Criando uma view não teremos esse problema, pois, não temos conexão diretamente na tabela, além de conseguir realizar tratativas diretamente no script da view, e a vantagem de encapsulamento do script.
 
-- Motivo 2: Caso essa tabela, seja por exemplo, uma tabela de um Datalake, onde normalmente os dados são extraídos e inseridos na base de dados sem tratamentos, podemos criar uma view com nossos próprios tratamentos e não necessitar diretamente da tabela sem tratamentos carregada no Datalake.
+- Motivo 2: Caso essa tabela seja, por exemplo, uma tabela de um Datalake, onde normalmente os dados são extraídos de suas origens e inseridos na base de dados sem tratamentos, podemos criar uma view com nossos próprios tratamentos e não necessitar diretamente da tabela, que não possuí tratamentos e é carregada diretament no Datalake.
 
-- Motivo 3: Na criação da view, podemos adicionar colunas, como colunas calculadas e encapsular esse script caso seja mais restrito.
+- Motivo 3: Facilidade de alteração da view, ou seja, no script, onde caso a tabela não tenha seu caminho e nomes de colunas alteradas, a view sempre será fiel a base origem, já com seus tratamentos realizados.
 
-- Motivo 4: Facilidade de alteração da view, onde caso a tabela não tenha nomes de colunas alteradas, a view sempre será fiel a base origem.
+- Motivo 4: É possível utilizar a view com uma tabela de auxiliar de dados, por exemplo, um de/para, ou de uma transformação de dados muito complexa, que irá se relacionar e completar outras tabelas e/ou views.
 
 - Motivo 5: Conseguir realizar a transformação de dados sem necessidade de alteração da tabela principal.
 
-#### Colunas adicionadas e descrições:
+#### Colunas adicionadas e suas descrições:
 
 | Campo                    | Descrição us-es                                                      | Descrição pt-br                                                       |
 | :-----------------------:|---------------------------------------------------------------------:|:---------------------------------------------------------------------:|
@@ -483,7 +483,8 @@ GO
 ```
 ---
 
-8º - Levantamento inicial dos KPI's. Nesta etapa, será feito um levantamento inicial dos KPI's que os dados podem nos fornecer.
+8º - Levantamento inicial dos KPI's. 
+- Nesta etapa, será feito um levantamento inicial dos KPI's que os dados podem nos fornecer, e, á partir destes KPI's teremos insigths para as análises mais profundas e assertivas.
 
 ---
 - Quantidade de clientes.
