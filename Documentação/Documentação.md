@@ -1773,7 +1773,7 @@ WHERE [RESPONSE] LIKE '%CLIENTS ACCEPTED%'
 ---
 9º - Início das análises mais profundas e assertivas dos perfis dos clientes com base nos KPI's inciais levantados no 8º passo.
 
-- Quantidade de clientes pelo nível de educação por quantidade de compras por produtos.
+- Quantidade de clientes pelo nível de educação por quantidade de compras por produtos e total geral dos produtos somados.
 ```
 DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
 
@@ -1836,7 +1836,7 @@ ORDER BY
 -- 54 clientes -> Basic -> 2% -> Wines: 391 -> Fruits: 600 -> Meat: 618 -> Fish: 921 -> Sweet: 654 -> Gold: 1.233
 ```
 ---
-- Quantidade de clientes pelo estado civil por quantidade de compras por produtos.
+- Quantidade de clientes pelo estado civil por quantidade de compras por produtos e total geral dos produtos somados.
 ```
 DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
 
@@ -1902,7 +1902,7 @@ ORDER BY
 -- 3 clientes -> Alone -> 1% -> Wines: 554 -> Fruits: 554 -> Meat: 79 -> Fish: 23 -> Sweet: 21 -> Gold: 81.
 ```
 ---
-- Quantidade de clientes pela quantidade de crianças por quantidade de compras por produtos.
+- Quantidade de clientes pela quantidade de crianças por quantidade de compras por produtos e total geral dos produtos somados.
 ```
 DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
 
@@ -1962,7 +1962,7 @@ ORDER BY
 -- 48 clientes -> Kidhome: 2 -> 2% -> Wines: 3.590 -> Fruits: 325 -> Meat: 1.624 -> Fish: 371 -> Sweet: 226 -> Gold: 836.
 ```
 ---
-- Quantidade de clientes pela quantidade de adolescentes por quantidade de compras por produtos.
+- Quantidade de clientes pela quantidade de adolescentes por quantidade de compras por produtos e total geral dos produtos somados.
 ```
 DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
 
@@ -2022,8 +2022,4 @@ ORDER BY
 -- 52 clientes -> Teenhome: 2 -> 2% -> Wines: 18.821 -> Fruits: 911 -> Meat: 6.488 -> Fish: 1.243 -> Sweet: 836 -> Gold: 2.337.
 ```
 ---
-- Quantidade de clientes por nível de educação por total de produtos.
-```
 
-```
----
