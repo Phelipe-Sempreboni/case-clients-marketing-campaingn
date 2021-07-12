@@ -2309,4 +2309,20 @@ ORDER BY
 -- 52 clientes -> Teenhome: 2 -> 2% -> Wines: 18.821 -> Fruits: 911 -> Meat: 6.488 -> Fish: 1.243 -> Sweet: 836 -> Gold: 2.337.
 ```
 ---
+- Resultado das análises:
+- Neste caso utilizei o Miro como forma de agrupamento das informações para apresentação.
+- Esta é uma apresentação parcial, pois, ainda teremos uma apresentação no Power Point que será fornecida pelo Power BI.
 
+![image](https://user-images.githubusercontent.com/57469401/125351228-3745ea00-e336-11eb-96d9-beef2abece09.png)
+
+---
+
+11º - Comparação dos perfis dos clientes da análise realizada no 10º passo com as campanhas que obtiveram respostas dos clientes.
+
+- Com perfis de clientes encontrados pelas análises realizadas, iremos verificar os perfis de clientes que aceitaram as últimas campanhas conforme as bases de dados e analisar se são os mesmos perfis localizados pela análise.
+
+- Pergunta: Porquê realizar essa análise ?
+
+- Resposta: Realizando essa análise ficará mais claro, objetivo e assertivo sobre o perfil de cliente localizado na análise de dados, pois, pela lógica, clientes que aceitaram as ofertas tendem a ter o perfil encontrado na análise.
+
+---
