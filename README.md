@@ -6,7 +6,7 @@ Este repositório é voltado para a realização do case da campanha de Marketin
 
 ---
 
-Haverá um registro do passo a passo realizado para todo o desenvolvimento, desde a importação dos dados, análises dos dados até a apresentação, que estará repositório "Documentação", no arquivo de leitura chamado "Documentação".
+Haverá um registro do passo a passo realizado para todo o desenvolvimento, desde a importação dos dados, análises, até a apresentação, que estará no repositório "Documentação", no arquivo de leitura chamado "Documentação".
 
 ---
 
