@@ -1,11 +1,11 @@
 
-# Documentação das análises realizadas para o case do Ifood.
+# Documentação das análises realizadas para o case da campanha de Marketing.
 
 ---
 
-| Documentação elaborada por     | Tipo | Para  | Data de início | Data de finalização |
-| -----------------------------  |:----:|:-----:| :-------------:| :------------------:|
-| Luiz Phelipe Utiama Sempreboni | Case | Ifood | 06/07/2021     | Preencher           |
+| Documentação elaborada por     | Tipo | Segmentação           |
+| -----------------------------  |:----:|:---------------------:|
+| Luiz Phelipe Utiama Sempreboni | Case | Campanha de Marketing |
 
 
 ---
