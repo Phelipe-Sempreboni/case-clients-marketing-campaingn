@@ -34,18 +34,6 @@
 
 ---
 
-### Ferramentas utilizadas no método de análise III :
-
-- Input dos dados: Arquivo csv.
-
-- Armazenamento dos dados: Arquivo csv.
-
-- Linguagem utilizada para análise dos dados: Python, com bibliotecas como Pandas e api do Power BI.
-
-- Apresentação dos dados: Jupyter Notebook, pela api do Power BI e Power Point.
-
----
-
 ### Observação sobre os métodos de análise I e II :
 
 Os métodos de análise I e II, utilizam o Microsoft SQL Server como banco de dados pelos motivos abaixo: 
@@ -59,12 +47,6 @@ Os métodos de análise I e II, utilizam o Microsoft SQL Server como banco de da
 - Backup dos dados: Por exemplo, se o banco for bem gerenciado pelo Administrador ou DBA, com um plano de execução de backups, haverá um backup para restauração dos dados.
 
 Lembrando que, cada análise tem sua peculiaridade, criticidade e tempo de entrega, logo, terá que ser analisado como fazer esse processo de análise com os dados.
-
----
-
-### Observação sobre o método de análise III :
-
-Notar que para rodar localmente a análise de maneira mais fácil, utilizar o método de análise III, que utiliza diretamente o arquivo csv, que pode ser salvo na área de trabalho e utilizado diretamente no Jupyter Notebook.
 
 ---
 
