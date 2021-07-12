@@ -11,10 +11,11 @@ import csv
 conexao = pyodbc.connect(
 Driver='{SQL Server Native Client 11.0}',
 Server='', # Insira o server.
-Database='', # Insira o banco de dados.
-uid='', # Insira o usuário.
-pwd='', # Insira a senha.
-rusted_Connection='no' # Se o login no banco de dados é realizados com Autentição SQL Server, ou seja, com login e senha, deixe marcado como (no), caso contrário, retire o comando da linha de senha (pwd) e deixe este campo como (yes), informando que a conexão é por meio de Autentição Windows, ou seja, não necessita da senha.
+Database='', # Insira o banco de dados. Neste job, insira o banco de dados que foi criado manualmente, o (MARKETING).
+uid='', # Insira o usuário. É possível conectar por autentição do Windows.
+pwd='', # Insira a senha. É possível conectar por autentição do Windows.
+trusted_Connection='no', # Se o login no banco de dados é realizados com Autentição SQL Server, ou seja, com login e senha, deixe marcado como (no), caso contrário, retire o comando da linha de senha (pwd) e deixe este campo como (yes), informando que a conexão é por meio de Autentição Windows, ou seja, não necessita da senha.
+autocommit=True  #Por padrão, o commit, que é a confirmação das transações no script SQL Server, principalmente para DDL, vem como (FALSE). Neste comando ele é alterado para (TRUE), visando fazer os scripts do SQL Server neste job do Python funcionarem e serem executados corretamente.
 )
 cursor = conexao.cursor() # Criação do cursor para executar comandos no banco de dados.
 
@@ -58,11 +59,11 @@ CREATE TABLE [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA] (
 )
 
 # Manipulação do arquivo CSV.
-df = pd.read_csv(r'Desktop\data.csv') # Realizada a leitura.
-df.to_csv(r'Desktop\data.csv', header=False, index=False) # Retirado o cabeçalho e possíveis index criados na leitura da linha de comando acima.
+df = pd.read_csv(r'C:\Users\lsempreboni\Desktop\data.csv') # Realiza a leitura. Altere o caminho para o arquivo CSV de acordo com o repositório que eles está locado.
+df.to_csv(r'C:\Users\lsempreboni\Desktop\data.csv', header=False, index=False) # Retirado o cabeçalho e possíveis index criados na leitura da linha de comando acima. Altere o caminho para o arquivo CSV de acordo com o repositório que eles está locado.
 
 # Inserção dos dados do arquivo CSV na tabela criada no banco de dados.
-with open(r'Desktop\data.csv', encoding="utf8") as csv_file:
+with open(r'C:\Users\lsempreboni\Desktop\data.csv', encoding="utf8") as csv_file: # Altere o caminho para o arquivo CSV de acordo com o repositório que eles está locado.
     csv_reader = csv.reader(csv_file, delimiter=",")
     for row in csv_reader:
         to_db = [(row[0]), (row[1]), (row[2]), (row[3]), (row[4]), (row[5]), (row[6]), (row[7]), (row[8]), (row[9]), (row[10]), (row[11]), (row[12]), (row[13]), (row[14]), (row[15]), (row[16]), (row[17]), (row[18]), (row[19]), (row[20]), (row[21]), (row[22]), (row[23]), (row[24]), (row[25]), (row[26]), (row[27]), (row[28])]
@@ -106,4 +107,3 @@ with open(r'Desktop\data.csv', encoding="utf8") as csv_file:
         """
         ,to_db
         )
-conexao.commit() # Commit para validar e executar as ações.
