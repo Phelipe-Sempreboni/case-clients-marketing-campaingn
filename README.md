@@ -1,12 +1,12 @@
-# Ifood Case para Data Analyst.
+# Case da campanha de Marketing.
 
 ---
 
-Este repositório é voltado para a realização do case enviado pelo Ifood, onde teremos todo o registro do processo realizado para área de negócios.
+Este repositório é voltado para a realização do case da campanha de Marketing.
 
 ---
 
-Haverá um registro do passo a passo realizado para desenvolvimento das análises e apresentação, que estará repositório "Documentação", no arquivo de leitura chamado "Documentação".
+Haverá um registro do passo a passo realizado para todo o desenvolvimento, desde a importação dos dados, análises dos dados até a apresentação, que estará repositório "Documentação", no arquivo de leitura chamado "Documentação".
 
 ---
 
