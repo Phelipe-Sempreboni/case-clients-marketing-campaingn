@@ -2781,8 +2781,132 @@ ORDER BY
         [TOTAL_WINES] + [TOTAL_FRUITS] + [TOTAL_MNT_MEAT_PRODUCTS] + [TOTAL_MNT_FISH_PRODUCTS] + [TOTAL_MNT_SWEET_PRODUCTS] + [TOTAL_MNT_GOLD_PRODUCTS] DESC
 ```
 ---
+13º - Terceira etapa das análises mais profundas e assertivas dos perfis dos clientes, porém, iremos inserir as demais variáveis para verificação e realizaremos os agrupamentos unificados das variáveis (Educação e Estado Civil) e iremos inserir as variáveis (Crianças e Adolescentes) com somas e médias, logo, teremos todas variáveis unificadas das análises dos passos anteriores.
 
-12º - Comparação dos perfis dos clientes da análise realizada no 11º passo com as campanhas que obtiveram respostas positivas dos clientes.
+---
+
+- NOTA: Uma nota sobre essa terceira etapa que agrupou e unificou todas variáveis dos passos anteriores, é que que servirá de comparação e validação com os métodos isolados anteriores, que agrupamos as variáveis principais escolhidas (Educação, Estado Civil, Crianças e Adolescentes). 
+
+---
+
+- NOTA2: Essa etapa também servirá para comparação com a próxima etapa (13º), que iremos comparar esse perfil de cliente localizado com os perfis dos clientes que aceitaram as campanhas anteriores.
+
+---
+
+```
+DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
+
+WITH [TBL_DATA]
+AS
+(
+SELECT 
+       COUNT([ID]) AS [NUMBER_CLIENTS]
+      ,[EDUCATION]
+      ,[MARITAL_STATUS]
+      ,AVG([YEARS_OLD]) AS [AVG_YEARS_OLD]
+      ,ROUND(AVG([MONTHLY_INCOME]),0) AS [AVG_MONTHLY_INCOME]
+      ,ROUND(AVG([INCOME]),0) AS [AVG_INCOME]
+      ,SUM([KIDHOME]) AS [SUM_KIDHOME]
+      ,AVG([KIDHOME]) AS [AVG_KIDHOME]
+      ,SUM([TEENHOME]) AS [SUM_TEENHOME]
+      ,AVG([TEENHOME]) AS [AVG_TEENHOME]
+      ,AVG([REGISTERED_CUSTOMER_TIME]) AS [AVG_REG_CUSTOMER_TIME]
+      ,AVG([RECENCY]) AS [AVG_RECENCY]
+      ,SUM([NUM_DEALS_PURCHASES]) AS [SUM_NUM_DEALS_PURCHASES]
+      ,AVG([NUM_DEALS_PURCHASES]) AS [AVG_NUM_DEALS_PURCHASES]
+      ,SUM([NUM_WEB_PURCHASES]) AS [SUM_WEB_PURCHASES]
+      ,AVG([NUM_WEB_PURCHASES]) AS [AVG_WEB_PURCHASES]
+      ,SUM([NUM_CATALOG_PURCHASES]) AS [SUM_CATALOG_PURCHASES]
+      ,AVG([NUM_CATALOG_PURCHASES]) AS [AVG_CATALOG_PURCHASES]
+      ,SUM([NUM_STORE_PURCHASES]) AS [SUM_STORE_PURCHASES]
+      ,AVG([NUM_STORE_PURCHASES]) AS [AVG_STORE_PURCHASES]
+      ,SUM([NUM_WEB_VISITS_MONTH]) AS [SUM_NUM_WEB_VISITS_MONTH]
+      ,AVG([NUM_WEB_VISITS_MONTH]) AS [AVG_NUM_WEB_VISITS_MONTH]
+      ,SUM([MNT_WINES]) AS [TOTAL_WINES]
+      ,SUM([MNT_FRUITS]) AS [TOTAL_FRUITS]
+      ,SUM([MNT_MEAT_PRODUCTS]) AS [TOTAL_MNT_MEAT_PRODUCTS]
+      ,SUM([MNT_FISH_PRODUCTS]) AS [TOTAL_MNT_FISH_PRODUCTS]
+      ,SUM([MNT_SWEET_PRODUCTS]) AS [TOTAL_MNT_SWEET_PRODUCTS]
+      ,SUM([MNT_GOLD_PRODS]) AS [TOTAL_MNT_GOLD_PRODUCTS]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+GROUP BY
+       [EDUCATION]
+      ,[MARITAL_STATUS]
+)
+SELECT 
+       [NUMBER_CLIENTS]
+      ,[EDUCATION]
+      ,[MARITAL_STATUS]
+      ,([NUMBER_CLIENTS] * 100)/(@NUMBER_CLIENTS) AS [PERCENT_CLIENTS_EDUCATION]
+      ,[AVG_YEARS_OLD]
+      ,[AVG_MONTHLY_INCOME]
+      ,[AVG_INCOME]
+      ,[SUM_KIDHOME]
+      ,[AVG_KIDHOME]
+      ,[SUM_TEENHOME]
+      ,[AVG_TEENHOME]
+      ,[AVG_REG_CUSTOMER_TIME]
+      ,[AVG_RECENCY]
+      ,[SUM_NUM_DEALS_PURCHASES]
+      ,[AVG_NUM_DEALS_PURCHASES]
+      ,[SUM_WEB_PURCHASES]
+      ,[AVG_WEB_PURCHASES]
+      ,[SUM_CATALOG_PURCHASES]
+      ,[AVG_CATALOG_PURCHASES]
+      ,[SUM_STORE_PURCHASES]
+      ,[AVG_STORE_PURCHASES]
+      ,[SUM_NUM_WEB_VISITS_MONTH]
+      ,[AVG_NUM_WEB_VISITS_MONTH]
+      ,[TOTAL_WINES]
+      ,[TOTAL_FRUITS]
+      ,[TOTAL_MNT_MEAT_PRODUCTS]
+      ,[TOTAL_MNT_FISH_PRODUCTS]
+      ,[TOTAL_MNT_SWEET_PRODUCTS]
+      ,[TOTAL_MNT_GOLD_PRODUCTS]
+      ,[TOTAL_WINES] + [TOTAL_FRUITS] + [TOTAL_MNT_MEAT_PRODUCTS] + [TOTAL_MNT_FISH_PRODUCTS] + [TOTAL_MNT_SWEET_PRODUCTS] + [TOTAL_MNT_GOLD_PRODUCTS] AS [TOTAL_PRODUCTS]
+
+FROM [TBL_DATA]
+
+GROUP BY
+        [NUMBER_CLIENTS]
+       ,[EDUCATION]
+       ,[MARITAL_STATUS]
+       ,([NUMBER_CLIENTS] * 100)/(@NUMBER_CLIENTS)
+       ,[AVG_YEARS_OLD]
+       ,[AVG_MONTHLY_INCOME]
+       ,[AVG_INCOME]
+       ,[SUM_KIDHOME]
+       ,[AVG_KIDHOME]
+       ,[SUM_TEENHOME]
+       ,[AVG_TEENHOME]
+       ,[AVG_REG_CUSTOMER_TIME]
+       ,[AVG_RECENCY]
+       ,[SUM_NUM_DEALS_PURCHASES]
+       ,[AVG_NUM_DEALS_PURCHASES]
+       ,[SUM_WEB_PURCHASES]
+       ,[AVG_WEB_PURCHASES]
+       ,[SUM_CATALOG_PURCHASES]
+       ,[AVG_CATALOG_PURCHASES]
+       ,[SUM_STORE_PURCHASES]
+       ,[AVG_STORE_PURCHASES]
+       ,[SUM_NUM_WEB_VISITS_MONTH]
+       ,[AVG_NUM_WEB_VISITS_MONTH]
+       ,[TOTAL_WINES]
+       ,[TOTAL_FRUITS]
+       ,[TOTAL_MNT_MEAT_PRODUCTS]
+       ,[TOTAL_MNT_FISH_PRODUCTS]
+       ,[TOTAL_MNT_SWEET_PRODUCTS]
+       ,[TOTAL_MNT_GOLD_PRODUCTS]
+       ,[TOTAL_WINES] + [TOTAL_FRUITS] + [TOTAL_MNT_MEAT_PRODUCTS] + [TOTAL_MNT_FISH_PRODUCTS] + [TOTAL_MNT_SWEET_PRODUCTS] + [TOTAL_MNT_GOLD_PRODUCTS]
+
+ORDER BY	   
+        [TOTAL_WINES] + [TOTAL_FRUITS] + [TOTAL_MNT_MEAT_PRODUCTS] + [TOTAL_MNT_FISH_PRODUCTS] + [TOTAL_MNT_SWEET_PRODUCTS] + [TOTAL_MNT_GOLD_PRODUCTS] DESC
+```
+---
+
+13º - Comparação dos perfis dos clientes da análise realizada no 12º passo com as campanhas que obtiveram respostas positivas dos clientes.
 
 - Com perfis de clientes encontrados pelas análises realizadas, iremos verificar os perfis de clientes que aceitaram as últimas campanhas conforme as bases de dados e analisar se são os mesmos perfis localizados pela análise.
 
