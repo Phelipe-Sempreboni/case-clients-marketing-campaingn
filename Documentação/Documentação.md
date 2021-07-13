@@ -171,34 +171,34 @@ GO
 
 CREATE TABLE [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA] (
 	 ID INT -- Tipo do dado da coluna validado.
-	,YEAR_BIRTH INT -- Tipo do dado da coluna validado.
+	,YEAR_BIRTH FLOAT -- Tipo do dado da coluna validado.
 	,EDUCATION VARCHAR (20) -- Tipo do dado da coluna validado.
 	,MARITAL_STATUS VARCHAR (20) -- Tipo do dado da coluna validado.
 	,INCOME FLOAT -- Tipo do dado da coluna validado.
-	,KIDHOME INT -- Tipo do dado da coluna validado.
-	,TEENHOME INT -- Tipo do dado da coluna validado.
+	,KIDHOME FLOAT -- Tipo do dado da coluna validado.
+	,TEENHOME FLOAT -- Tipo do dado da coluna validado.
 	,DT_CUSTOMER DATE -- Tipo do dado da coluna validado.
-	,RECENCY INT -- Tipo do dado da coluna validado.
-	,MNT_WINES INT -- Tipo do dado da coluna validado.
-	,MNT_FRUITS INT -- Tipo do dado da coluna validado.
-	,MNT_MEAT_PRODUCTS INT -- Tipo do dado da coluna validado.
-	,MNT_FISH_PRODUCTS INT -- Tipo do dado da coluna validado.
-	,MNT_SWEET_PRODUCTS INT -- Tipo do dado da coluna validado.
-	,MNT_GOLD_PRODS INT -- Tipo do dado da coluna validado.
-	,NUM_DEALS_PURCHASES INT -- Tipo do dado da coluna validado.
-	,NUM_WEB_PURCHASES INT -- Tipo do dado da coluna validado.
-	,NUM_CATALOG_PURCHASES INT -- Tipo do dado da coluna validado.
-	,NUM_STORE_PURCHASES INT -- Tipo do dado da coluna validado.
-	,NUM_WEB_VISITS_MONTH INT -- Tipo do dado da coluna validado.
-	,ACCEPTED_CMP3 INT -- Tipo do dado da coluna validado.
-	,ACCEPTED_CMP4 INT -- Tipo do dado da coluna validado.
-	,ACCEPTED_CMP5 INT -- Tipo do dado da coluna validado.
-	,ACCEPTED_CMP1 INT -- Tipo do dado da coluna validado.
-	,ACCEPTED_CMP2 INT -- Tipo do dado da coluna validado.
-	,COMPLAIN INT -- Tipo do dado da coluna validado.
-	,Z_COST_CONTACT INT -- Tipo do dado da coluna validado.
-	,Z_REVENUE INT -- Tipo do dado da coluna validado.
-	,RESPONSE INT -- Tipo do dado da coluna validado.
+	,RECENCY FLOAT -- Tipo do dado da coluna validado.
+	,MNT_WINES FLOAT -- Tipo do dado da coluna validado.
+	,MNT_FRUITS FLOAT -- Tipo do dado da coluna validado.
+	,MNT_MEAT_PRODUCTS FLOAT -- Tipo do dado da coluna validado.
+	,MNT_FISH_PRODUCTS FLOAT -- Tipo do dado da coluna validado.
+	,MNT_SWEET_PRODUCTS FLOAT -- Tipo do dado da coluna validado.
+	,MNT_GOLD_PRODS FLOAT -- Tipo do dado da coluna validado.
+	,NUM_DEALS_PURCHASES FLOAT -- Tipo do dado da coluna validado.
+	,NUM_WEB_PURCHASES FLOAT -- Tipo do dado da coluna validado.
+	,NUM_CATALOG_PURCHASES FLOAT -- Tipo do dado da coluna validado.
+	,NUM_STORE_PURCHASES FLOAT -- Tipo do dado da coluna validado.
+	,NUM_WEB_VISITS_MONTH FLOAT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP3 FLOAT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP4 FLOAT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP5 FLOAT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP1 FLOAT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP2 FLOAT -- Tipo do dado da coluna validado.
+	,COMPLAIN FLOAT -- Tipo do dado da coluna validado.
+	,Z_COST_CONTACT FLOAT -- Tipo do dado da coluna validado.
+	,Z_REVENUE FLOAT -- Tipo do dado da coluna validado.
+	,RESPONSE FLOAT -- Tipo do dado da coluna validado.
 	,CONSTRAINT PK_ID PRIMARY KEY CLUSTERED (ID) -- Chave primária criada para não duplicar dados e facilitar em buscas com índice clusterizado.
 );
 GO
@@ -261,45 +261,45 @@ DROP TABLE IF EXISTS [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANH
 
 CREATE TABLE [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA] (
 	 ID INT -- Tipo do dado da coluna validado.
-	,YEAR_BIRTH INT -- Tipo do dado da coluna validado.
+	,YEAR_BIRTH FLOAT -- Tipo do dado da coluna validado.
 	,EDUCATION VARCHAR (20) -- Tipo do dado da coluna validado.
 	,MARITAL_STATUS VARCHAR (20) -- Tipo do dado da coluna validado.
 	,INCOME FLOAT -- Tipo do dado da coluna validado.
-	,KIDHOME INT -- Tipo do dado da coluna validado.
-	,TEENHOME INT -- Tipo do dado da coluna validado.
+	,KIDHOME FLOAT -- Tipo do dado da coluna validado.
+	,TEENHOME FLOAT -- Tipo do dado da coluna validado.
 	,DT_CUSTOMER DATE -- Tipo do dado da coluna validado.
-	,RECENCY INT -- Tipo do dado da coluna validado.
-	,MNT_WINES INT -- Tipo do dado da coluna validado.
-	,MNT_FRUITS INT -- Tipo do dado da coluna validado.
-	,MNT_MEAT_PRODUCTS INT -- Tipo do dado da coluna validado.
-	,MNT_FISH_PRODUCTS INT -- Tipo do dado da coluna validado.
-	,MNT_SWEET_PRODUCTS INT -- Tipo do dado da coluna validado.
-	,MNT_GOLD_PRODS INT -- Tipo do dado da coluna validado.
-	,NUM_DEALS_PURCHASES INT -- Tipo do dado da coluna validado.
-	,NUM_WEB_PURCHASES INT -- Tipo do dado da coluna validado.
-	,NUM_CATALOG_PURCHASES INT -- Tipo do dado da coluna validado.
-	,NUM_STORE_PURCHASES INT -- Tipo do dado da coluna validado.
-	,NUM_WEB_VISITS_MONTH INT -- Tipo do dado da coluna validado.
-	,ACCEPTED_CMP3 INT -- Tipo do dado da coluna validado.
-	,ACCEPTED_CMP4 INT -- Tipo do dado da coluna validado.
-	,ACCEPTED_CMP5 INT -- Tipo do dado da coluna validado.
-	,ACCEPTED_CMP1 INT -- Tipo do dado da coluna validado.
-	,ACCEPTED_CMP2 INT -- Tipo do dado da coluna validado.
-	,COMPLAIN INT -- Tipo do dado da coluna validado.
-	,Z_COST_CONTACT INT -- Tipo do dado da coluna validado.
-	,Z_REVENUE INT -- Tipo do dado da coluna validado.
-	,RESPONSE INT -- Tipo do dado da coluna validado.
+	,RECENCY FLOAT -- Tipo do dado da coluna validado.
+	,MNT_WINES FLOAT -- Tipo do dado da coluna validado.
+	,MNT_FRUITS FLOAT -- Tipo do dado da coluna validado.
+	,MNT_MEAT_PRODUCTS FLOAT -- Tipo do dado da coluna validado.
+	,MNT_FISH_PRODUCTS FLOAT -- Tipo do dado da coluna validado.
+	,MNT_SWEET_PRODUCTS FLOAT -- Tipo do dado da coluna validado.
+	,MNT_GOLD_PRODS FLOAT -- Tipo do dado da coluna validado.
+	,NUM_DEALS_PURCHASES FLOAT -- Tipo do dado da coluna validado.
+	,NUM_WEB_PURCHASES FLOAT -- Tipo do dado da coluna validado.
+	,NUM_CATALOG_PURCHASES FLOAT -- Tipo do dado da coluna validado.
+	,NUM_STORE_PURCHASES FLOAT -- Tipo do dado da coluna validado.
+	,NUM_WEB_VISITS_MONTH FLOAT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP3 FLOAT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP4 FLOAT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP5 FLOAT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP1 FLOAT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP2 FLOAT -- Tipo do dado da coluna validado.
+	,COMPLAIN FLOAT -- Tipo do dado da coluna validado.
+	,Z_COST_CONTACT FLOAT -- Tipo do dado da coluna validado.
+	,Z_REVENUE FLOAT -- Tipo do dado da coluna validado.
+	,RESPONSE FLOAT -- Tipo do dado da coluna validado.
 	,CONSTRAINT PK_ID PRIMARY KEY CLUSTERED (ID) -- Chave primária criada para não duplicar dados e facilitar em buscas com índice clusterizado.
 );
 """
 )
 
 # Manipulação do arquivo CSV.
-df = pd.read_csv(r'C:\Users\lsempreboni\Desktop\data.csv') # Realiza a leitura. Altere o caminho para o arquivo CSV de acordo com o repositório que eles está locado.
-df.to_csv(r'C:\Users\lsempreboni\Desktop\data.csv', header=False, index=False) # Retirado o cabeçalho e possíveis index criados na leitura da linha de comando acima. Altere o caminho para o arquivo CSV de acordo com o repositório que eles está locado.
+df = pd.read_csv(r'') # Realiza a leitura. Insira o caminho de repositório do CSV.
+df.to_csv(r'', header=False, index=False) # Retirado o cabeçalho e possíveis index criados na leitura da linha de comando acima. Insira o caminho de repositório do CSV.
 
 # Inserção dos dados do arquivo CSV na tabela criada no banco de dados.
-with open(r'C:\Users\lsempreboni\Desktop\data.csv', encoding="utf8") as csv_file: # Altere o caminho para o arquivo CSV de acordo com o repositório que eles está locado.
+with open(r'', encoding="utf8") as csv_file: # Insira o caminho de repositório do CSV.
     csv_reader = csv.reader(csv_file, delimiter=",")
     for row in csv_reader:
         to_db = [(row[0]), (row[1]), (row[2]), (row[3]), (row[4]), (row[5]), (row[6]), (row[7]), (row[8]), (row[9]), (row[10]), (row[11]), (row[12]), (row[13]), (row[14]), (row[15]), (row[16]), (row[17]), (row[18]), (row[19]), (row[20]), (row[21]), (row[22]), (row[23]), (row[24]), (row[25]), (row[26]), (row[27]), (row[28])]
@@ -573,34 +573,34 @@ DROP TABLE IF EXISTS [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANH
 
 CREATE TABLE [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA] (
 	 ID INT -- Tipo do dado da coluna validado.
-	,YEAR_BIRTH INT -- Tipo do dado da coluna validado.
+	,YEAR_BIRTH FLOAT -- Tipo do dado da coluna validado.
 	,EDUCATION VARCHAR (20) -- Tipo do dado da coluna validado.
 	,MARITAL_STATUS VARCHAR (20) -- Tipo do dado da coluna validado.
 	,INCOME FLOAT -- Tipo do dado da coluna validado.
-	,KIDHOME INT -- Tipo do dado da coluna validado.
-	,TEENHOME INT -- Tipo do dado da coluna validado.
+	,KIDHOME FLOAT -- Tipo do dado da coluna validado.
+	,TEENHOME FLOAT -- Tipo do dado da coluna validado.
 	,DT_CUSTOMER DATE -- Tipo do dado da coluna validado.
-	,RECENCY INT -- Tipo do dado da coluna validado.
-	,MNT_WINES INT -- Tipo do dado da coluna validado.
-	,MNT_FRUITS INT -- Tipo do dado da coluna validado.
-	,MNT_MEAT_PRODUCTS INT -- Tipo do dado da coluna validado.
-	,MNT_FISH_PRODUCTS INT -- Tipo do dado da coluna validado.
-	,MNT_SWEET_PRODUCTS INT -- Tipo do dado da coluna validado.
-	,MNT_GOLD_PRODS INT -- Tipo do dado da coluna validado.
-	,NUM_DEALS_PURCHASES INT -- Tipo do dado da coluna validado.
-	,NUM_WEB_PURCHASES INT -- Tipo do dado da coluna validado.
-	,NUM_CATALOG_PURCHASES INT -- Tipo do dado da coluna validado.
-	,NUM_STORE_PURCHASES INT -- Tipo do dado da coluna validado.
-	,NUM_WEB_VISITS_MONTH INT -- Tipo do dado da coluna validado.
-	,ACCEPTED_CMP3 INT -- Tipo do dado da coluna validado.
-	,ACCEPTED_CMP4 INT -- Tipo do dado da coluna validado.
-	,ACCEPTED_CMP5 INT -- Tipo do dado da coluna validado.
-	,ACCEPTED_CMP1 INT -- Tipo do dado da coluna validado.
-	,ACCEPTED_CMP2 INT -- Tipo do dado da coluna validado.
-	,COMPLAIN INT -- Tipo do dado da coluna validado.
-	,Z_COST_CONTACT INT -- Tipo do dado da coluna validado.
-	,Z_REVENUE INT -- Tipo do dado da coluna validado.
-	,RESPONSE INT -- Tipo do dado da coluna validado.
+	,RECENCY FLOAT -- Tipo do dado da coluna validado.
+	,MNT_WINES FLOAT -- Tipo do dado da coluna validado.
+	,MNT_FRUITS FLOAT -- Tipo do dado da coluna validado.
+	,MNT_MEAT_PRODUCTS FLOAT -- Tipo do dado da coluna validado.
+	,MNT_FISH_PRODUCTS FLOAT -- Tipo do dado da coluna validado.
+	,MNT_SWEET_PRODUCTS FLOAT -- Tipo do dado da coluna validado.
+	,MNT_GOLD_PRODS FLOAT -- Tipo do dado da coluna validado.
+	,NUM_DEALS_PURCHASES FLOAT -- Tipo do dado da coluna validado.
+	,NUM_WEB_PURCHASES FLOAT -- Tipo do dado da coluna validado.
+	,NUM_CATALOG_PURCHASES FLOAT -- Tipo do dado da coluna validado.
+	,NUM_STORE_PURCHASES FLOAT -- Tipo do dado da coluna validado.
+	,NUM_WEB_VISITS_MONTH FLOAT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP3 FLOAT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP4 FLOAT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP5 FLOAT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP1 FLOAT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP2 FLOAT -- Tipo do dado da coluna validado.
+	,COMPLAIN FLOAT -- Tipo do dado da coluna validado.
+	,Z_COST_CONTACT FLOAT -- Tipo do dado da coluna validado.
+	,Z_REVENUE FLOAT -- Tipo do dado da coluna validado.
+	,RESPONSE FLOAT -- Tipo do dado da coluna validado.
 	,CONSTRAINT PK_ID PRIMARY KEY CLUSTERED (ID) -- Chave primária criada para não duplicar dados e facilitar em buscas com índice clusterizado.
 );
 """
@@ -610,14 +610,14 @@ CREATE TABLE [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA] (
 time.sleep(1)
 
 # Manipulação do arquivo CSV.
-df = pd.read_csv(r'C:\Users\lsempreboni\Desktop\data.csv') # Realiza a leitura.
-df.to_csv(r'C:\Users\lsempreboni\Desktop\data.csv', header=False, index=False) # Retirado o cabeçalho e possíveis index criados na leitura da linha de comando acima.
+df = pd.read_csv(r'') # Realiza a leitura. Insira o caminho de repositório do CSV.
+df.to_csv(r'', header=False, index=False) # Retirado o cabeçalho e possíveis index criados na leitura da linha de comando acima. Insira o caminho de repositório do CSV.
 
 # Pausar de um comando para o outro por 2 segundos.
 time.sleep(1)
 
 # Inserção dos dados do arquivo CSV na tabela criada no banco de dados.
-with open(r'C:\Users\lsempreboni\Desktop\data.csv', encoding="utf8") as csv_file:
+with open(r'', encoding="utf8") as csv_file: # Insira o caminho de repositório do CSV.
     csv_reader = csv.reader(csv_file, delimiter=",")
     for row in csv_reader:
         to_db = [(row[0]), (row[1]), (row[2]), (row[3]), (row[4]), (row[5]), (row[6]), (row[7]), (row[8]), (row[9]), (row[10]), (row[11]), (row[12]), (row[13]), (row[14]), (row[15]), (row[16]), (row[17]), (row[18]), (row[19]), (row[20]), (row[21]), (row[22]), (row[23]), (row[24]), (row[25]), (row[26]), (row[27]), (row[28])]
@@ -665,10 +665,17 @@ with open(r'C:\Users\lsempreboni\Desktop\data.csv', encoding="utf8") as csv_file
 # Pausar de um comando para o outro por 2 segundos.
 time.sleep(1)
 
+# Setar o database (MARKETING) para utilização.
 conexao.execute("USE [MARKETING]")
+
+# Excluir a view caso ela já exista no banco de dados, garantindo que não haverá erros no processo.
+conexao.execute("DROP VIEW IF EXISTS [MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]")
 
 # Pausar de um comando para o outro por 2 segundos.
 time.sleep(1)
+
+# Setar o database (MARKETING) para utilização.
+conexao.execute("USE [MARKETING]")
 
 # Criação da view, que espelha as informações da tabela origem.
 conexao.execute("""
