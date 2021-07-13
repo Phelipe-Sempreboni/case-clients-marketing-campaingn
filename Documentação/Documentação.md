@@ -2060,6 +2060,15 @@ WHERE [RESPONSE] LIKE '%CLIENTS ACCEPTED%'
 ---
 10º - Início das análises mais profundas e assertivas dos perfis dos clientes com base nos KPI's inciais levantados no 8º passo.
 
+- Neste caso iremos analisar 4 variáveis principais agrupadas, que seriam:
+- Educação, Estado Civil, Crianças e Adolescentes.
+
+- Com o agrupamento realizado, iremos utilizar, contagens,  somas e porcentagens, que seriam:
+- Contagem do número de clientes.
+- Soma de todos os tipos de produtos por categoria.
+- Soma geral de todos os produtos com suas categorias.
+- Porcentagem do total de clientes pelo tipo de agrupamento (Educação, Estado Civil, Crianças e Adolescentes).
+
 - Quantidade de clientes pelo nível de educação por quantidade de compras por produtos e total geral dos produtos somados.
 ```
 DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
@@ -2316,8 +2325,17 @@ ORDER BY
 ![image](https://user-images.githubusercontent.com/57469401/125351228-3745ea00-e336-11eb-96d9-beef2abece09.png)
 
 ---
+11º - Segunda etapa das análises mais profundas e assertivas dos perfis dos clientes, porém, iremos inserir as demais variáveis para verificação.
 
-11º - Comparação dos perfis dos clientes da análise realizada no 10º passo com as campanhas que obtiveram respostas dos clientes.
+- Neste caso iremos analisar somente 4 variáveis principais agrupadas, que seriam:
+- Educação, Estado Civil, Crianças e Adolescentes.
+
+- Com o agrupamento realizado, iremos utilizar, contagens,  somas e porcentagens, que seriam:
+- 
+
+---
+
+12º - Comparação dos perfis dos clientes da análise realizada no 11º passo com as campanhas que obtiveram respostas positivas dos clientes.
 
 - Com perfis de clientes encontrados pelas análises realizadas, iremos verificar os perfis de clientes que aceitaram as últimas campanhas conforme as bases de dados e analisar se são os mesmos perfis localizados pela análise.
 
