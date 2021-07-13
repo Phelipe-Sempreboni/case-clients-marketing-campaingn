@@ -2905,8 +2905,14 @@ ORDER BY
         [TOTAL_WINES] + [TOTAL_FRUITS] + [TOTAL_MNT_MEAT_PRODUCTS] + [TOTAL_MNT_FISH_PRODUCTS] + [TOTAL_MNT_SWEET_PRODUCTS] + [TOTAL_MNT_GOLD_PRODUCTS] DESC
 ```
 ---
+13º - Quarta etapa das análises mais profundas e assertivas dos perfis dos clientes, onde iremos analisar as campanhas que obtiveram respostas positivas dos clientes.
+```
 
-13º - Comparação dos perfis dos clientes da análise realizada no 12º passo com as campanhas que obtiveram respostas positivas dos clientes.
+```
+
+---
+
+14º - Comparação dos perfis dos clientes da análise realizada no 12º e 13º passo com as campanhas que obtiveram respostas positivas dos clientes.
 
 - Com perfis de clientes encontrados pelas análises realizadas, iremos verificar os perfis de clientes que aceitaram as últimas campanhas conforme as bases de dados e analisar se são os mesmos perfis localizados pela análise.
 
