@@ -25,34 +25,34 @@ DROP TABLE IF EXISTS [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANH
 
 CREATE TABLE [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA] (
 	 ID INT -- Tipo do dado da coluna validado.
-	,YEAR_BIRTH FLOAT -- Tipo do dado da coluna validado.
+	,YEAR_BIRTH INT -- Tipo do dado da coluna validado.
 	,EDUCATION VARCHAR (20) -- Tipo do dado da coluna validado.
 	,MARITAL_STATUS VARCHAR (20) -- Tipo do dado da coluna validado.
 	,INCOME FLOAT -- Tipo do dado da coluna validado.
-	,KIDHOME FLOAT -- Tipo do dado da coluna validado.
-	,TEENHOME FLOAT -- Tipo do dado da coluna validado.
+	,KIDHOME INT -- Tipo do dado da coluna validado.
+	,TEENHOME INT -- Tipo do dado da coluna validado.
 	,DT_CUSTOMER DATE -- Tipo do dado da coluna validado.
-	,RECENCY FLOAT -- Tipo do dado da coluna validado.
-	,MNT_WINES FLOAT -- Tipo do dado da coluna validado.
-	,MNT_FRUITS FLOAT -- Tipo do dado da coluna validado.
-	,MNT_MEAT_PRODUCTS FLOAT -- Tipo do dado da coluna validado.
-	,MNT_FISH_PRODUCTS FLOAT -- Tipo do dado da coluna validado.
-	,MNT_SWEET_PRODUCTS FLOAT -- Tipo do dado da coluna validado.
-	,MNT_GOLD_PRODS FLOAT -- Tipo do dado da coluna validado.
-	,NUM_DEALS_PURCHASES FLOAT -- Tipo do dado da coluna validado.
-	,NUM_WEB_PURCHASES FLOAT -- Tipo do dado da coluna validado.
-	,NUM_CATALOG_PURCHASES FLOAT -- Tipo do dado da coluna validado.
-	,NUM_STORE_PURCHASES FLOAT -- Tipo do dado da coluna validado.
-	,NUM_WEB_VISITS_MONTH FLOAT -- Tipo do dado da coluna validado.
-	,ACCEPTED_CMP3 FLOAT -- Tipo do dado da coluna validado.
-	,ACCEPTED_CMP4 FLOAT -- Tipo do dado da coluna validado.
-	,ACCEPTED_CMP5 FLOAT -- Tipo do dado da coluna validado.
-	,ACCEPTED_CMP1 FLOAT -- Tipo do dado da coluna validado.
-	,ACCEPTED_CMP2 FLOAT -- Tipo do dado da coluna validado.
-	,COMPLAIN FLOAT -- Tipo do dado da coluna validado.
-	,Z_COST_CONTACT FLOAT -- Tipo do dado da coluna validado.
-	,Z_REVENUE FLOAT -- Tipo do dado da coluna validado.
-	,RESPONSE FLOAT -- Tipo do dado da coluna validado.
+	,RECENCY INT -- Tipo do dado da coluna validado.
+	,MNT_WINES INT -- Tipo do dado da coluna validado.
+	,MNT_FRUITS INT -- Tipo do dado da coluna validado.
+	,MNT_MEAT_PRODUCTS INT -- Tipo do dado da coluna validado.
+	,MNT_FISH_PRODUCTS INT -- Tipo do dado da coluna validado.
+	,MNT_SWEET_PRODUCTS INT -- Tipo do dado da coluna validado.
+	,MNT_GOLD_PRODS INT -- Tipo do dado da coluna validado.
+	,NUM_DEALS_PURCHASES INT -- Tipo do dado da coluna validado.
+	,NUM_WEB_PURCHASES INT -- Tipo do dado da coluna validado.
+	,NUM_CATALOG_PURCHASES INT -- Tipo do dado da coluna validado.
+	,NUM_STORE_PURCHASES INT -- Tipo do dado da coluna validado.
+	,NUM_WEB_VISITS_MONTH INT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP3 INT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP4 INT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP5 INT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP1 INT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP2 INT -- Tipo do dado da coluna validado.
+	,COMPLAIN INT -- Tipo do dado da coluna validado.
+	,Z_COST_CONTACT INT -- Tipo do dado da coluna validado.
+	,Z_REVENUE INT -- Tipo do dado da coluna validado.
+	,RESPONSE INT -- Tipo do dado da coluna validado.
 	,CONSTRAINT PK_ID PRIMARY KEY CLUSTERED (ID) -- Chave primária criada para não duplicar dados e facilitar em buscas com índice clusterizado.
 );
 """
