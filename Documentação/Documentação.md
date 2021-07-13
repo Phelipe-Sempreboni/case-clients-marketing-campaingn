@@ -2058,7 +2058,7 @@ WHERE [RESPONSE] LIKE '%CLIENTS ACCEPTED%'
 - Quantidade de clientes que aceitaram e não aceitaram a oferta na 6º campanha.
 - Média de sucesso da campanha.
 ---
-10º - Início das análises mais profundas e assertivas dos perfis dos clientes com base nos KPI's inciais levantados no 8º passo.
+10º - Primeira etapa das análises mais profundas e assertivas dos perfis dos clientes com base nos KPI's inciais levantados no 8º passo.
 
 ---
 
