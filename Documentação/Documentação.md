@@ -2060,14 +2060,20 @@ WHERE [RESPONSE] LIKE '%CLIENTS ACCEPTED%'
 ---
 10º - Início das análises mais profundas e assertivas dos perfis dos clientes com base nos KPI's inciais levantados no 8º passo.
 
+---
+
 - Neste caso iremos analisar 4 variáveis principais agrupadas, que seriam:
 - Educação, Estado Civil, Crianças e Adolescentes.
+
+---
 
 - Com o agrupamento realizado, iremos utilizar, contagens,  somas e porcentagens, que seriam:
 - Contagem do número de clientes.
 - Soma de todos os tipos de produtos por categoria.
 - Soma geral de todos os produtos com suas categorias.
 - Porcentagem do total de clientes pelo tipo de agrupamento (Educação, Estado Civil, Crianças e Adolescentes).
+
+---
 
 - Quantidade de clientes pelo nível de educação por quantidade de compras por produtos e total geral dos produtos somados.
 ```
@@ -2327,11 +2333,19 @@ ORDER BY
 ---
 11º - Segunda etapa das análises mais profundas e assertivas dos perfis dos clientes, porém, iremos inserir as demais variáveis para verificação.
 
+---
+
 - Neste caso iremos analisar somente 4 variáveis principais agrupadas, que seriam:
 - Educação, Estado Civil, Crianças e Adolescentes.
 
+---
+
 - Com o agrupamento realizado, iremos utilizar, contagens,  somas e porcentagens, que seriam:
-- 
+-
+---
+```
+
+```
 
 ---
 
