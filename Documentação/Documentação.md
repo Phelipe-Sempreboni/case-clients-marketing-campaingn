@@ -2335,7 +2335,7 @@ ORDER BY
 
 ---
 
-- Neste caso iremos analisar somente 4 variáveis principais agrupadas, que seriam:
+- Neste caso iremos analisar 4 variáveis principais agrupadas, que seriam:
 - Educação, Estado Civil, Crianças e Adolescentes.
 
 ---
