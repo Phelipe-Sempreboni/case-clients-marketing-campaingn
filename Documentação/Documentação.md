@@ -175,30 +175,30 @@ CREATE TABLE [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA] (
 	,EDUCATION VARCHAR (20) -- Tipo do dado da coluna validado.
 	,MARITAL_STATUS VARCHAR (20) -- Tipo do dado da coluna validado.
 	,INCOME FLOAT -- Tipo do dado da coluna validado.
-	,KIDHOME FLOAT -- Tipo do dado da coluna validado.
-	,TEENHOME FLOAT -- Tipo do dado da coluna validado.
+	,KIDHOME INT -- Tipo do dado da coluna validado.
+	,TEENHOME INT -- Tipo do dado da coluna validado.
 	,DT_CUSTOMER DATE -- Tipo do dado da coluna validado.
-	,RECENCY FLOAT -- Tipo do dado da coluna validado.
-	,MNT_WINES FLOAT -- Tipo do dado da coluna validado.
-	,MNT_FRUITS FLOAT -- Tipo do dado da coluna validado.
-	,MNT_MEAT_PRODUCTS FLOAT -- Tipo do dado da coluna validado.
-	,MNT_FISH_PRODUCTS FLOAT -- Tipo do dado da coluna validado.
-	,MNT_SWEET_PRODUCTS FLOAT -- Tipo do dado da coluna validado.
-	,MNT_GOLD_PRODS FLOAT -- Tipo do dado da coluna validado.
-	,NUM_DEALS_PURCHASES FLOAT -- Tipo do dado da coluna validado.
-	,NUM_WEB_PURCHASES FLOAT -- Tipo do dado da coluna validado.
-	,NUM_CATALOG_PURCHASES FLOAT -- Tipo do dado da coluna validado.
-	,NUM_STORE_PURCHASES FLOAT -- Tipo do dado da coluna validado.
-	,NUM_WEB_VISITS_MONTH FLOAT -- Tipo do dado da coluna validado.
-	,ACCEPTED_CMP3 FLOAT -- Tipo do dado da coluna validado.
-	,ACCEPTED_CMP4 FLOAT -- Tipo do dado da coluna validado.
-	,ACCEPTED_CMP5 FLOAT -- Tipo do dado da coluna validado.
-	,ACCEPTED_CMP1 FLOAT -- Tipo do dado da coluna validado.
-	,ACCEPTED_CMP2 FLOAT -- Tipo do dado da coluna validado.
-	,COMPLAIN FLOAT -- Tipo do dado da coluna validado.
-	,Z_COST_CONTACT FLOAT -- Tipo do dado da coluna validado.
-	,Z_REVENUE FLOAT -- Tipo do dado da coluna validado.
-	,RESPONSE FLOAT -- Tipo do dado da coluna validado.
+	,RECENCY INT -- Tipo do dado da coluna validado.
+	,MNT_WINES INT -- Tipo do dado da coluna validado.
+	,MNT_FRUITS INT -- Tipo do dado da coluna validado.
+	,MNT_MEAT_PRODUCTS INT -- Tipo do dado da coluna validado.
+	,MNT_FISH_PRODUCTS INT -- Tipo do dado da coluna validado.
+	,MNT_SWEET_PRODUCTS INT -- Tipo do dado da coluna validado.
+	,MNT_GOLD_PRODS INT -- Tipo do dado da coluna validado.
+	,NUM_DEALS_PURCHASES INT -- Tipo do dado da coluna validado.
+	,NUM_WEB_PURCHASES INT -- Tipo do dado da coluna validado.
+	,NUM_CATALOG_PURCHASES INT -- Tipo do dado da coluna validado.
+	,NUM_STORE_PURCHASES INT -- Tipo do dado da coluna validado.
+	,NUM_WEB_VISITS_MONTH INT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP3 INT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP4 INT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP5 INT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP1 INT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP2 INT -- Tipo do dado da coluna validado.
+	,COMPLAIN INT -- Tipo do dado da coluna validado.
+	,Z_COST_CONTACT INT -- Tipo do dado da coluna validado.
+	,Z_REVENUE INT -- Tipo do dado da coluna validado.
+	,RESPONSE INT -- Tipo do dado da coluna validado.
 	,CONSTRAINT PK_ID PRIMARY KEY CLUSTERED (ID) -- Chave primária criada para não duplicar dados e facilitar em buscas com índice clusterizado.
 );
 GO
@@ -261,34 +261,34 @@ DROP TABLE IF EXISTS [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANH
 
 CREATE TABLE [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA] (
 	 ID INT -- Tipo do dado da coluna validado.
-	,YEAR_BIRTH FLOAT -- Tipo do dado da coluna validado.
+	,YEAR_BIRTH INT -- Tipo do dado da coluna validado.
 	,EDUCATION VARCHAR (20) -- Tipo do dado da coluna validado.
 	,MARITAL_STATUS VARCHAR (20) -- Tipo do dado da coluna validado.
 	,INCOME FLOAT -- Tipo do dado da coluna validado.
-	,KIDHOME FLOAT -- Tipo do dado da coluna validado.
-	,TEENHOME FLOAT -- Tipo do dado da coluna validado.
+	,KIDHOME INT -- Tipo do dado da coluna validado.
+	,TEENHOME INT -- Tipo do dado da coluna validado.
 	,DT_CUSTOMER DATE -- Tipo do dado da coluna validado.
-	,RECENCY FLOAT -- Tipo do dado da coluna validado.
-	,MNT_WINES FLOAT -- Tipo do dado da coluna validado.
-	,MNT_FRUITS FLOAT -- Tipo do dado da coluna validado.
-	,MNT_MEAT_PRODUCTS FLOAT -- Tipo do dado da coluna validado.
-	,MNT_FISH_PRODUCTS FLOAT -- Tipo do dado da coluna validado.
-	,MNT_SWEET_PRODUCTS FLOAT -- Tipo do dado da coluna validado.
-	,MNT_GOLD_PRODS FLOAT -- Tipo do dado da coluna validado.
-	,NUM_DEALS_PURCHASES FLOAT -- Tipo do dado da coluna validado.
-	,NUM_WEB_PURCHASES FLOAT -- Tipo do dado da coluna validado.
-	,NUM_CATALOG_PURCHASES FLOAT -- Tipo do dado da coluna validado.
-	,NUM_STORE_PURCHASES FLOAT -- Tipo do dado da coluna validado.
-	,NUM_WEB_VISITS_MONTH FLOAT -- Tipo do dado da coluna validado.
-	,ACCEPTED_CMP3 FLOAT -- Tipo do dado da coluna validado.
-	,ACCEPTED_CMP4 FLOAT -- Tipo do dado da coluna validado.
-	,ACCEPTED_CMP5 FLOAT -- Tipo do dado da coluna validado.
-	,ACCEPTED_CMP1 FLOAT -- Tipo do dado da coluna validado.
-	,ACCEPTED_CMP2 FLOAT -- Tipo do dado da coluna validado.
-	,COMPLAIN FLOAT -- Tipo do dado da coluna validado.
-	,Z_COST_CONTACT FLOAT -- Tipo do dado da coluna validado.
-	,Z_REVENUE FLOAT -- Tipo do dado da coluna validado.
-	,RESPONSE FLOAT -- Tipo do dado da coluna validado.
+	,RECENCY INT -- Tipo do dado da coluna validado.
+	,MNT_WINES INT -- Tipo do dado da coluna validado.
+	,MNT_FRUITS INT -- Tipo do dado da coluna validado.
+	,MNT_MEAT_PRODUCTS INT -- Tipo do dado da coluna validado.
+	,MNT_FISH_PRODUCTS INT -- Tipo do dado da coluna validado.
+	,MNT_SWEET_PRODUCTS INT -- Tipo do dado da coluna validado.
+	,MNT_GOLD_PRODS INT -- Tipo do dado da coluna validado.
+	,NUM_DEALS_PURCHASES INT -- Tipo do dado da coluna validado.
+	,NUM_WEB_PURCHASES INT -- Tipo do dado da coluna validado.
+	,NUM_CATALOG_PURCHASES INT -- Tipo do dado da coluna validado.
+	,NUM_STORE_PURCHASES INT -- Tipo do dado da coluna validado.
+	,NUM_WEB_VISITS_MONTH INT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP3 INT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP4 INT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP5 INT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP1 INT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP2 INT -- Tipo do dado da coluna validado.
+	,COMPLAIN INT -- Tipo do dado da coluna validado.
+	,Z_COST_CONTACT INT -- Tipo do dado da coluna validado.
+	,Z_REVENUE INT -- Tipo do dado da coluna validado.
+	,RESPONSE INT -- Tipo do dado da coluna validado.
 	,CONSTRAINT PK_ID PRIMARY KEY CLUSTERED (ID) -- Chave primária criada para não duplicar dados e facilitar em buscas com índice clusterizado.
 );
 """
@@ -573,34 +573,34 @@ DROP TABLE IF EXISTS [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANH
 
 CREATE TABLE [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA] (
 	 ID INT -- Tipo do dado da coluna validado.
-	,YEAR_BIRTH FLOAT -- Tipo do dado da coluna validado.
+	,YEAR_BIRTH INT -- Tipo do dado da coluna validado.
 	,EDUCATION VARCHAR (20) -- Tipo do dado da coluna validado.
 	,MARITAL_STATUS VARCHAR (20) -- Tipo do dado da coluna validado.
 	,INCOME FLOAT -- Tipo do dado da coluna validado.
-	,KIDHOME FLOAT -- Tipo do dado da coluna validado.
-	,TEENHOME FLOAT -- Tipo do dado da coluna validado.
+	,KIDHOME INT -- Tipo do dado da coluna validado.
+	,TEENHOME INT -- Tipo do dado da coluna validado.
 	,DT_CUSTOMER DATE -- Tipo do dado da coluna validado.
-	,RECENCY FLOAT -- Tipo do dado da coluna validado.
-	,MNT_WINES FLOAT -- Tipo do dado da coluna validado.
-	,MNT_FRUITS FLOAT -- Tipo do dado da coluna validado.
-	,MNT_MEAT_PRODUCTS FLOAT -- Tipo do dado da coluna validado.
-	,MNT_FISH_PRODUCTS FLOAT -- Tipo do dado da coluna validado.
-	,MNT_SWEET_PRODUCTS FLOAT -- Tipo do dado da coluna validado.
-	,MNT_GOLD_PRODS FLOAT -- Tipo do dado da coluna validado.
-	,NUM_DEALS_PURCHASES FLOAT -- Tipo do dado da coluna validado.
-	,NUM_WEB_PURCHASES FLOAT -- Tipo do dado da coluna validado.
-	,NUM_CATALOG_PURCHASES FLOAT -- Tipo do dado da coluna validado.
-	,NUM_STORE_PURCHASES FLOAT -- Tipo do dado da coluna validado.
-	,NUM_WEB_VISITS_MONTH FLOAT -- Tipo do dado da coluna validado.
-	,ACCEPTED_CMP3 FLOAT -- Tipo do dado da coluna validado.
-	,ACCEPTED_CMP4 FLOAT -- Tipo do dado da coluna validado.
-	,ACCEPTED_CMP5 FLOAT -- Tipo do dado da coluna validado.
-	,ACCEPTED_CMP1 FLOAT -- Tipo do dado da coluna validado.
-	,ACCEPTED_CMP2 FLOAT -- Tipo do dado da coluna validado.
-	,COMPLAIN FLOAT -- Tipo do dado da coluna validado.
-	,Z_COST_CONTACT FLOAT -- Tipo do dado da coluna validado.
-	,Z_REVENUE FLOAT -- Tipo do dado da coluna validado.
-	,RESPONSE FLOAT -- Tipo do dado da coluna validado.
+	,RECENCY INT -- Tipo do dado da coluna validado.
+	,MNT_WINES INT -- Tipo do dado da coluna validado.
+	,MNT_FRUITS INT -- Tipo do dado da coluna validado.
+	,MNT_MEAT_PRODUCTS INT -- Tipo do dado da coluna validado.
+	,MNT_FISH_PRODUCTS INT -- Tipo do dado da coluna validado.
+	,MNT_SWEET_PRODUCTS INT -- Tipo do dado da coluna validado.
+	,MNT_GOLD_PRODS INT -- Tipo do dado da coluna validado.
+	,NUM_DEALS_PURCHASES INT -- Tipo do dado da coluna validado.
+	,NUM_WEB_PURCHASES INT -- Tipo do dado da coluna validado.
+	,NUM_CATALOG_PURCHASES INT -- Tipo do dado da coluna validado.
+	,NUM_STORE_PURCHASES INT -- Tipo do dado da coluna validado.
+	,NUM_WEB_VISITS_MONTH INT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP3 INT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP4 INT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP5 INT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP1 INT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP2 INT -- Tipo do dado da coluna validado.
+	,COMPLAIN INT -- Tipo do dado da coluna validado.
+	,Z_COST_CONTACT INT -- Tipo do dado da coluna validado.
+	,Z_REVENUE INT -- Tipo do dado da coluna validado.
+	,RESPONSE INT -- Tipo do dado da coluna validado.
 	,CONSTRAINT PK_ID PRIMARY KEY CLUSTERED (ID) -- Chave primária criada para não duplicar dados e facilitar em buscas com índice clusterizado.
 );
 """
@@ -783,7 +783,7 @@ print('Processo finalizado.')
 ---
 - Quantidade total de clientes.
 ```
-SELECT COUNT([ID]) AS [NUMBER_CUSTOMERS] FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW];
+SELECT COUNT([ID]) AS [NUMBER_CLIENTS] FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW];
 
 -- 2.240 clientes.
 
@@ -791,20 +791,20 @@ SELECT COUNT([ID]) AS [NUMBER_CUSTOMERS] FROM [MARKETING].[MARKETING_ANALISE_CAM
 ---
 - Idade média dos clientes.
 ```
-SELECT AVG([YEARS_OLD]) AS [AVERAGE_AGE_CUSTOMERS] FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW];
+SELECT AVG([YEARS_OLD]) AS [AVG_AGE_CLIENTS] FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW];
 
 -- 52 anos.
 ```
 ---
 - Quantidade de clientes pelo nível de educação.
 ```
-DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
+DECLARE @NUMBER_CLIENTS FLOAT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
 
-WITH [NUMBER_CUSTOMERS_EDUCATION]
+WITH [TBL_DATA]
 AS
 (
 SELECT 
-      COUNT([ID]) AS [NUMBER_CUSTOMERS]
+      COUNT([ID]) AS [NUMBER_CLIENTS]
      ,[EDUCATION]
 
 FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
@@ -813,32 +813,32 @@ GROUP BY
 	[EDUCATION]
 )
 SELECT 
-      [NUMBER_CUSTOMERS]
+      [NUMBER_CLIENTS]
      ,[EDUCATION]
-    ,([NUMBER_CUSTOMERS] * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,ROUND(([NUMBER_CLIENTS] * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTS_EDUCATION]
 
-FROM [NUMBER_CUSTOMERS_EDUCATION]
+FROM [TBL_DATA]
 
 GROUP BY
-       [NUMBER_CUSTOMERS]
+       [NUMBER_CLIENTS]
       ,[EDUCATION]
 
 -- 1.127 clientes -> Graduation -> 50,3125% -> 50%
--- 486 clientes -> PhD -> 21,696428571428573% -> 21%
--- 370 clientes -> Master -> 16,517857142857142% -> 16%
+-- 486 clientes -> PhD -> 21,696428571428573% -> 22%
+-- 370 clientes -> Master -> 16,517857142857142% -> 17%
 -- 203 clientes -> 2n Cycle -> 9.0625% -> 9%
 -- 54 clientes -> Basic -> 2,4107142857142856% -> 2%
 ```
 ---
 - Quantidade de clientes pelo estado civil.
 ```
-DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
+DECLARE @NUMBER_CLIENTS FLOAT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
 
-WITH [NUMBER_CUSTOMERS_MARITAL_STATUS]
+WITH [TBL_DATA]
 AS
 (
 SELECT 
-      COUNT([ID]) AS [NUMBER_CUSTOMERS]
+      COUNT([ID]) AS [NUMBER_CLIENTS]
      ,[MARITAL_STATUS]
 
 FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
@@ -847,19 +847,19 @@ GROUP BY
 	[MARITAL_STATUS]
 )
 SELECT 
-      [NUMBER_CUSTOMERS]
+      [NUMBER_CLIENTS]
      ,[MARITAL_STATUS]
-    ,([NUMBER_CUSTOMERS] * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,ROUND(([NUMBER_CLIENTS] * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTS_MARITAL_STATUS]
 
-FROM [NUMBER_CUSTOMERS_MARITAL_STATUS]
+FROM [TBL_DATA]
 
 GROUP BY
-       [NUMBER_CUSTOMERS]
+       [NUMBER_CLIENTS]
       ,[MARITAL_STATUS]
 
 ORDER BY 
-        [NUMBER_CUSTOMERS] DESC
-       ,([NUMBER_CUSTOMERS] * 100)/(@NUMBER_CLIENTS) DESC
+        [NUMBER_CLIENTS] DESC
+       ,([NUMBER_CLIENTS] * 100)/(@NUMBER_CLIENTS) DESC
 
 -- 2 clientes -> YOLO -> 0,0892857142857143% -> 1%
 -- 3 clientes -> Alone -> 0,1339285714285714% -> 1%
@@ -867,19 +867,19 @@ ORDER BY
 -- 77 clientes -> Window -> 3.4375% -> 3%
 -- 232 clientes -> Divorced -> 10,357142857142858% -> 10%
 -- 480 clientes -> Single -> 21,428571428571427% -> 21%
--- 580 clientes -> Together -> 25,892857142857142% -> 25%
--- 864 clientes -> Married -> 38,57142857142857% -> 38%
+-- 580 clientes -> Together -> 25,892857142857142% -> 26%
+-- 864 clientes -> Married -> 38,57142857142857% -> 39%
 ```
 ---
 - Quantidade de clientes pelo nível de educação e estado civil.
 ```
-DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
+DECLARE @NUMBER_CLIENTS FLOAT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
 
-WITH [NUMBER_CUSTOMERS_EDUCATION_MARITAL_STATUS]
+WITH [TBL_DATA]
 AS
 (
 SELECT 
-      COUNT([ID]) AS [NUMBER_CUSTOMERS]
+      COUNT([ID]) AS [NUMBER_CLIENTS]
      ,[EDUCATION]
      ,[MARITAL_STATUS]
 
@@ -890,21 +890,21 @@ GROUP BY
       ,[MARITAL_STATUS]
 )
 SELECT 
-      [NUMBER_CUSTOMERS]
+      [NUMBER_CLIENTS]
      ,[EDUCATION]
      ,[MARITAL_STATUS]
-    ,([NUMBER_CUSTOMERS] * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,ROUND(([NUMBER_CLIENTS] * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_EDUCATION_MARITAL_STATUS]
 
-FROM [NUMBER_CUSTOMERS_EDUCATION_MARITAL_STATUS]
+FROM [TBL_DATA]
 
 GROUP BY
-       [NUMBER_CUSTOMERS]
+       [NUMBER_CLIENTS]
       ,[EDUCATION]
       ,[MARITAL_STATUS]
 
 ORDER BY 
-        [NUMBER_CUSTOMERS] DESC
-       ,([NUMBER_CUSTOMERS] * 100)/(@NUMBER_CLIENTS) DESC
+         [NUMBER_CLIENTS] DESC
+       ,([NUMBER_CLIENTS] * 100)/(@NUMBER_CLIENTS) DESC
 
 -- 1 cliente -> Basic -> Divorced -> 0,0446428571428571% -> 1%
 -- 1 cliente -> Basic -> Widow -> 0,0446428571428571% -> 1%
@@ -980,15 +980,15 @@ FROM [TBL_KIDS_TEENS]
 - Quantidade de clientes que possuem crianças e não adoslecentes.
 - Quantidade de clientes que não possuem crianças e possuem adoslecentes.
 ```
-DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
+DECLARE @NUMBER_CLIENTS FLOAT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
 
 SELECT
-     COUNT([ID]) AS [NUMBER_CUSTOMERS]
-    ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
-    ,
-    CASE
-    WHEN COUNT([ID]) NOT IN ('') THEN 'NOT KID AND TEEN'
-    END AS [NOTE]
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+     ,ROUND((COUNT([ID]) * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTES_KID_TEEN]
+     ,
+     CASE
+     WHEN COUNT([ID]) NOT IN ('') THEN 'NOT KID AND TEEN'
+     END AS [NOTE]
 
 FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
 
@@ -997,12 +997,12 @@ WHERE [KIDHOME] IN (0) AND [TEENHOME] IN (0)
 UNION ALL
 
 SELECT
-     COUNT([ID]) AS [NUMBER_CUSTOMERS]
-    ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
-    ,
-    CASE
-    WHEN COUNT([ID]) NOT IN ('') THEN 'YES KID AND TEEN'
-    END AS [NOTE]
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+     ,ROUND((COUNT([ID]) * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTES_KID_TEEN]
+     ,
+     CASE
+     WHEN COUNT([ID]) NOT IN ('') THEN 'YES KID AND TEEN'
+     END AS [NOTE]
 
 FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
 
@@ -1011,8 +1011,8 @@ WHERE [KIDHOME] > 0 AND [TEENHOME] > 0
 UNION ALL
 
 SELECT
-      COUNT([ID]) AS [NUMBER_CUSTOMERS]
-     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+     ,ROUND((COUNT([ID]) * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTES_KID_TEEN]
      ,
      CASE
      WHEN COUNT([ID]) NOT IN ('') THEN 'YES KID AND NOT TEEN'
@@ -1025,8 +1025,8 @@ WHERE [KIDHOME] > 0 AND [TEENHOME] = 0
 UNION ALL
 
 SELECT
-      COUNT([ID]) AS [NUMBER_CUSTOMERS]
-     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+     ,ROUND((COUNT([ID]) * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTES_KID_TEEN]
      ,
      CASE
      WHEN COUNT([ID]) NOT IN ('') THEN 'NOT KID AND YES TEEN'
@@ -1038,7 +1038,7 @@ WHERE [KIDHOME] = 0 AND [TEENHOME] > 0
 
 ORDER BY 
         COUNT([ID]) DESC
-       ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) DESC
+       ,ROUND((COUNT([ID]) * 100)/(@NUMBER_CLIENTS),2) DESC
 
 -- Não possuem crianças e adoslecentes -> 638 -> 28,482142857142858% -> 28%
 -- Possuem crianças e adoslecentes -> 427 -> 19,0625% -> 19%
@@ -1048,12 +1048,12 @@ ORDER BY
 ---
 - Quantidade de clientes pelo tempo de registro na empresa (em anos).
 ```
-DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
+DECLARE @NUMBER_CLIENTS FLOAT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
 
 SELECT 
-      COUNT([ID]) AS [NUMBER_CUSTOMERS]
+      COUNT([ID]) AS [NUMBER_CLIENTS]
      ,[REGISTERED_CUSTOMER_TIME]
-     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,ROUND((COUNT([ID]) * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTS_REGISTERED]
 
 FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
 
@@ -1062,7 +1062,7 @@ GROUP BY
 
 ORDER BY
 	COUNT([ID]) DESC
-	,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) DESC
+	,ROUND((COUNT([ID]) * 100)/(@NUMBER_CLIENTS),2) DESC
 
 -- 557 clientes -> 7 anos -> 24,866071428571427% -> 24%
 -- 1.189 clientes -> 8 anos -> 53,080357142857146 -> 53%
@@ -1071,13 +1071,13 @@ ORDER BY
 ---
 - Média do tempo (em dias) que um cliente passa sem comprar desde a última compra.
 ```
-SELECT AVG([RECENCY]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW];
+SELECT AVG([RECENCY]) AS [AVG_RECENCY] FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW];
 
 -- 49 dias.
 ```
 - Total de produtos vendidos agrupados.
 ```
-WITH [TBL_TOTAL_SALES_PRODUCTS]
+WITH [TBL_DATA]
 AS
 (
 SELECT 
@@ -1121,18 +1121,18 @@ SELECT
 FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
 )
 SELECT
-	  SUM([NUMBERS_PRODUCTS]) AS [TOTAL_SALES_PRODUCTS]
+      SUM([NUMBERS_PRODUCTS]) AS [TOTAL_SALES_PRODUCTS]
 
-FROM [TBL_TOTAL_SALES_PRODUCTS]
+FROM [TBL_DATA]
 
 -- 1.356.988 de produtos vendidos.
 ```
 ---
 - Produtos mais vendidos e menos vendidos.
 ```
-DECLARE @SUM_GENERAL_PRODUCTS INT = 1356988
+DECLARE @SUM_GENERAL_PRODUCTS FLOAT = 1356988;
 
-;WITH [TBL_SUM_PRODUCTS]
+WITH [TBL_DATA]
 AS
 (
 SELECT 
@@ -1200,15 +1200,15 @@ SELECT
 FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
 )
 SELECT
-	  [NUMBERS_PRODUCTS]
-	 ,[TYPE_PRODUCT]
-	 ,([NUMBERS_PRODUCTS] * 100)/(@SUM_GENERAL_PRODUCTS) AS [PERCENT]
+      [NUMBERS_PRODUCTS]
+      ,[TYPE_PRODUCT]
+      ,ROUND(([NUMBERS_PRODUCTS] * 100)/(@SUM_GENERAL_PRODUCTS),2) AS [PERCENT_NUMBERS_PRODS_TYPE_PRODS]
 
-FROM [TBL_SUM_PRODUCTS] 
+FROM [TBL_DATA]
 
 ORDER BY
-	    [NUMBERS_PRODUCTS] DESC
-	   ,([NUMBERS_PRODUCTS] * 100)/(@SUM_GENERAL_PRODUCTS) DESC
+        [NUMBERS_PRODUCTS] DESC
+       ,([NUMBERS_PRODUCTS] * 100)/(@SUM_GENERAL_PRODUCTS) DESC
 
 -- MNT_FRUITS -> 58.917 -> 4,341748047882517 -> 4%
 -- MNT_SWEET_PRODUCTS -> 60.621 -> 4,467320271070931 -> 4%
