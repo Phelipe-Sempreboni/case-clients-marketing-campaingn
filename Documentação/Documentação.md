@@ -2788,7 +2788,7 @@ ORDER BY
         [TOTAL_WINES] + [TOTAL_FRUITS] + [TOTAL_MNT_MEAT_PRODUCTS] + [TOTAL_MNT_FISH_PRODUCTS] + [TOTAL_MNT_SWEET_PRODUCTS] + [TOTAL_MNT_GOLD_PRODUCTS] DESC
 ```
 ---
-13º - Terceira etapa das análises mais profundas e assertivas dos perfis dos clientes, porém, iremos inserir as demais variáveis para verificação e realizaremos os agrupamentos unificados das variáveis (Educação e Estado Civil) e iremos inserir as variáveis (Crianças e Adolescentes) com somas e médias, logo, teremos todas variáveis unificadas das análises dos passos anteriores.
+12º - Terceira etapa das análises mais profundas e assertivas dos perfis dos clientes, porém, iremos inserir as demais variáveis para verificação e realizaremos os agrupamentos unificados das variáveis (Educação e Estado Civil) e iremos inserir as variáveis (Crianças e Adolescentes) com somas e médias, logo, teremos todas variáveis unificadas das análises dos passos anteriores.
 
 ---
 
@@ -2801,7 +2801,7 @@ ORDER BY
 ---
 
 ```
-DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
+DECLARE @NUMBER_CLIENTS FLOAT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
 
 WITH [TBL_DATA]
 AS
@@ -2846,7 +2846,7 @@ SELECT
        [NUMBER_CLIENTS]
       ,[EDUCATION]
       ,[MARITAL_STATUS]
-      ,([NUMBER_CLIENTS] * 100)/(@NUMBER_CLIENTS) AS [PERCENT_CLIENTS_EDUCATION]
+      ,ROUND(([NUMBER_CLIENTS] * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTS]
       ,[AVG_YEARS_OLD]
       ,[AVG_MONTHLY_INCOME]
       ,[AVG_INCOME]
@@ -2880,7 +2880,7 @@ GROUP BY
         [NUMBER_CLIENTS]
        ,[EDUCATION]
        ,[MARITAL_STATUS]
-       ,([NUMBER_CLIENTS] * 100)/(@NUMBER_CLIENTS)
+       ,ROUND(([NUMBER_CLIENTS] * 100)/(@NUMBER_CLIENTS),2)
        ,[AVG_YEARS_OLD]
        ,[AVG_MONTHLY_INCOME]
        ,[AVG_INCOME]
