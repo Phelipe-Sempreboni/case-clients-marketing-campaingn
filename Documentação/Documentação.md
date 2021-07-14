@@ -2913,6 +2913,10 @@ ORDER BY
         [TOTAL_WINES] + [TOTAL_FRUITS] + [TOTAL_MNT_MEAT_PRODUCTS] + [TOTAL_MNT_FISH_PRODUCTS] + [TOTAL_MNT_SWEET_PRODUCTS] + [TOTAL_MNT_GOLD_PRODUCTS] DESC
 ```
 ---
+- Representação da tabela da análise final construída para verificação dos perfis dos clientes
+![image](https://user-images.githubusercontent.com/57469401/125637975-169a88e4-20f6-4a2b-ba49-0f67f30dd788.png)
+---
+
 13º - Quarta etapa das análises mais profundas e assertivas dos perfis dos clientes, onde iremos analisar as campanhas que obtiveram respostas positivas dos clientes com o mesmo script do 12º passo, porém, por campanha.
 
 ---
