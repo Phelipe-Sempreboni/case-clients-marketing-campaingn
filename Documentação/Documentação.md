@@ -175,30 +175,30 @@ CREATE TABLE [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA] (
 	,EDUCATION VARCHAR (20) -- Tipo do dado da coluna validado.
 	,MARITAL_STATUS VARCHAR (20) -- Tipo do dado da coluna validado.
 	,INCOME FLOAT -- Tipo do dado da coluna validado.
-	,KIDHOME INT -- Tipo do dado da coluna validado.
-	,TEENHOME INT -- Tipo do dado da coluna validado.
+	,KIDHOME FLOAT -- Tipo do dado da coluna validado.
+	,TEENHOME FLOAT -- Tipo do dado da coluna validado.
 	,DT_CUSTOMER DATE -- Tipo do dado da coluna validado.
-	,RECENCY INT -- Tipo do dado da coluna validado.
-	,MNT_WINES INT -- Tipo do dado da coluna validado.
-	,MNT_FRUITS INT -- Tipo do dado da coluna validado.
-	,MNT_MEAT_PRODUCTS INT -- Tipo do dado da coluna validado.
-	,MNT_FISH_PRODUCTS INT -- Tipo do dado da coluna validado.
-	,MNT_SWEET_PRODUCTS INT -- Tipo do dado da coluna validado.
-	,MNT_GOLD_PRODS INT -- Tipo do dado da coluna validado.
-	,NUM_DEALS_PURCHASES INT -- Tipo do dado da coluna validado.
-	,NUM_WEB_PURCHASES INT -- Tipo do dado da coluna validado.
-	,NUM_CATALOG_PURCHASES INT -- Tipo do dado da coluna validado.
-	,NUM_STORE_PURCHASES INT -- Tipo do dado da coluna validado.
-	,NUM_WEB_VISITS_MONTH INT -- Tipo do dado da coluna validado.
-	,ACCEPTED_CMP3 INT -- Tipo do dado da coluna validado.
-	,ACCEPTED_CMP4 INT -- Tipo do dado da coluna validado.
-	,ACCEPTED_CMP5 INT -- Tipo do dado da coluna validado.
-	,ACCEPTED_CMP1 INT -- Tipo do dado da coluna validado.
-	,ACCEPTED_CMP2 INT -- Tipo do dado da coluna validado.
-	,COMPLAIN INT -- Tipo do dado da coluna validado.
-	,Z_COST_CONTACT INT -- Tipo do dado da coluna validado.
-	,Z_REVENUE INT -- Tipo do dado da coluna validado.
-	,RESPONSE INT -- Tipo do dado da coluna validado.
+	,RECENCY FLOAT -- Tipo do dado da coluna validado.
+	,MNT_WINES FLOAT -- Tipo do dado da coluna validado.
+	,MNT_FRUITS FLOAT -- Tipo do dado da coluna validado.
+	,MNT_MEAT_PRODUCTS FLOAT -- Tipo do dado da coluna validado.
+	,MNT_FISH_PRODUCTS FLOAT -- Tipo do dado da coluna validado.
+	,MNT_SWEET_PRODUCTS FLOAT -- Tipo do dado da coluna validado.
+	,MNT_GOLD_PRODS FLOAT -- Tipo do dado da coluna validado.
+	,NUM_DEALS_PURCHASES FLOAT -- Tipo do dado da coluna validado.
+	,NUM_WEB_PURCHASES FLOAT -- Tipo do dado da coluna validado.
+	,NUM_CATALOG_PURCHASES FLOAT -- Tipo do dado da coluna validado.
+	,NUM_STORE_PURCHASES FLOAT -- Tipo do dado da coluna validado.
+	,NUM_WEB_VISITS_MONTH FLOAT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP3 FLOAT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP4 FLOAT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP5 FLOAT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP1 FLOAT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP2 FLOAT -- Tipo do dado da coluna validado.
+	,COMPLAIN FLOAT -- Tipo do dado da coluna validado.
+	,Z_COST_CONTACT FLOAT -- Tipo do dado da coluna validado.
+	,Z_REVENUE FLOAT -- Tipo do dado da coluna validado.
+	,RESPONSE FLOAT -- Tipo do dado da coluna validado.
 	,CONSTRAINT PK_ID PRIMARY KEY CLUSTERED (ID) -- Chave primária criada para não duplicar dados e facilitar em buscas com índice clusterizado.
 );
 GO
@@ -261,34 +261,34 @@ DROP TABLE IF EXISTS [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANH
 
 CREATE TABLE [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA] (
 	 ID INT -- Tipo do dado da coluna validado.
-	,YEAR_BIRTH INT -- Tipo do dado da coluna validado.
+	,YEAR_BIRTH FLOAT -- Tipo do dado da coluna validado.
 	,EDUCATION VARCHAR (20) -- Tipo do dado da coluna validado.
 	,MARITAL_STATUS VARCHAR (20) -- Tipo do dado da coluna validado.
 	,INCOME FLOAT -- Tipo do dado da coluna validado.
-	,KIDHOME INT -- Tipo do dado da coluna validado.
-	,TEENHOME INT -- Tipo do dado da coluna validado.
+	,KIDHOME FLOAT -- Tipo do dado da coluna validado.
+	,TEENHOME FLOAT -- Tipo do dado da coluna validado.
 	,DT_CUSTOMER DATE -- Tipo do dado da coluna validado.
-	,RECENCY INT -- Tipo do dado da coluna validado.
-	,MNT_WINES INT -- Tipo do dado da coluna validado.
-	,MNT_FRUITS INT -- Tipo do dado da coluna validado.
-	,MNT_MEAT_PRODUCTS INT -- Tipo do dado da coluna validado.
-	,MNT_FISH_PRODUCTS INT -- Tipo do dado da coluna validado.
-	,MNT_SWEET_PRODUCTS INT -- Tipo do dado da coluna validado.
-	,MNT_GOLD_PRODS INT -- Tipo do dado da coluna validado.
-	,NUM_DEALS_PURCHASES INT -- Tipo do dado da coluna validado.
-	,NUM_WEB_PURCHASES INT -- Tipo do dado da coluna validado.
-	,NUM_CATALOG_PURCHASES INT -- Tipo do dado da coluna validado.
-	,NUM_STORE_PURCHASES INT -- Tipo do dado da coluna validado.
-	,NUM_WEB_VISITS_MONTH INT -- Tipo do dado da coluna validado.
-	,ACCEPTED_CMP3 INT -- Tipo do dado da coluna validado.
-	,ACCEPTED_CMP4 INT -- Tipo do dado da coluna validado.
-	,ACCEPTED_CMP5 INT -- Tipo do dado da coluna validado.
-	,ACCEPTED_CMP1 INT -- Tipo do dado da coluna validado.
-	,ACCEPTED_CMP2 INT -- Tipo do dado da coluna validado.
-	,COMPLAIN INT -- Tipo do dado da coluna validado.
-	,Z_COST_CONTACT INT -- Tipo do dado da coluna validado.
-	,Z_REVENUE INT -- Tipo do dado da coluna validado.
-	,RESPONSE INT -- Tipo do dado da coluna validado.
+	,RECENCY FLOAT -- Tipo do dado da coluna validado.
+	,MNT_WINES FLOAT -- Tipo do dado da coluna validado.
+	,MNT_FRUITS FLOAT -- Tipo do dado da coluna validado.
+	,MNT_MEAT_PRODUCTS FLOAT -- Tipo do dado da coluna validado.
+	,MNT_FISH_PRODUCTS FLOAT -- Tipo do dado da coluna validado.
+	,MNT_SWEET_PRODUCTS FLOAT -- Tipo do dado da coluna validado.
+	,MNT_GOLD_PRODS FLOAT -- Tipo do dado da coluna validado.
+	,NUM_DEALS_PURCHASES FLOAT -- Tipo do dado da coluna validado.
+	,NUM_WEB_PURCHASES FLOAT -- Tipo do dado da coluna validado.
+	,NUM_CATALOG_PURCHASES FLOAT -- Tipo do dado da coluna validado.
+	,NUM_STORE_PURCHASES FLOAT -- Tipo do dado da coluna validado.
+	,NUM_WEB_VISITS_MONTH FLOAT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP3 FLOAT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP4 FLOAT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP5 FLOAT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP1 FLOAT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP2 FLOAT -- Tipo do dado da coluna validado.
+	,COMPLAIN FLOAT -- Tipo do dado da coluna validado.
+	,Z_COST_CONTACT FLOAT -- Tipo do dado da coluna validado.
+	,Z_REVENUE FLOAT -- Tipo do dado da coluna validado.
+	,RESPONSE FLOAT -- Tipo do dado da coluna validado.
 	,CONSTRAINT PK_ID PRIMARY KEY CLUSTERED (ID) -- Chave primária criada para não duplicar dados e facilitar em buscas com índice clusterizado.
 );
 """
@@ -573,34 +573,34 @@ DROP TABLE IF EXISTS [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANH
 
 CREATE TABLE [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA] (
 	 ID INT -- Tipo do dado da coluna validado.
-	,YEAR_BIRTH INT -- Tipo do dado da coluna validado.
+	,YEAR_BIRTH FLOAT -- Tipo do dado da coluna validado.
 	,EDUCATION VARCHAR (20) -- Tipo do dado da coluna validado.
 	,MARITAL_STATUS VARCHAR (20) -- Tipo do dado da coluna validado.
 	,INCOME FLOAT -- Tipo do dado da coluna validado.
-	,KIDHOME INT -- Tipo do dado da coluna validado.
-	,TEENHOME INT -- Tipo do dado da coluna validado.
+	,KIDHOME FLOAT -- Tipo do dado da coluna validado.
+	,TEENHOME FLOAT -- Tipo do dado da coluna validado.
 	,DT_CUSTOMER DATE -- Tipo do dado da coluna validado.
-	,RECENCY INT -- Tipo do dado da coluna validado.
-	,MNT_WINES INT -- Tipo do dado da coluna validado.
-	,MNT_FRUITS INT -- Tipo do dado da coluna validado.
-	,MNT_MEAT_PRODUCTS INT -- Tipo do dado da coluna validado.
-	,MNT_FISH_PRODUCTS INT -- Tipo do dado da coluna validado.
-	,MNT_SWEET_PRODUCTS INT -- Tipo do dado da coluna validado.
-	,MNT_GOLD_PRODS INT -- Tipo do dado da coluna validado.
-	,NUM_DEALS_PURCHASES INT -- Tipo do dado da coluna validado.
-	,NUM_WEB_PURCHASES INT -- Tipo do dado da coluna validado.
-	,NUM_CATALOG_PURCHASES INT -- Tipo do dado da coluna validado.
-	,NUM_STORE_PURCHASES INT -- Tipo do dado da coluna validado.
-	,NUM_WEB_VISITS_MONTH INT -- Tipo do dado da coluna validado.
-	,ACCEPTED_CMP3 INT -- Tipo do dado da coluna validado.
-	,ACCEPTED_CMP4 INT -- Tipo do dado da coluna validado.
-	,ACCEPTED_CMP5 INT -- Tipo do dado da coluna validado.
-	,ACCEPTED_CMP1 INT -- Tipo do dado da coluna validado.
-	,ACCEPTED_CMP2 INT -- Tipo do dado da coluna validado.
-	,COMPLAIN INT -- Tipo do dado da coluna validado.
-	,Z_COST_CONTACT INT -- Tipo do dado da coluna validado.
-	,Z_REVENUE INT -- Tipo do dado da coluna validado.
-	,RESPONSE INT -- Tipo do dado da coluna validado.
+	,RECENCY FLOAT -- Tipo do dado da coluna validado.
+	,MNT_WINES FLOAT -- Tipo do dado da coluna validado.
+	,MNT_FRUITS FLOAT -- Tipo do dado da coluna validado.
+	,MNT_MEAT_PRODUCTS FLOAT -- Tipo do dado da coluna validado.
+	,MNT_FISH_PRODUCTS FLOAT -- Tipo do dado da coluna validado.
+	,MNT_SWEET_PRODUCTS FLOAT -- Tipo do dado da coluna validado.
+	,MNT_GOLD_PRODS FLOAT -- Tipo do dado da coluna validado.
+	,NUM_DEALS_PURCHASES FLOAT -- Tipo do dado da coluna validado.
+	,NUM_WEB_PURCHASES FLOAT -- Tipo do dado da coluna validado.
+	,NUM_CATALOG_PURCHASES FLOAT -- Tipo do dado da coluna validado.
+	,NUM_STORE_PURCHASES FLOAT -- Tipo do dado da coluna validado.
+	,NUM_WEB_VISITS_MONTH FLOAT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP3 FLOAT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP4 FLOAT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP5 FLOAT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP1 FLOAT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP2 FLOAT -- Tipo do dado da coluna validado.
+	,COMPLAIN FLOAT -- Tipo do dado da coluna validado.
+	,Z_COST_CONTACT FLOAT -- Tipo do dado da coluna validado.
+	,Z_REVENUE FLOAT -- Tipo do dado da coluna validado.
+	,RESPONSE FLOAT -- Tipo do dado da coluna validado.
 	,CONSTRAINT PK_ID PRIMARY KEY CLUSTERED (ID) -- Chave primária criada para não duplicar dados e facilitar em buscas com índice clusterizado.
 );
 """
@@ -791,7 +791,7 @@ SELECT COUNT([ID]) AS [NUMBER_CLIENTS] FROM [MARKETING].[MARKETING_ANALISE_CAMPA
 ---
 - Idade média dos clientes.
 ```
-SELECT AVG([YEARS_OLD]) AS [AVG_AGE_CLIENTS] FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW];
+SELECT ROUND(AVG([YEARS_OLD]),0) AS [AVG_AGE_CLIENTS] FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW];
 
 -- 52 anos.
 ```
@@ -955,7 +955,7 @@ SELECT ROUND(AVG([INCOME]),0) AS [AVERAGE_INCOME] FROM [MARKETING].[MARKETING_AN
 ---
 - Quantitade total de crianças, adoslecentes e a soma com total geral das duas categorias.
 ```
-WITH [TBL_KIDS_TEENS] AS
+WITH [TBL_DATA] AS
 (
 SELECT
       SUM([KIDHOME]) AS [NUMBER_KIDHOME]
@@ -968,7 +968,7 @@ SELECT
      ,[NUMBER_TEENHOME]
      ,[NUMBER_KIDHOME] + [NUMBER_TEENHOME] AS [TOTAL]
 
-FROM [TBL_KIDS_TEENS]
+FROM [TBL_DATA]
 
 -- 995 crianças.
 -- 1.134 adoslecentes.
@@ -1071,7 +1071,7 @@ ORDER BY
 ---
 - Média do tempo (em dias) que um cliente passa sem comprar desde a última compra.
 ```
-SELECT AVG([RECENCY]) AS [AVG_RECENCY] FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW];
+SELECT ROUND(AVG([RECENCY]),0) AS [AVG_RECENCY] FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW];
 
 -- 49 dias.
 ```
@@ -1259,7 +1259,7 @@ ORDER BY
 ---
 - Média de compras com desconto.
 ```
-SELECT AVG([NUM_DEALS_PURCHASES]) AS [AVG_NUM_DEALS_PURCHASES] FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW] WHERE [NUM_DEALS_PURCHASES] > 0;
+SELECT ROUND(AVG([NUM_DEALS_PURCHASES]),0) AS [AVG_NUM_DEALS_PURCHASES] FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW] WHERE [NUM_DEALS_PURCHASES] > 0;
 
 -- 2.
 -- Cada cliente, dos que compraram com desconto, teria uma média de 2 compras por desconto recebido/utilizado. 
@@ -2365,25 +2365,25 @@ AS
 SELECT 
       COUNT([ID]) AS [NUMBER_CLIENTS]
      ,[EDUCATION]
-     ,AVG([YEARS_OLD]) AS [AVG_YEARS_OLD]
+     ,ROUND(AVG([YEARS_OLD]),0) AS [AVG_YEARS_OLD]
      ,ROUND(AVG([MONTHLY_INCOME]),0) AS [AVG_MONTHLY_INCOME]
      ,ROUND(AVG([INCOME]),0) AS [AVG_INCOME]
      ,SUM([KIDHOME]) AS [SUM_KIDHOME]
-     ,AVG([KIDHOME]) AS [AVG_KIDHOME]
+     ,ROUND(AVG([KIDHOME]),2) AS [AVG_KIDHOME]
      ,SUM([TEENHOME]) AS [SUM_TEENHOME]
-     ,AVG([TEENHOME]) AS [AVG_TEENHOME]
+     ,ROUND(AVG([TEENHOME]),2) AS [AVG_TEENHOME]
      ,AVG([REGISTERED_CUSTOMER_TIME]) AS [AVG_REG_CUSTOMER_TIME]
-     ,AVG([RECENCY]) AS [AVG_RECENCY]
+     ,ROUND(AVG([RECENCY]),0) AS [AVG_RECENCY]
      ,SUM([NUM_DEALS_PURCHASES]) AS [SUM_NUM_DEALS_PURCHASES]
-     ,AVG([NUM_DEALS_PURCHASES]) AS [AVG_NUM_DEALS_PURCHASES]
+     ,ROUND(AVG([NUM_DEALS_PURCHASES]),0) AS [AVG_NUM_DEALS_PURCHASES]
      ,SUM([NUM_WEB_PURCHASES]) AS [SUM_WEB_PURCHASES]
-     ,AVG([NUM_WEB_PURCHASES]) AS [AVG_WEB_PURCHASES]
+     ,ROUND(AVG([NUM_WEB_PURCHASES]),0) AS [AVG_WEB_PURCHASES]
      ,SUM([NUM_CATALOG_PURCHASES]) AS [SUM_CATALOG_PURCHASES]
-     ,AVG([NUM_CATALOG_PURCHASES]) AS [AVG_CATALOG_PURCHASES]
+     ,ROUND(AVG([NUM_CATALOG_PURCHASES]),0) AS [AVG_CATALOG_PURCHASES]
      ,SUM([NUM_STORE_PURCHASES]) AS [SUM_STORE_PURCHASES]
-     ,AVG([NUM_STORE_PURCHASES]) AS [AVG_STORE_PURCHASES]
+     ,ROUND(AVG([NUM_STORE_PURCHASES]),0) AS [AVG_STORE_PURCHASES]
      ,SUM([NUM_WEB_VISITS_MONTH]) AS [SUM_NUM_WEB_VISITS_MONTH]
-     ,AVG([NUM_WEB_VISITS_MONTH]) AS [AVG_NUM_WEB_VISITS_MONTH]
+     ,ROUND(AVG([NUM_WEB_VISITS_MONTH]),0) AS [AVG_NUM_WEB_VISITS_MONTH]
      ,SUM([MNT_WINES]) AS [TOTAL_WINES]
      ,SUM([MNT_FRUITS]) AS [TOTAL_FRUITS]
      ,SUM([MNT_MEAT_PRODUCTS]) AS [TOTAL_MNT_MEAT_PRODUCTS]
@@ -2473,25 +2473,25 @@ AS
 SELECT 
       COUNT([ID]) AS [NUMBER_CLIENTS]
      ,[MARITAL_STATUS]
-     ,AVG([YEARS_OLD]) AS [AVG_YEARS_OLD]
+     ,ROUND(AVG([YEARS_OLD]),0) AS [AVG_YEARS_OLD]
      ,ROUND(AVG([MONTHLY_INCOME]),0) AS [AVG_MONTHLY_INCOME]
      ,ROUND(AVG([INCOME]),0) AS [AVG_INCOME]
      ,SUM([KIDHOME]) AS [SUM_KIDHOME]
-     ,AVG([KIDHOME]) AS [AVG_KIDHOME]
+     ,ROUND(AVG([KIDHOME]),2) AS [AVG_KIDHOME]
      ,SUM([TEENHOME]) AS [SUM_TEENHOME]
-     ,AVG([TEENHOME]) AS [AVG_TEENHOME]
+     ,ROUND(AVG([TEENHOME]),2) AS [AVG_TEENHOME]
      ,AVG([REGISTERED_CUSTOMER_TIME]) AS [AVG_REG_CUSTOMER_TIME]
-     ,AVG([RECENCY]) AS [AVG_RECENCY]
+     ,ROUND(AVG([RECENCY]),0) AS [AVG_RECENCY]
      ,SUM([NUM_DEALS_PURCHASES]) AS [SUM_NUM_DEALS_PURCHASES]
-     ,AVG([NUM_DEALS_PURCHASES]) AS [AVG_NUM_DEALS_PURCHASES]
+     ,ROUND(AVG([NUM_DEALS_PURCHASES]),0) AS [AVG_NUM_DEALS_PURCHASES]
      ,SUM([NUM_WEB_PURCHASES]) AS [SUM_WEB_PURCHASES]
-     ,AVG([NUM_WEB_PURCHASES]) AS [AVG_WEB_PURCHASES]
+     ,ROUND(AVG([NUM_WEB_PURCHASES]),0) AS [AVG_WEB_PURCHASES]
      ,SUM([NUM_CATALOG_PURCHASES]) AS [SUM_CATALOG_PURCHASES]
-     ,AVG([NUM_CATALOG_PURCHASES]) AS [AVG_CATALOG_PURCHASES]
+     ,ROUND(AVG([NUM_CATALOG_PURCHASES]),0) AS [AVG_CATALOG_PURCHASES]
      ,SUM([NUM_STORE_PURCHASES]) AS [SUM_STORE_PURCHASES]
-     ,AVG([NUM_STORE_PURCHASES]) AS [AVG_STORE_PURCHASES]
+     ,ROUND(AVG([NUM_STORE_PURCHASES]),0) AS [AVG_STORE_PURCHASES]
      ,SUM([NUM_WEB_VISITS_MONTH]) AS [SUM_NUM_WEB_VISITS_MONTH]
-     ,AVG([NUM_WEB_VISITS_MONTH]) AS [AVG_NUM_WEB_VISITS_MONTH]
+     ,ROUND(AVG([NUM_WEB_VISITS_MONTH]),0) AS [AVG_NUM_WEB_VISITS_MONTH]
      ,SUM([MNT_WINES]) AS [TOTAL_WINES]
      ,SUM([MNT_FRUITS]) AS [TOTAL_FRUITS]
      ,SUM([MNT_MEAT_PRODUCTS]) AS [TOTAL_MNT_MEAT_PRODUCTS]
@@ -2581,25 +2581,25 @@ AS
 SELECT 
       COUNT([ID]) AS [NUMBER_CLIENTS]
      ,[KIDHOME]
-     ,AVG([YEARS_OLD]) AS [AVG_YEARS_OLD]
+     ,ROUND(AVG([YEARS_OLD]),0) AS [AVG_YEARS_OLD]
      ,ROUND(AVG([MONTHLY_INCOME]),0) AS [AVG_MONTHLY_INCOME]
      ,ROUND(AVG([INCOME]),0) AS [AVG_INCOME]
      ,SUM([KIDHOME]) AS [SUM_KIDHOME]
-     ,AVG([KIDHOME]) AS [AVG_KIDHOME]
+     ,ROUND(AVG([KIDHOME]),2) AS [AVG_KIDHOME]
      ,SUM([TEENHOME]) AS [SUM_TEENHOME]
-     ,AVG([TEENHOME]) AS [AVG_TEENHOME]
+     ,ROUND(AVG([TEENHOME]),2) AS [AVG_TEENHOME]
      ,AVG([REGISTERED_CUSTOMER_TIME]) AS [AVG_REG_CUSTOMER_TIME]
-     ,AVG([RECENCY]) AS [AVG_RECENCY]
+     ,ROUND(AVG([RECENCY]),0) AS [AVG_RECENCY]
      ,SUM([NUM_DEALS_PURCHASES]) AS [SUM_NUM_DEALS_PURCHASES]
-     ,AVG([NUM_DEALS_PURCHASES]) AS [AVG_NUM_DEALS_PURCHASES]
+     ,ROUND(AVG([NUM_DEALS_PURCHASES]),0) AS [AVG_NUM_DEALS_PURCHASES]
      ,SUM([NUM_WEB_PURCHASES]) AS [SUM_WEB_PURCHASES]
-     ,AVG([NUM_WEB_PURCHASES]) AS [AVG_WEB_PURCHASES]
+     ,ROUND(AVG([NUM_WEB_PURCHASES]),0) AS [AVG_WEB_PURCHASES]
      ,SUM([NUM_CATALOG_PURCHASES]) AS [SUM_CATALOG_PURCHASES]
-     ,AVG([NUM_CATALOG_PURCHASES]) AS [AVG_CATALOG_PURCHASES]
+     ,ROUND(AVG([NUM_CATALOG_PURCHASES]),0) AS [AVG_CATALOG_PURCHASES]
      ,SUM([NUM_STORE_PURCHASES]) AS [SUM_STORE_PURCHASES]
-     ,AVG([NUM_STORE_PURCHASES]) AS [AVG_STORE_PURCHASES]
+     ,ROUND(AVG([NUM_STORE_PURCHASES]),0) AS [AVG_STORE_PURCHASES]
      ,SUM([NUM_WEB_VISITS_MONTH]) AS [SUM_NUM_WEB_VISITS_MONTH]
-     ,AVG([NUM_WEB_VISITS_MONTH]) AS [AVG_NUM_WEB_VISITS_MONTH]
+     ,ROUND(AVG([NUM_WEB_VISITS_MONTH]),0) AS [AVG_NUM_WEB_VISITS_MONTH]
      ,SUM([MNT_WINES]) AS [TOTAL_WINES]
      ,SUM([MNT_FRUITS]) AS [TOTAL_FRUITS]
      ,SUM([MNT_MEAT_PRODUCTS]) AS [TOTAL_MNT_MEAT_PRODUCTS]
@@ -2689,25 +2689,25 @@ AS
 SELECT 
       COUNT([ID]) AS [NUMBER_CLIENTS]
      ,[TEENHOME]
-     ,AVG([YEARS_OLD]) AS [AVG_YEARS_OLD]
+     ,ROUND(AVG([YEARS_OLD]),0) AS [AVG_YEARS_OLD]
      ,ROUND(AVG([MONTHLY_INCOME]),0) AS [AVG_MONTHLY_INCOME]
      ,ROUND(AVG([INCOME]),0) AS [AVG_INCOME]
      ,SUM([KIDHOME]) AS [SUM_KIDHOME]
-     ,AVG([KIDHOME]) AS [AVG_KIDHOME]
+     ,ROUND(AVG([KIDHOME]),2) AS [AVG_KIDHOME]
      ,SUM([TEENHOME]) AS [SUM_TEENHOME]
-     ,AVG([TEENHOME]) AS [AVG_TEENHOME]
+     ,ROUND(AVG([TEENHOME]),2) AS [AVG_TEENHOME]
      ,AVG([REGISTERED_CUSTOMER_TIME]) AS [AVG_REG_CUSTOMER_TIME]
-     ,AVG([RECENCY]) AS [AVG_RECENCY]
+     ,ROUND(AVG([RECENCY]),0) AS [AVG_RECENCY]
      ,SUM([NUM_DEALS_PURCHASES]) AS [SUM_NUM_DEALS_PURCHASES]
-     ,AVG([NUM_DEALS_PURCHASES]) AS [AVG_NUM_DEALS_PURCHASES]
+     ,ROUND(AVG([NUM_DEALS_PURCHASES]),0) AS [AVG_NUM_DEALS_PURCHASES]
      ,SUM([NUM_WEB_PURCHASES]) AS [SUM_WEB_PURCHASES]
-     ,AVG([NUM_WEB_PURCHASES]) AS [AVG_WEB_PURCHASES]
+     ,ROUND(AVG([NUM_WEB_PURCHASES]),0) AS [AVG_WEB_PURCHASES]
      ,SUM([NUM_CATALOG_PURCHASES]) AS [SUM_CATALOG_PURCHASES]
-     ,AVG([NUM_CATALOG_PURCHASES]) AS [AVG_CATALOG_PURCHASES]
+     ,ROUND(AVG([NUM_CATALOG_PURCHASES]),0) AS [AVG_CATALOG_PURCHASES]
      ,SUM([NUM_STORE_PURCHASES]) AS [SUM_STORE_PURCHASES]
-     ,AVG([NUM_STORE_PURCHASES]) AS [AVG_STORE_PURCHASES]
+     ,ROUND(AVG([NUM_STORE_PURCHASES]),0) AS [AVG_STORE_PURCHASES]
      ,SUM([NUM_WEB_VISITS_MONTH]) AS [SUM_NUM_WEB_VISITS_MONTH]
-     ,AVG([NUM_WEB_VISITS_MONTH]) AS [AVG_NUM_WEB_VISITS_MONTH]
+     ,ROUND(AVG([NUM_WEB_VISITS_MONTH]),0) AS [AVG_NUM_WEB_VISITS_MONTH]
      ,SUM([MNT_WINES]) AS [TOTAL_WINES]
      ,SUM([MNT_FRUITS]) AS [TOTAL_FRUITS]
      ,SUM([MNT_MEAT_PRODUCTS]) AS [TOTAL_MNT_MEAT_PRODUCTS]
@@ -2810,25 +2810,25 @@ SELECT
        COUNT([ID]) AS [NUMBER_CLIENTS]
       ,[EDUCATION]
       ,[MARITAL_STATUS]
-      ,AVG([YEARS_OLD]) AS [AVG_YEARS_OLD]
+      ,ROUND(AVG([YEARS_OLD]),0) AS [AVG_YEARS_OLD]
       ,ROUND(AVG([MONTHLY_INCOME]),0) AS [AVG_MONTHLY_INCOME]
       ,ROUND(AVG([INCOME]),0) AS [AVG_INCOME]
       ,SUM([KIDHOME]) AS [SUM_KIDHOME]
-      ,AVG([KIDHOME]) AS [AVG_KIDHOME]
+      ,ROUND(AVG([KIDHOME]),2) AS [AVG_KIDHOME]
       ,SUM([TEENHOME]) AS [SUM_TEENHOME]
-      ,AVG([TEENHOME]) AS [AVG_TEENHOME]
+      ,ROUND(AVG([TEENHOME]),2) AS [AVG_TEENHOME]
       ,AVG([REGISTERED_CUSTOMER_TIME]) AS [AVG_REG_CUSTOMER_TIME]
-      ,AVG([RECENCY]) AS [AVG_RECENCY]
+      ,ROUND(AVG([RECENCY]),0) AS [AVG_RECENCY]
       ,SUM([NUM_DEALS_PURCHASES]) AS [SUM_NUM_DEALS_PURCHASES]
-      ,AVG([NUM_DEALS_PURCHASES]) AS [AVG_NUM_DEALS_PURCHASES]
+      ,ROUND(AVG([NUM_DEALS_PURCHASES]),0) AS [AVG_NUM_DEALS_PURCHASES]
       ,SUM([NUM_WEB_PURCHASES]) AS [SUM_WEB_PURCHASES]
-      ,AVG([NUM_WEB_PURCHASES]) AS [AVG_WEB_PURCHASES]
+      ,ROUND(AVG([NUM_WEB_PURCHASES]),0) AS [AVG_WEB_PURCHASES]
       ,SUM([NUM_CATALOG_PURCHASES]) AS [SUM_CATALOG_PURCHASES]
-      ,AVG([NUM_CATALOG_PURCHASES]) AS [AVG_CATALOG_PURCHASES]
+      ,ROUND(AVG([NUM_CATALOG_PURCHASES]),0) AS [AVG_CATALOG_PURCHASES]
       ,SUM([NUM_STORE_PURCHASES]) AS [SUM_STORE_PURCHASES]
-      ,AVG([NUM_STORE_PURCHASES]) AS [AVG_STORE_PURCHASES]
+      ,ROUND(AVG([NUM_STORE_PURCHASES]),0) AS [AVG_STORE_PURCHASES]
       ,SUM([NUM_WEB_VISITS_MONTH]) AS [SUM_NUM_WEB_VISITS_MONTH]
-      ,AVG([NUM_WEB_VISITS_MONTH]) AS [AVG_NUM_WEB_VISITS_MONTH]
+      ,ROUND(AVG([NUM_WEB_VISITS_MONTH]),0) AS [AVG_NUM_WEB_VISITS_MONTH]
       ,SUM([MNT_WINES]) AS [TOTAL_WINES]
       ,SUM([MNT_FRUITS]) AS [TOTAL_FRUITS]
       ,SUM([MNT_MEAT_PRODUCTS]) AS [TOTAL_MNT_MEAT_PRODUCTS]
