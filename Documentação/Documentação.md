@@ -10,7 +10,7 @@
 
 ---
 
-### Ferramentas utilizadas no método de análise I :
+### Ferramentas utilizadas no método de análise:
 
 - Input dos dados: Por meio de job do Python.
 
@@ -22,19 +22,7 @@
 
 ---
 
-### Ferramentas utilizadas no método de análise II :
-
-- Input dos dados: Por meio de job do Python.
-
-- Armazenamento dos dados: Microsoft SQL Server 2019.
-
-- Linguagem utilizada para análise dos dados: Python, com bibliotecas como Pandas e api do Power BI.
-
-- Apresentação dos dados: Jupyter Notebook, pela api do Power BI e Power Point.
-
----
-
-### Observação sobre os métodos de análise I e II :
+### Observação sobre o método de análise:
 
 Os métodos de análise I e II, utilizam o Microsoft SQL Server como banco de dados pelos motivos abaixo: 
 
@@ -84,7 +72,7 @@ Lembrando que, cada análise tem sua peculiaridade, criticidade e tempo de entre
 
 ---
 
-### Passo a passo do método de análise I :
+### Passo a passo do método de análise:
 
 ---
 
