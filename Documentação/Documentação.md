@@ -2335,7 +2335,7 @@ ORDER BY
 - Neste caso utilizei o Miro como forma de agrupamento das informações para apresentação.
 - Esta é uma apresentação parcial, pois, ainda teremos uma apresentação no Power Point que será fornecida pelo Power BI.
 
-![image](https://user-images.githubusercontent.com/57469401/125351228-3745ea00-e336-11eb-96d9-beef2abece09.png)
+![image](https://user-images.githubusercontent.com/57469401/125725132-6894605c-a1d3-46b6-9c20-72c38e239da6.png)
 
 ---
 11º - Segunda etapa das análises mais profundas e assertivas dos perfis dos clientes, porém, iremos inserir as demais variáveis para verificação.
@@ -3737,4 +3737,9 @@ ORDER BY
 
 - Resposta: Realizando essa análise ficará mais claro, objetivo e assertivo sobre o perfil de cliente localizado na análise de dados, pois, pela lógica, clientes que aceitaram as ofertas tendem a ter o perfil encontrado na análise.
 
+- Resultado: 
+
+---
+- Comparaçõe da análise final realizada pelos resultados das campanhas anteriores.
+![image](https://user-images.githubusercontent.com/57469401/125724899-8b48eef4-a59c-474b-86d2-567252db116f.png)
 ---
