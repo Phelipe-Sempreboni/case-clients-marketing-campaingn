@@ -18,7 +18,7 @@
 
 - Linguagem utilizada para análise dos dados: Microsoft SQL Server 2019 - (DQL, DML, DDL, DTL), principalmente T-SQL.
 
-- Apresentação dos dados: Power BI Desktop, Power BI Web e Power Point.
+- Apresentação dos dados: Power BI Desktop, Power Point e auxilio com o Miro.
 
 ---
 
