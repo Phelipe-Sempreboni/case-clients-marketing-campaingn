@@ -1,9 +1,11 @@
------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------
 
 -- Criação do database.
 
 CREATE DATABASE MARKETING;
 GO
+
+--------------------------------------------------------------------------------------------------------------------------------------
 
 -- Caso queira excluir o database criado.
 
@@ -13,8 +15,7 @@ GO
 DROP DATABASE MARKETING;
 GO
 
------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+--------------------------------------------------------------------------------------------------------------------------------------
 
 -- Criação do schema.
 
@@ -32,7 +33,7 @@ GO
 DROP SCHEMA MARKETING_ANALISE_CAMPANHA;
 GO
 
------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------
 
 -- Criação da tabela.
 
@@ -41,34 +42,34 @@ GO
 
 CREATE TABLE [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA] (
 	 ID INT -- Tipo do dado da coluna validado.
-	,YEAR_BIRTH INT -- Tipo do dado da coluna validado.
+	,YEAR_BIRTH FLOAT -- Tipo do dado da coluna validado.
 	,EDUCATION VARCHAR (20) -- Tipo do dado da coluna validado.
 	,MARITAL_STATUS VARCHAR (20) -- Tipo do dado da coluna validado.
 	,INCOME FLOAT -- Tipo do dado da coluna validado.
-	,KIDHOME INT -- Tipo do dado da coluna validado.
-	,TEENHOME INT -- Tipo do dado da coluna validado.
+	,KIDHOME FLOAT -- Tipo do dado da coluna validado.
+	,TEENHOME FLOAT -- Tipo do dado da coluna validado.
 	,DT_CUSTOMER DATE -- Tipo do dado da coluna validado.
-	,RECENCY INT -- Tipo do dado da coluna validado.
-	,MNT_WINES INT -- Tipo do dado da coluna validado.
-	,MNT_FRUITS INT -- Tipo do dado da coluna validado.
-	,MNT_MEAT_PRODUCTS INT -- Tipo do dado da coluna validado.
-	,MNT_FISH_PRODUCTS INT -- Tipo do dado da coluna validado.
-	,MNT_SWEET_PRODUCTS INT -- Tipo do dado da coluna validado.
-	,MNT_GOLD_PRODS INT -- Tipo do dado da coluna validado.
-	,NUM_DEALS_PURCHASES INT -- Tipo do dado da coluna validado.
-	,NUM_WEB_PURCHASES INT -- Tipo do dado da coluna validado.
-	,NUM_CATALOG_PURCHASES INT -- Tipo do dado da coluna validado.
-	,NUM_STORE_PURCHASES INT -- Tipo do dado da coluna validado.
-	,NUM_WEB_VISITS_MONTH INT -- Tipo do dado da coluna validado.
-	,ACCEPTED_CMP3 INT -- Tipo do dado da coluna validado.
-	,ACCEPTED_CMP4 INT -- Tipo do dado da coluna validado.
-	,ACCEPTED_CMP5 INT -- Tipo do dado da coluna validado.
-	,ACCEPTED_CMP1 INT -- Tipo do dado da coluna validado.
-	,ACCEPTED_CMP2 INT -- Tipo do dado da coluna validado.
-	,COMPLAIN INT -- Tipo do dado da coluna validado.
-	,Z_COST_CONTACT INT -- Tipo do dado da coluna validado.
-	,Z_REVENUE INT -- Tipo do dado da coluna validado.
-	,RESPONSE INT -- Tipo do dado da coluna validado.
+	,RECENCY FLOAT -- Tipo do dado da coluna validado.
+	,MNT_WINES FLOAT -- Tipo do dado da coluna validado.
+	,MNT_FRUITS FLOAT -- Tipo do dado da coluna validado.
+	,MNT_MEAT_PRODUCTS FLOAT -- Tipo do dado da coluna validado.
+	,MNT_FISH_PRODUCTS FLOAT -- Tipo do dado da coluna validado.
+	,MNT_SWEET_PRODUCTS FLOAT -- Tipo do dado da coluna validado.
+	,MNT_GOLD_PRODS FLOAT -- Tipo do dado da coluna validado.
+	,NUM_DEALS_PURCHASES FLOAT -- Tipo do dado da coluna validado.
+	,NUM_WEB_PURCHASES FLOAT -- Tipo do dado da coluna validado.
+	,NUM_CATALOG_PURCHASES FLOAT -- Tipo do dado da coluna validado.
+	,NUM_STORE_PURCHASES FLOAT -- Tipo do dado da coluna validado.
+	,NUM_WEB_VISITS_MONTH FLOAT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP3 FLOAT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP4 FLOAT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP5 FLOAT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP1 FLOAT -- Tipo do dado da coluna validado.
+	,ACCEPTED_CMP2 FLOAT -- Tipo do dado da coluna validado.
+	,COMPLAIN FLOAT -- Tipo do dado da coluna validado.
+	,Z_COST_CONTACT FLOAT -- Tipo do dado da coluna validado.
+	,Z_REVENUE FLOAT -- Tipo do dado da coluna validado.
+	,RESPONSE FLOAT -- Tipo do dado da coluna validado.
 	,CONSTRAINT PK_ID PRIMARY KEY CLUSTERED (ID) -- Chave primária criada para não duplicar dados e facilitar em buscas com índice clusterizado.
 );
 GO
@@ -97,7 +98,7 @@ GO
 TRUNCA TABLE [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA];
 GO
 
------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------
 
 -- Criação da view.
 
@@ -204,32 +205,28 @@ GO
 DROP VIEW [MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW];
 GO  
 
------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------
 
--- Quantidade de clientes.
-SELECT COUNT([ID]) AS [NUMBER_CUSTOMERS] FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW];
-GO
+SELECT COUNT([ID]) AS [NUMBER_CLIENTS] FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW];
 
 -- 2.240 clientes.
 
------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------
 
---Idade média dos clientes.
-SELECT AVG([YEARS_OLD]) AS [AVERAGE_AGE_CUSTOMERS] FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW];
-GO
+-- Idade média dos clientes.
+SELECT ROUND(AVG([YEARS_OLD]),0) AS [AVG_AGE_CLIENTS] FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW];
 
 -- 52 anos.
-
------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------
 
 -- Quantidade de clientes pelo nível de educação.
-DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
+DECLARE @NUMBER_CLIENTS FLOAT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
 
-WITH [NUMBER_CUSTOMERS_EDUCATION]
+WITH [TBL_DATA]
 AS
 (
 SELECT 
-      COUNT([ID]) AS [NUMBER_CUSTOMERS]
+      COUNT([ID]) AS [NUMBER_CLIENTS]
      ,[EDUCATION]
 
 FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
@@ -238,32 +235,32 @@ GROUP BY
 	[EDUCATION]
 )
 SELECT 
-      [NUMBER_CUSTOMERS]
+      [NUMBER_CLIENTS]
      ,[EDUCATION]
-    ,([NUMBER_CUSTOMERS] * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,ROUND(([NUMBER_CLIENTS] * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTS_EDUCATION]
 
-FROM [NUMBER_CUSTOMERS_EDUCATION]
+FROM [TBL_DATA]
 
 GROUP BY
-       [NUMBER_CUSTOMERS]
+       [NUMBER_CLIENTS]
       ,[EDUCATION]
 
 -- 1.127 clientes -> Graduation -> 50,3125% -> 50%
--- 486 clientes -> PhD -> 21,696428571428573% -> 21%
--- 370 clientes -> Master -> 16,517857142857142% -> 16%
+-- 486 clientes -> PhD -> 21,696428571428573% -> 22%
+-- 370 clientes -> Master -> 16,517857142857142% -> 17%
 -- 203 clientes -> 2n Cycle -> 9.0625% -> 9%
 -- 54 clientes -> Basic -> 2,4107142857142856% -> 2%
 
------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------
 
 -- Quantidade de clientes pelo estado civil.
-DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
+DECLARE @NUMBER_CLIENTS FLOAT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
 
-WITH [NUMBER_CUSTOMERS_MARITAL_STATUS]
+WITH [TBL_DATA]
 AS
 (
 SELECT 
-      COUNT([ID]) AS [NUMBER_CUSTOMERS]
+      COUNT([ID]) AS [NUMBER_CLIENTS]
      ,[MARITAL_STATUS]
 
 FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
@@ -272,18 +269,19 @@ GROUP BY
 	[MARITAL_STATUS]
 )
 SELECT 
-      [NUMBER_CUSTOMERS]
+      [NUMBER_CLIENTS]
      ,[MARITAL_STATUS]
-    ,([NUMBER_CUSTOMERS] * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,ROUND(([NUMBER_CLIENTS] * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTS_MARITAL_STATUS]
 
-FROM [NUMBER_CUSTOMERS_MARITAL_STATUS]
+FROM [TBL_DATA]
 
 GROUP BY
-       [NUMBER_CUSTOMERS]
+       [NUMBER_CLIENTS]
       ,[MARITAL_STATUS]
 
 ORDER BY 
-       ([NUMBER_CUSTOMERS] * 100)/(@NUMBER_CLIENTS)
+        [NUMBER_CLIENTS] DESC
+       ,([NUMBER_CLIENTS] * 100)/(@NUMBER_CLIENTS) DESC
 
 -- 2 clientes -> YOLO -> 0,0892857142857143% -> 1%
 -- 3 clientes -> Alone -> 0,1339285714285714% -> 1%
@@ -291,19 +289,19 @@ ORDER BY
 -- 77 clientes -> Window -> 3.4375% -> 3%
 -- 232 clientes -> Divorced -> 10,357142857142858% -> 10%
 -- 480 clientes -> Single -> 21,428571428571427% -> 21%
--- 580 clientes -> Together -> 25,892857142857142% -> 25%
--- 864 clientes -> Married -> 38,57142857142857% -> 38%
+-- 580 clientes -> Together -> 25,892857142857142% -> 26%
+-- 864 clientes -> Married -> 38,57142857142857% -> 39%
 
------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------
 
 -- Quantidade de clientes pelo nível de educação e estado civil.
-DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
+DECLARE @NUMBER_CLIENTS FLOAT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
 
-WITH [NUMBER_CUSTOMERS_EDUCATION_MARITAL_STATUS]
+WITH [TBL_DATA]
 AS
 (
 SELECT 
-      COUNT([ID]) AS [NUMBER_CUSTOMERS]
+      COUNT([ID]) AS [NUMBER_CLIENTS]
      ,[EDUCATION]
      ,[MARITAL_STATUS]
 
@@ -314,23 +312,21 @@ GROUP BY
       ,[MARITAL_STATUS]
 )
 SELECT 
-      [NUMBER_CUSTOMERS]
+      [NUMBER_CLIENTS]
      ,[EDUCATION]
      ,[MARITAL_STATUS]
-    ,([NUMBER_CUSTOMERS] * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,ROUND(([NUMBER_CLIENTS] * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_EDUCATION_MARITAL_STATUS]
 
-FROM [NUMBER_CUSTOMERS_EDUCATION_MARITAL_STATUS]
+FROM [TBL_DATA]
 
 GROUP BY
-       [NUMBER_CUSTOMERS]
+       [NUMBER_CLIENTS]
       ,[EDUCATION]
       ,[MARITAL_STATUS]
 
 ORDER BY 
-        [NUMBER_CUSTOMERS]  
-       ,([NUMBER_CUSTOMERS] * 100)/(@NUMBER_CLIENTS)
-       ,[EDUCATION]
-       ,[MARITAL_STATUS]
+         [NUMBER_CLIENTS] DESC
+       ,([NUMBER_CLIENTS] * 100)/(@NUMBER_CLIENTS) DESC
 
 -- 1 cliente -> Basic -> Divorced -> 0,0446428571428571% -> 1%
 -- 1 cliente -> Basic -> Widow -> 0,0446428571428571% -> 1%
@@ -364,49 +360,55 @@ ORDER BY
 -- 286 cliente -> Graduation -> Together -> 12,767857142857142% -> 12%
 -- 433 cliente -> Graduation -> Married -> 19,330357142857142% -> 19%
 
------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------
 
 -- Renda média mensal familiar dos clientes.
 SELECT ROUND(AVG([MONTHLY_INCOME]),0) AS [AVERAGE_MONTHLY_INCOME] FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW];
-GO
 
 -- 4.307.
+--------------------------------------------------------------------------------------------------------------------------------------
 
------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
--- Renda média anual familiar dos clientes.
+--Renda média anual familiar dos clientes.
 SELECT ROUND(AVG([INCOME]),0) AS [AVERAGE_INCOME] FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW];
-GO
 
 -- 51.687.
+--------------------------------------------------------------------------------------------------------------------------------------
 
------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
--- Quantitade total de crianças e adoslecentes.
+-- Quantitade total de crianças, adoslecentes e a soma com total geral das duas categorias.
+WITH [TBL_DATA] AS
+(
 SELECT
       SUM([KIDHOME]) AS [NUMBER_KIDHOME]
      ,SUM([TEENHOME]) AS [NUMBER_TEENHOME]
 
-FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW];
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+)
+SELECT
+      [NUMBER_KIDHOME]
+     ,[NUMBER_TEENHOME]
+     ,[NUMBER_KIDHOME] + [NUMBER_TEENHOME] AS [TOTAL]
+
+FROM [TBL_DATA]
 
 -- 995 crianças.
 -- 1.134 adoslecentes.
+-- 2.129 na soma total de crianças e adolescentes.
 
------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------
 
 -- Quantidade de clientes que não possuem crianças e adoslecentes.
 -- Quantidade de clientes que possuem crianças e adoslecentes.
 -- Quantidade de clientes que possuem crianças e não adoslecentes.
 -- Quantidade de clientes que não possuem crianças e possuem adoslecentes.
-DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
+DECLARE @NUMBER_CLIENTS FLOAT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
 
 SELECT
-     COUNT([ID]) AS [NUMBER_CUSTOMERS]
-    ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
-    ,
-    CASE
-    WHEN COUNT([ID]) NOT IN ('') THEN 'NOT KID AND TEEN'
-    END AS [NOTE]
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+     ,ROUND((COUNT([ID]) * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTES_KID_TEEN]
+     ,
+     CASE
+     WHEN COUNT([ID]) NOT IN ('') THEN 'NOT KID AND TEEN'
+     END AS [NOTE]
 
 FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
 
@@ -415,12 +417,12 @@ WHERE [KIDHOME] IN (0) AND [TEENHOME] IN (0)
 UNION ALL
 
 SELECT
-     COUNT([ID]) AS [NUMBER_CUSTOMERS]
-    ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
-    ,
-    CASE
-    WHEN COUNT([ID]) NOT IN ('') THEN 'YES KID AND TEEN'
-    END AS [NOTE]
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+     ,ROUND((COUNT([ID]) * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTES_KID_TEEN]
+     ,
+     CASE
+     WHEN COUNT([ID]) NOT IN ('') THEN 'YES KID AND TEEN'
+     END AS [NOTE]
 
 FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
 
@@ -429,8 +431,8 @@ WHERE [KIDHOME] > 0 AND [TEENHOME] > 0
 UNION ALL
 
 SELECT
-      COUNT([ID]) AS [NUMBER_CUSTOMERS]
-     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+     ,ROUND((COUNT([ID]) * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTES_KID_TEEN]
      ,
      CASE
      WHEN COUNT([ID]) NOT IN ('') THEN 'YES KID AND NOT TEEN'
@@ -443,8 +445,8 @@ WHERE [KIDHOME] > 0 AND [TEENHOME] = 0
 UNION ALL
 
 SELECT
-      COUNT([ID]) AS [NUMBER_CUSTOMERS]
-     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+     ,ROUND((COUNT([ID]) * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTES_KID_TEEN]
      ,
      CASE
      WHEN COUNT([ID]) NOT IN ('') THEN 'NOT KID AND YES TEEN'
@@ -452,22 +454,26 @@ SELECT
 
 FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
 
-WHERE [KIDHOME] = 0 AND [TEENHOME] > 0;
+WHERE [KIDHOME] = 0 AND [TEENHOME] > 0
+
+ORDER BY 
+        COUNT([ID]) DESC
+       ,ROUND((COUNT([ID]) * 100)/(@NUMBER_CLIENTS),2) DESC
 
 -- Não possuem crianças e adoslecentes -> 638 -> 28,482142857142858% -> 28%
 -- Possuem crianças e adoslecentes -> 427 -> 19,0625% -> 19%
 -- Possuem crianças e não possuem adoslecentes -> 520 -> 23,214285714285715% -> 23%
 -- Não possuem crianças e possuem adoslecentes -> 655 -> 29,241071428571427% -> 29%
 
------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------
 
 -- Quantidade de clientes pelo tempo de registro na empresa (em anos).
-DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
+DECLARE @NUMBER_CLIENTS FLOAT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
 
 SELECT 
-      COUNT([ID]) AS [NUMBER_CUSTOMERS]
+      COUNT([ID]) AS [NUMBER_CLIENTS]
      ,[REGISTERED_CUSTOMER_TIME]
-     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,ROUND((COUNT([ID]) * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTS_REGISTERED]
 
 FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
 
@@ -475,25 +481,79 @@ GROUP BY
 	[REGISTERED_CUSTOMER_TIME]
 
 ORDER BY
-	[REGISTERED_CUSTOMER_TIME]
+	COUNT([ID]) DESC
+	,ROUND((COUNT([ID]) * 100)/(@NUMBER_CLIENTS),2) DESC
 
 -- 557 clientes -> 7 anos -> 24,866071428571427% -> 24%
 -- 1.189 clientes -> 8 anos -> 53,080357142857146 -> 53%
 -- 494 clientes -> 9 anos -> 22,053571428571427 -> 22%
 
------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------
 
 -- Média do tempo (em dias) que um cliente passa sem comprar desde a última compra.
-SELECT AVG([RECENCY]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW];
+SELECT ROUND(AVG([RECENCY]),0) AS [AVG_RECENCY] FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW];
 
 -- 49 dias.
 
------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------
+
+-- Total de produtos vendidos agrupados.
+WITH [TBL_DATA]
+AS
+(
+SELECT 
+      SUM([MNT_WINES]) AS [NUMBERS_PRODUCTS]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+UNION ALL
+
+SELECT 
+      SUM([MNT_FRUITS]) AS [NUMBERS_PRODUCTS]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+UNION ALL
+
+SELECT 
+      SUM([MNT_MEAT_PRODUCTS]) AS [NUMBERS_PRODUCTS]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+UNION ALL
+
+SELECT 
+      SUM([MNT_FISH_PRODUCTS]) AS [NUMBERS_PRODUCTS]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+UNION ALL
+
+SELECT 
+      SUM([MNT_SWEET_PRODUCTS]) AS [NUMBERS_PRODUCTS]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+UNION ALL
+
+SELECT 
+      SUM([MNT_GOLD_PRODS]) AS [NUMBERS_PRODUCTS]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+)
+SELECT
+      SUM([NUMBERS_PRODUCTS]) AS [TOTAL_SALES_PRODUCTS]
+
+FROM [TBL_DATA]
+
+-- 1.356.988 de produtos vendidos.
+
+--------------------------------------------------------------------------------------------------------------------------------------
 
 -- Produtos mais vendidos e menos vendidos.
-DECLARE @SUM_GENERAL_PRODUCTS INT = 1356988
+DECLARE @SUM_GENERAL_PRODUCTS FLOAT = 1356988;
 
-WITH [TBL_SUM_PRODUCTS]
+WITH [TBL_DATA]
 AS
 (
 SELECT 
@@ -561,11 +621,15 @@ SELECT
 FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
 )
 SELECT
-	  [NUMBERS_PRODUCTS]
-	 ,[TYPE_PRODUCT]
-	 ,([NUMBERS_PRODUCTS] * 100)/(@SUM_GENERAL_PRODUCTS) AS [PERCENT]
+      [NUMBERS_PRODUCTS]
+      ,[TYPE_PRODUCT]
+      ,ROUND(([NUMBERS_PRODUCTS] * 100)/(@SUM_GENERAL_PRODUCTS),2) AS [PERCENT_NUMBERS_PRODS_TYPE_PRODS]
 
-FROM [TBL_SUM_PRODUCTS] ORDER BY [NUMBERS_PRODUCTS];
+FROM [TBL_DATA]
+
+ORDER BY
+        [NUMBERS_PRODUCTS] DESC
+       ,([NUMBERS_PRODUCTS] * 100)/(@SUM_GENERAL_PRODUCTS) DESC
 
 -- MNT_FRUITS -> 58.917 -> 4,341748047882517 -> 4%
 -- MNT_SWEET_PRODUCTS -> 60.621 -> 4,467320271070931 -> 4%
@@ -574,19 +638,19 @@ FROM [TBL_SUM_PRODUCTS] ORDER BY [NUMBERS_PRODUCTS];
 -- MNT_MEAT_PRODUCTS -> 373.968 -> 27,558681432702425 -> 27%
 -- MNT_WINES -> 680.816 -> 50,171114261879985 -> 50%
 
------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------
 
 -- Quantidade de clientes que compraram com desconto.
 -- Quantidade de clientes que não usaram ou tiveram desconto.
-DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
+DECLARE @NUMBER_CLIENTS FLOAT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
 
 SELECT 
       COUNT([ID]) AS [NUMBER_CLIENTS]
-     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,ROUND((COUNT([ID]) * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTES_DISCOUNT]
      ,
      CASE
      WHEN COUNT([ID]) NOT IN ('') THEN 'bought at a discount'
-     END AS [DISCOUNT]
+     END AS [NOTE]
 
 FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
 
@@ -596,47 +660,51 @@ UNION ALL
 
 SELECT 
       COUNT([ID]) AS [NUMBER_CLIENTS]
-     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,ROUND((COUNT([ID]) * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTES_DISCOUNT]
      ,
      CASE
      WHEN COUNT([ID]) NOT IN ('') THEN 'dont buy with a discount'
-     END AS [DISCOUNT]
+     END AS [NOTE]
 
 FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
 
-WHERE [NUM_DEALS_PURCHASES] = 0;
+WHERE [NUM_DEALS_PURCHASES] = 0
+
+ORDER BY
+        [NUMBER_CLIENTS] DESC
+       ,ROUND((COUNT([ID]) * 100)/(@NUMBER_CLIENTS),2) DESC
 
 -- 2194 clientes -> 97,94642857142857% -> 97% -> Clientes que compraram com desconto.
 -- 46 clientes -> 2,0535714285714284 -> 2% -> Clientes que não usaram ou tiveram desconto
 
------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------
 
 -- Média de compras com desconto.
-SELECT AVG([NUM_DEALS_PURCHASES]) AS [AVERAGE_NUM_DEALS_PURCHASES] FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW] WHERE [NUM_DEALS_PURCHASES] <> 0;
+SELECT ROUND(AVG([NUM_DEALS_PURCHASES]),0) AS [AVG_NUM_DEALS_PURCHASES] FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW] WHERE [NUM_DEALS_PURCHASES] > 0;
 
 -- 2.
--- Cada cliente, dos que compraram com desconto, teria uma média de 2 compras por desconto recebido.
+-- Cada cliente, dos que compraram com desconto, teria uma média de 2 compras por desconto recebido/utilizado. 
 
------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------
 
 -- Quantidade de clientes pelo número de vezes que ele comprou com desconto.
-DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW] WHERE [NUM_DEALS_PURCHASES] > 0);
+DECLARE @NUMBER_CLIENTS FLOAT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW] WHERE [NUM_DEALS_PURCHASES] > 0);
 
 SELECT 
       COUNT([ID]) AS [NUMBER_CLIENTS]
      ,[NUM_DEALS_PURCHASES]
-     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,ROUND((COUNT([ID]) * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTS_NUM_DEALS_PURCHASES]
 
 FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
 
 WHERE [NUM_DEALS_PURCHASES] > 0
 
 GROUP BY
-	[NUM_DEALS_PURCHASES]
+       [NUM_DEALS_PURCHASES]
 
 ORDER BY
-	COUNT([ID])
-       ,[NUM_DEALS_PURCHASES] ASC
+       COUNT([ID]) DESC
+      ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) DESC
 
 --  3 clientes -> 13 compras com desconto - Equivalente a (dos 2194 clientes que já compraram com desconto): 0,1367365542388332% -> 1%
 --  4 clientes -> 12 compras com desconto - Equivalente a (dos 2194 clientes que já compraram com desconto): 0,1823154056517776% -> 1%
@@ -653,26 +721,26 @@ ORDER BY
 --  497 clientes -> 2 compras com desconto - Equivalente a (dos 2194 clientes que já compraram com desconto): 22,652689152233364% -> 22%
 --  970 clientes -> 1 compra com desconto - Equivalente a (dos 2194 clientes que já compraram com desconto): 44,21148587055606% -> 44%
 
------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------
 
 -- Quantidade total de descontos utilizados pelos clientes.
 SELECT SUM([NUM_DEALS_PURCHASES]) AS [NUM_GENERAL_DEALS_PURCHASES] FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW];
 
 -- 5.208 descontos.
 
------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------
 
 -- Quantidade de clientes que compraram pelo site.
 -- Quantidade de clientes que não compraram pelo site.
-DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
+DECLARE @NUMBER_CLIENTS FLOAT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
 
 SELECT 
       COUNT([ID]) AS [NUMBER_CLIENTS]
-     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
-     ,
-     CASE
-     WHEN COUNT([ID]) NOT IN ('') THEN 'bought on the site'
-     END AS [DISCOUNT]
+      ,ROUND((COUNT([ID]) * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTS_NUM_WEB_PURCHASES]
+      ,
+      CASE
+      WHEN COUNT([ID]) NOT IN ('') THEN 'bought on the site'
+      END AS [NOTE]
 
 FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
 
@@ -682,28 +750,32 @@ UNION ALL
 
 SELECT 
       COUNT([ID]) AS [NUMBER_CLIENTS]
-     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,ROUND((COUNT([ID]) * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTS_NUM_WEB_PURCHASES]
      ,
      CASE
      WHEN COUNT([ID]) NOT IN ('') THEN 'dont buy on the site'
-     END AS [DISCOUNT]
+     END AS [NOTE]
 
 FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
 
-WHERE [NUM_WEB_PURCHASES] = 0;
+WHERE [NUM_WEB_PURCHASES] = 0
+
+ORDER BY
+        [NUMBER_CLIENTS] DESC
+       ,ROUND((COUNT([ID]) * 100)/(@NUMBER_CLIENTS),2) DESC
 
 -- 2191 clientes -> 97,8125% -> 97% -> Clientes que compraram pelo site.
 -- 49 clientes -> 2,0081967213114753% -> 2% -> Clientes que não compraram pelo site.
 
------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------
 
 -- Quantidade de clientes pelo número de vezes que ele comprou pelo site.
-DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW] WHERE [NUM_WEB_PURCHASES] > 0);
+DECLARE @NUMBER_CLIENTS FLOAT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW] WHERE [NUM_WEB_PURCHASES] > 0);
 
 SELECT 
       COUNT([ID]) AS [NUMBER_CLIENTS]
      ,[NUM_WEB_PURCHASES]
-     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,ROUND((COUNT([ID]) * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTS_NUM_WEB_PURCHASES]
 
 FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
 
@@ -713,8 +785,8 @@ GROUP BY
 	[NUM_WEB_PURCHASES]
 
 ORDER BY
-	COUNT([ID])
-       ,[NUM_WEB_PURCHASES] ASC
+	COUNT([ID]) DESC
+       ,ROUND((COUNT([ID]) * 100)/(@NUMBER_CLIENTS),2) DESC
 
 --  1 clientes -> 23 compras pelo site - Equivalente a (dos 2191 clientes que já compraram pelo site): 0,0456412596987677% -> 1%
 --  1 clientes -> 25 compras pelo site - Equivalente a (dos 2191 clientes que já compraram pelo site): 0,0456412596987677% -> 1%
@@ -731,26 +803,26 @@ ORDER BY
 --  354 clientes -> 23 compras pelo site - Equivalente a (dos 2191 clientes que já compraram pelo site): 16,15700593336376% -> 16%
 --  373 clientes -> 23 compras pelo site - Equivalente a (dos 2191 clientes que já compraram pelo site): 17,024189867640345% -> 17%
 
------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------
 
 -- Quantidade total de compras pelo site.
-SELECT SUM([NUM_WEB_PURCHASES]) AS [NUM_GENERAL_WEB_PURCHASES] FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW];
+SELECT SUM([NUM_WEB_PURCHASES]) AS [SUM_NUM_WEB_PURCHASES] FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW];
 
 -- 9.150 de compras pelo site.
 
------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------
 
 -- Quantidade de clientes que compraram pelo catálogo.
 -- Quantidade de clientes que não compraram pelo catálogo.
-DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
+DECLARE @NUMBER_CLIENTS FLOAT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
 
 SELECT 
       COUNT([ID]) AS [NUMBER_CLIENTS]
-     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,ROUND((COUNT([ID]) * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTS_NUM_CATALOG_PURCHASES]
      ,
      CASE
      WHEN COUNT([ID]) NOT IN ('') THEN 'bought from the catalog.'
-     END AS [DISCOUNT]
+     END AS [NOTE]
 
 FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
 
@@ -760,28 +832,32 @@ UNION ALL
 
 SELECT 
       COUNT([ID]) AS [NUMBER_CLIENTS]
-     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,ROUND((COUNT([ID]) * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTS_NUM_CATALOG_PURCHASES]
      ,
      CASE
      WHEN COUNT([ID]) NOT IN ('') THEN 'they dont buy from the catalog.'
-     END AS [DISCOUNT]
+     END AS [NOTE]
 
 FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
 
-WHERE [NUM_CATALOG_PURCHASES] = 0;
+WHERE [NUM_CATALOG_PURCHASES] = 0
+
+ORDER BY
+        COUNT([ID]) DESC
+       ,ROUND((COUNT([ID]) * 100)/(@NUMBER_CLIENTS),2) DESC
 
 -- 1654 clientes -> 73,83928571428571% -> 73% -> Clientes que compraram pelo catálogo.
 -- 586 clientes -> 26,160714285714285% -> 26% -> Clientes que não compraram pelo catálogo.
 
------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------
 
 -- Quantidade de clientes pelo número de vezes que ele comprou pelo catálogo.
-DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW] WHERE [NUM_CATALOG_PURCHASES] > 0);
+DECLARE @NUMBER_CLIENTS FLOAT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW] WHERE [NUM_CATALOG_PURCHASES] > 0);
 
 SELECT 
       COUNT([ID]) AS [NUMBER_CLIENTS]
      ,[NUM_CATALOG_PURCHASES]
-     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,ROUND((COUNT([ID]) * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTS_NUM_CATALOGO_PURCHASES]
 
 FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
 
@@ -791,8 +867,8 @@ GROUP BY
 	[NUM_CATALOG_PURCHASES]
 
 ORDER BY
-	COUNT([ID])
-       ,[NUM_CATALOG_PURCHASES] ASC
+	COUNT([ID]) DESC
+       ,ROUND((COUNT([ID]) * 100)/(@NUMBER_CLIENTS),2) DESC
 
 --  1 clientes -> 22 compras pelo catálogo - Equivalente a (dos 1654 clientes que já compraram pelo catálogo): 0,060459492140266% -> 1%
 --  3 clientes -> 28 compras pelo catálogo - Equivalente a (dos 1654 clientes que já compraram pelo catálogo): 0,1813784764207981% -> 1%
@@ -808,26 +884,23 @@ ORDER BY
 --  276 clientes -> 2 compras pelo catálogo - Equivalente a (dos 1654 clientes que já compraram pelo catálogo): 16,68681983071342% -> 16%
 --  497 clientes -> 1 compras pelo catálogo - Equivalente a (dos 1654 clientes que já compraram pelo catálogo): 30,048367593712214% -> 30%
 
------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------
 
 -- Quantidade total de compras pelo catálogo.
-SELECT SUM([NUM_CATALOG_PURCHASES]) AS [NUM_GENERAL_CATALOG_PURCHASES] FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW];
+SELECT SUM([NUM_CATALOG_PURCHASES]) AS [SUM_NUM_CATALOG_PURCHASES] FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW];
 
 -- 5.963 compras pelo catálogo.
-
------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
--- Quantidade de clientes que compraram na loja.
--- Quantidade de clientes que não compraram na loja.
-DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
+Quantidade de clientes que compraram na loja.
+Quantidade de clientes que não compraram na loja.
+DECLARE @NUMBER_CLIENTS FLOAT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
 
 SELECT 
       COUNT([ID]) AS [NUMBER_CLIENTS]
-     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,ROUND((COUNT([ID]) * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTS_NUM_STORE_PURCHASES]
      ,
      CASE
      WHEN COUNT([ID]) NOT IN ('') THEN 'bought by the store.'
-     END AS [DISCOUNT]
+     END AS [NOTE]
 
 FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
 
@@ -837,28 +910,32 @@ UNION ALL
 
 SELECT 
       COUNT([ID]) AS [NUMBER_CLIENTS]
-     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,ROUND((COUNT([ID]) * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTS_NUM_STORE_PURCHASES]
      ,
      CASE
      WHEN COUNT([ID]) NOT IN ('') THEN 'not bought by the store.'
-     END AS [DISCOUNT]
+     END AS [NOTE]
 
 FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
 
-WHERE [NUM_STORE_PURCHASES] = 0;
+WHERE [NUM_STORE_PURCHASES] = 0
+
+ORDER BY
+        COUNT([ID]) DESC
+       ,ROUND((COUNT([ID]) * 100)/(@NUMBER_CLIENTS),2) DESC
 
 -- 2225 clientes -> 99,33035714285714% -> 99% -> Clientes que compraram na loja.
 -- 15 clientes -> 0,6696428571428571% -> 1% -> Clientes que não compraram na loja.
 
------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------
 
 -- Quantidade de clientes pelo número de vezes que ele comprou na loja.
-DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW] WHERE [NUM_STORE_PURCHASES] > 0);
+DECLARE @NUMBER_CLIENTS FLOAT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW] WHERE [NUM_STORE_PURCHASES] > 0);
 
 SELECT 
       COUNT([ID]) AS [NUMBER_CLIENTS]
      ,[NUM_STORE_PURCHASES]
-     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,ROUND((COUNT([ID]) * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTS_NUM_STORE_PURCHASES]
 
 FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
 
@@ -868,8 +945,8 @@ GROUP BY
 	[NUM_STORE_PURCHASES]
 
 ORDER BY
-	COUNT([ID])
-       ,[NUM_STORE_PURCHASES] ASC
+        COUNT([ID]) DESC
+       ,ROUND((COUNT([ID]) * 100)/(@NUMBER_CLIENTS),2) DESC
 
 --  7 clientes -> 1 compras pela loja - Equivalente a (dos 2225 clientes que já compraram pela loja): 0,3146067415730337% -> 1%
 --  81 clientes -> 11 compras pela loja - Equivalente a (dos 2225 clientes que já compraram pela loja): 3,640449438202247% -> 3%
@@ -885,26 +962,26 @@ ORDER BY
 --  323 clientes -> 4 compras pela loja - Equivalente a (dos 2225 clientes que já compraram pela loja): 14,51685393258427% -> 14%
 --  490 clientes -> 3 compras pela loja - Equivalente a (dos 2225 clientes que já compraram pela loja): 22,02247191011236% -> 22%
 
------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------
 
 -- Quantidade total de compras na loja.
 SELECT SUM([NUM_STORE_PURCHASES]) AS [NUM_GENERAL_STORE_PURCHASES] FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW];
 
 -- 12.970 de compras pela loja.
 
------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------
 
 -- Quantidade de clientes que visitaram o site no último mês.
 -- Quantidade de clientes que não visitaram o site no último mês.
-DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
+DECLARE @NUMBER_CLIENTS FLOAT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
 
 SELECT 
       COUNT([ID]) AS [NUMBER_CLIENTS]
-     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,ROUND((COUNT([ID]) * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTS_NUM_WEB_VISITS]
      ,
      CASE
      WHEN COUNT([ID]) NOT IN ('') THEN 'visited the site in the last month.'
-     END AS [DISCOUNT]
+     END AS [NOTE]
 
 FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
 
@@ -914,28 +991,32 @@ UNION ALL
 
 SELECT 
       COUNT([ID]) AS [NUMBER_CLIENTS]
-     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,ROUND((COUNT([ID]) * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTS_NUM_WEB_VISITS]
      ,
      CASE
      WHEN COUNT([ID]) NOT IN ('') THEN 'dont visited the site in the last month.'
-     END AS [DISCOUNT]
+     END AS [NOTE]
 
 FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
 
-WHERE [NUM_WEB_VISITS_MONTH] = 0;
+WHERE [NUM_WEB_VISITS_MONTH] = 0
+
+ORDER BY
+        COUNT([ID]) DESC
+	   ,ROUND((COUNT([ID]) * 100)/(@NUMBER_CLIENTS),2) DESC
 
 -- 2229 clientes -> 99,50892857142857% -> 99% -> Clientes que visitaram o site da loja no último mês.
--- 11 clientes -> 0,4910714285714285% -> 1% -> Clientes que não visitaram o site da loja no último mês.
+-- 11 clientes -> 0,4910714285714285% -> 1% -> Clientes que não visitaram o site da loja no último mês
 
------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------
 
 -- Quantidade de clientes pelo número de vezes visitaram o site no último mês.
-DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW] WHERE [NUM_WEB_VISITS_MONTH] > 0);
+DECLARE @NUMBER_CLIENTS FLOAT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW] WHERE [NUM_WEB_VISITS_MONTH] > 0);
 
 SELECT 
       COUNT([ID]) AS [NUMBER_CLIENTS]
      ,[NUM_WEB_VISITS_MONTH]
-     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,ROUND((COUNT([ID]) * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTS_NUM_WEB_VISITS_MONTH]
 
 FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
 
@@ -945,8 +1026,8 @@ GROUP BY
 	[NUM_WEB_VISITS_MONTH]
 
 ORDER BY
-	COUNT([ID])
-   ,[NUM_WEB_VISITS_MONTH] ASC
+	COUNT([ID]) DESC
+       ,ROUND((COUNT([ID]) * 100)/(@NUMBER_CLIENTS),2) DESC
 
 --  1 clientes -> 13 visitas no site no último mês - Equivalente a (dos 2229 clientes que visitaram o site no último mês): 0,0448631673396142% -> 1%
 --  1 clientes -> 17 visitas no site no último mês - Equivalente a (dos 2229 clientes que visitaram o site no último mês): 0,0448631673396142% -> 1%
@@ -964,14 +1045,14 @@ ORDER BY
 --  342 clientes -> 8 visitas no site no último mês - Equivalente a (dos 2229 clientes que visitaram o site no último mês): 15,343203230148049% -> 15%
 --  393 clientes -> 7 visitas no site no último mês - Equivalente a (dos 2229 clientes que visitaram o site no último mês): 17,63122476446837% -> 17%
 
------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------
 
 -- Quantidade total de visitas no site no último mês.
-SELECT SUM([NUM_WEB_VISITS_MONTH]) AS [NUM_GENERAL_WEB_VISITS_MONTH] FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW];
+SELECT SUM([NUM_WEB_VISITS_MONTH]) AS [SUM_NUM_WEB_VISITS_MONTH] FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW];
 
 -- 11.909 de visitas no site no último mês.
 
------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------
 
 -- Quantidade de clientes que aceitaram e não aceitaram a oferta na 1º campanha.
 -- Quantidade de clientes que aceitaram e não aceitaram a oferta na 2º campanha.
@@ -979,15 +1060,15 @@ SELECT SUM([NUM_WEB_VISITS_MONTH]) AS [NUM_GENERAL_WEB_VISITS_MONTH] FROM [MARKE
 -- Quantidade de clientes que aceitaram e não aceitaram a oferta na 4º campanha.
 -- Quantidade de clientes que aceitaram e não aceitaram a oferta na 5º campanha.
 -- Quantidade de clientes que aceitaram e não aceitaram a oferta na 6º campanha.
-DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
+DECLARE @NUMBER_CLIENTS FLOAT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
 
 SELECT 
       COUNT([ID]) AS [NUMBER_CLIENTS]
-    ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
-    ,
-    CASE
-    WHEN COUNT([ID]) NOT IN ('') THEN '1º - CLIENTS NOT ACCEPTED CMP1'
-    END AS [RESPONSE]
+     ,ROUND((COUNT([ID]) * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTS_CAMPAIGNS]
+     ,
+     CASE
+     WHEN COUNT([ID]) NOT IN ('') THEN '1º - CLIENTS NOT ACCEPTED CMP1'
+     END AS [NOTE]
 	  
 FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
 
@@ -997,11 +1078,11 @@ UNION ALL
 
 SELECT 
       COUNT([ID]) AS [NUMBER_CLIENTS]
-     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,ROUND((COUNT([ID]) * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTS_CAMPAIGNS]
      ,
      CASE
      WHEN COUNT([ID]) NOT IN ('') THEN '1º - CLIENTS ACCEPTED CMP1'
-     END AS [RESPONSE]
+     END AS [NOTE]
 	  
 FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
 
@@ -1011,11 +1092,11 @@ UNION ALL
 
 SELECT 
       COUNT([ID]) AS [NUMBER_CLIENTS]
-     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,ROUND((COUNT([ID]) * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTS_CAMPAIGNS]
      ,
      CASE
      WHEN COUNT([ID]) NOT IN ('') THEN '2º - CLIENTS NOT ACCEPTED CMP2'
-     END AS [RESPONSE]
+     END AS [NOTE]
 	  
 FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
 
@@ -1025,11 +1106,11 @@ UNION ALL
 
 SELECT 
       COUNT([ID]) AS [NUMBER_CLIENTS]
-    ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+    ,ROUND((COUNT([ID]) * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTS_CAMPAIGNS]
     ,
      CASE
      WHEN COUNT([ID]) NOT IN ('') THEN '2º - CLIENTS ACCEPTED CMP2'
-     END AS [RESPONSE]
+     END AS [NOTE]
 	  
 FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
 
@@ -1039,11 +1120,11 @@ UNION ALL
 
 SELECT 
       COUNT([ID]) AS [NUMBER_CLIENTS]
-     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,ROUND((COUNT([ID]) * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTS_CAMPAIGNS]
      ,
      CASE
      WHEN COUNT([ID]) NOT IN ('') THEN '3º - CLIENTS NOT ACCEPTED CMP3'
-     END AS [RESPONSE]
+     END AS [NOTE]
 	  
 FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
 
@@ -1053,11 +1134,11 @@ UNION ALL
 
 SELECT 
       COUNT([ID]) AS [NUMBER_CLIENTS]
-     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,ROUND((COUNT([ID]) * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTS_CAMPAIGNS]
      ,
      CASE
      WHEN COUNT([ID]) NOT IN ('') THEN '3º - CLIENTS ACCEPTED CMP3'
-     END AS [RESPONSE]
+     END AS [NOTE]
 	  
 FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
 
@@ -1067,11 +1148,11 @@ UNION ALL
 
 SELECT 
       COUNT([ID]) AS [NUMBER_CLIENTS]
-     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,ROUND((COUNT([ID]) * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTS_CAMPAIGNS]
      ,
      CASE
      WHEN COUNT([ID]) NOT IN ('') THEN '4º - CLIENTS NOT ACCEPTED CMP4'
-     END AS [RESPONSE]
+     END AS [NOTE]
 	  
 FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
 
@@ -1081,11 +1162,11 @@ UNION ALL
 
 SELECT 
       COUNT([ID]) AS [NUMBER_CLIENTS]
-     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,ROUND((COUNT([ID]) * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTS_CAMPAIGNS]
      ,
      CASE
      WHEN COUNT([ID]) NOT IN ('') THEN '4º - CLIENTS ACCEPTED CMP4'
-     END AS [RESPONSE]
+     END AS [NOTE]
 	  
 FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
 
@@ -1095,11 +1176,11 @@ UNION ALL
 
 SELECT 
       COUNT([ID]) AS [NUMBER_CLIENTS]
-     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,ROUND((COUNT([ID]) * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTS_CAMPAIGNS]
      ,
      CASE
      WHEN COUNT([ID]) NOT IN ('') THEN '5º - CLIENTS NOT ACCEPTED CMP5'
-     END AS [RESPONSE]
+     END AS [NOTE]
 	  
 FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
 
@@ -1109,11 +1190,11 @@ UNION ALL
 
 SELECT 
       COUNT([ID]) AS [NUMBER_CLIENTS]
-     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,ROUND((COUNT([ID]) * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTS_CAMPAIGNS]
      ,
      CASE
      WHEN COUNT([ID]) NOT IN ('') THEN '5º - CLIENTS ACCEPTED CMP5'
-     END AS [RESPONSE]
+     END AS [NOTE]
 	  
 FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
 
@@ -1123,11 +1204,11 @@ UNION ALL
 
 SELECT 
       COUNT([ID]) AS [NUMBER_CLIENTS]
-     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,ROUND((COUNT([ID]) * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTS_CAMPAIGNS]
      ,
      CASE
      WHEN COUNT([ID]) NOT IN ('') THEN '6º - CLIENTS NOT ACCEPTED (RESPONSE - TARGET)'
-     END AS [RESPONSE]
+     END AS [NOTE]
 	  
 FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
 
@@ -1137,11 +1218,11 @@ UNION ALL
 
 SELECT 
       COUNT([ID]) AS [NUMBER_CLIENTS]
-     ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,ROUND((COUNT([ID]) * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTS_CAMPAIGNS]
      ,
      CASE
      WHEN COUNT([ID]) NOT IN ('') THEN '6º - CLIENTS ACCEPTED (RESPONSE - TARGET)'
-     END AS [RESPONSE]
+     END AS [NOTE]
 	  
 FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
 
@@ -1171,20 +1252,20 @@ WHERE [RESPONSE] > 0
 -- 1906 -> 85,08928571428571% -> 85% -> Clientes que não aceitaram a oferta na 6º Campanha (última).
 -- 334 -> 14,910714285714286% -> 14% -> Clientes que aceitaram a oferta na 6º Campanha (última).
 
------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------
 
 -- Média de sucesso da campanha.
-DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
+DECLARE @NUMBER_CLIENTS FLOAT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
 
-WITH [TBL_ACCEPTED_NOT_ACCEPTED_CMPS_RESPONSE] AS
+WITH [TBL_DATA] AS
 (
 SELECT 
-	  COUNT([ID]) AS [NUMBER_CLIENTS]
-	 ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
-	 ,
-	 CASE
-	 WHEN COUNT([ID]) NOT IN ('') THEN '1º - CLIENTS NOT ACCEPTED CMP1'
-	 END AS [RESPONSE]
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+     ,ROUND((COUNT([ID]) * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTS_CAMPAIGNS]
+     ,
+     CASE
+     WHEN COUNT([ID]) NOT IN ('') THEN '1º - CLIENTS NOT ACCEPTED CMP1'
+     END AS [NOTE]
 	  
 FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
 
@@ -1193,12 +1274,12 @@ WHERE [ACCEPTED_CMP1] = 0
 UNION ALL 
 
 SELECT 
-	  COUNT([ID]) AS [NUMBER_CLIENTS]
-	 ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
-	 ,
-	 CASE
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+     ,ROUND((COUNT([ID]) * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTS_CAMPAIGNS]
+     ,
+     CASE
      WHEN COUNT([ID]) NOT IN ('') THEN '1º - CLIENTS ACCEPTED CMP1'
-     END AS [RESPONSE]
+     END AS [NOTE]
 	  
 FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
 
@@ -1208,11 +1289,11 @@ UNION ALL
 
 SELECT 
       COUNT([ID]) AS [NUMBER_CLIENTS]
-	 ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,ROUND((COUNT([ID]) * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTS_CAMPAIGNS]
      ,
      CASE
      WHEN COUNT([ID]) NOT IN ('') THEN '2º - CLIENTS NOT ACCEPTED CMP2'
-     END AS [RESPONSE]
+     END AS [NOTE]
 	  
 FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
 
@@ -1221,12 +1302,12 @@ WHERE [ACCEPTED_CMP2] = 0
 UNION ALL
 
 SELECT 
-	  COUNT([ID]) AS [NUMBER_CLIENTS]
-	 ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
-	 ,
-	 CASE
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+     ,ROUND((COUNT([ID]) * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTS_CAMPAIGNS]
+     ,
+     CASE
      WHEN COUNT([ID]) NOT IN ('') THEN '2º - CLIENTS ACCEPTED CMP2'
-     END AS [RESPONSE]
+     END AS [NOTE]
 	  
 FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
 
@@ -1236,11 +1317,11 @@ UNION ALL
 
 SELECT 
       COUNT([ID]) AS [NUMBER_CLIENTS]
-	 ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,ROUND((COUNT([ID]) * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTS_CAMPAIGNS]
      ,
      CASE
      WHEN COUNT([ID]) NOT IN ('') THEN '3º - CLIENTS NOT ACCEPTED CMP3'
-     END AS [RESPONSE]
+     END AS [NOTE]
 	  
 FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
 
@@ -1249,12 +1330,12 @@ WHERE [ACCEPTED_CMP3] = 0
 UNION ALL
 
 SELECT 
-	  COUNT([ID]) AS [NUMBER_CLIENTS]
-	 ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
-	 ,
-	 CASE
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+     ,ROUND((COUNT([ID]) * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTS_CAMPAIGNS]
+     ,
+     CASE
      WHEN COUNT([ID]) NOT IN ('') THEN '3º - CLIENTS ACCEPTED CMP3'
-     END AS [RESPONSE]
+     END AS [NOTE]
 	  
 FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
 
@@ -1264,11 +1345,11 @@ UNION ALL
 
 SELECT 
       COUNT([ID]) AS [NUMBER_CLIENTS]
-	 ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,ROUND((COUNT([ID]) * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTS_CAMPAIGNS]
      ,
      CASE
      WHEN COUNT([ID]) NOT IN ('') THEN '4º - CLIENTS NOT ACCEPTED CMP4'
-     END AS [RESPONSE]
+     END AS [NOTE]
 	  
 FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
 
@@ -1277,12 +1358,12 @@ WHERE [ACCEPTED_CMP4] = 0
 UNION ALL
 
 SELECT 
-	  COUNT([ID]) AS [NUMBER_CLIENTS]
-	 ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
-	 ,
-	 CASE
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+     ,ROUND((COUNT([ID]) * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTS_CAMPAIGNS]
+     ,
+     CASE
      WHEN COUNT([ID]) NOT IN ('') THEN '4º - CLIENTS ACCEPTED CMP4'
-     END AS [RESPONSE]
+     END AS [NOTE]
 	  
 FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
 
@@ -1292,11 +1373,11 @@ UNION ALL
 
 SELECT 
       COUNT([ID]) AS [NUMBER_CLIENTS]
-	 ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,ROUND((COUNT([ID]) * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTS_CAMPAIGNS]
      ,
      CASE
      WHEN COUNT([ID]) NOT IN ('') THEN '5º - CLIENTS NOT ACCEPTED CMP5'
-     END AS [RESPONSE]
+     END AS [NOTE]
 	  
 FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
 
@@ -1305,12 +1386,12 @@ WHERE [ACCEPTED_CMP5] = 0
 UNION ALL
 
 SELECT 
-	  COUNT([ID]) AS [NUMBER_CLIENTS]
-	 ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
-	 ,
-	 CASE
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+     ,ROUND((COUNT([ID]) * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTS_CAMPAIGNS]
+     ,
+     CASE
      WHEN COUNT([ID]) NOT IN ('') THEN '5º - CLIENTS ACCEPTED CMP5'
-     END AS [RESPONSE]
+     END AS [NOTE]
 	  
 FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
 
@@ -1320,11 +1401,11 @@ UNION ALL
 
 SELECT 
       COUNT([ID]) AS [NUMBER_CLIENTS]
-	 ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,ROUND((COUNT([ID]) * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTS_CAMPAIGNS]
      ,
      CASE
      WHEN COUNT([ID]) NOT IN ('') THEN '6º - CLIENTS NOT ACCEPTED (RESPONSE - TARGET)'
-     END AS [RESPONSE]
+     END AS [NOTE]
 	  
 FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
 
@@ -1334,37 +1415,33 @@ UNION ALL
 
 SELECT 
       COUNT([ID]) AS [NUMBER_CLIENTS]
-	 ,(COUNT([ID]) * 100)/(@NUMBER_CLIENTS) AS [PERCENT]
+     ,ROUND((COUNT([ID]) * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTS_CAMPAIGNS]
      ,
      CASE
      WHEN COUNT([ID]) NOT IN ('') THEN '6º - CLIENTS ACCEPTED (RESPONSE - TARGET)'
-     END AS [RESPONSE]
+     END AS [NOTE]
 	  
 FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
 
 WHERE [RESPONSE] > 0
 )
 SELECT 
-	  AVG([PERCENT]) AS [AVG_PERCENT_SUCESS_CAMPAIGN]
+      AVG([PERCENT_CLIENTS_CAMPAIGNS]) AS [AVG_PERCENT_SUCCESS_CAMPAIGN]
 
-FROM [TBL_ACCEPTED_NOT_ACCEPTED_CMPS_RESPONSE]
+FROM [TBL_DATA]
 
-WHERE [RESPONSE] LIKE '%CLIENTS ACCEPTED%'
+WHERE [NOTE] LIKE '%CLIENTS ACCEPTED%'
 
--- Média de sucesso da campanha.
--- Analisando da primeira a última campanha, temos uma média de sucesso de 7%.
-
------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------
 
 -- Quantidade de clientes pelo nível de educação por quantidade de compras por produtos e total geral dos produtos somados.
+DECLARE @NUMBER_CLIENTS FLOAT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
 
-DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
-
-WITH [NUMBER_CUSTOMERS_EDUCATION]
+WITH [TBL_DATA]
 AS
 (
 SELECT 
-      COUNT([ID]) AS [NUMBER_CUSTOMERS]
+      COUNT([ID]) AS [NUMBER_CLIENTS]
      ,[EDUCATION]
      ,SUM([MNT_WINES]) AS [TOTAL_WINES]
      ,SUM([MNT_FRUITS]) AS [TOTAL_FRUITS]
@@ -1379,9 +1456,9 @@ GROUP BY
 	[EDUCATION]
 )
 SELECT 
-      [NUMBER_CUSTOMERS]
+      [NUMBER_CLIENTS]
      ,[EDUCATION]
-     ,([NUMBER_CUSTOMERS] * 100)/(@NUMBER_CLIENTS) AS [EDUCATION_PERCENT]
+     ,ROUND(([NUMBER_CLIENTS] * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTS_EDUCATION]
      ,[TOTAL_WINES]
      ,[TOTAL_FRUITS]
      ,[TOTAL_MNT_MEAT_PRODUCTS]
@@ -1391,17 +1468,17 @@ SELECT
      ,[TOTAL_WINES] + [TOTAL_FRUITS] + [TOTAL_MNT_MEAT_PRODUCTS] + [TOTAL_MNT_FISH_PRODUCTS] + [TOTAL_MNT_SWEET_PRODUCTS] + [TOTAL_MNT_GOLD_PRODUCTS] AS [TOTAL_PRODUCTS]
 
 
-FROM [NUMBER_CUSTOMERS_EDUCATION]
+FROM [TBL_DATA]
 
 GROUP BY
-       [NUMBER_CUSTOMERS]
-      ,[EDUCATION]
-      ,[TOTAL_WINES]
-      ,[TOTAL_FRUITS]
-      ,[TOTAL_MNT_MEAT_PRODUCTS]
-      ,[TOTAL_MNT_FISH_PRODUCTS]
-      ,[TOTAL_MNT_SWEET_PRODUCTS]
-      ,[TOTAL_MNT_GOLD_PRODUCTS]
+        [NUMBER_CLIENTS]
+       ,[EDUCATION]
+       ,[TOTAL_WINES]
+       ,[TOTAL_FRUITS]
+       ,[TOTAL_MNT_MEAT_PRODUCTS]
+       ,[TOTAL_MNT_FISH_PRODUCTS]
+       ,[TOTAL_MNT_SWEET_PRODUCTS]
+       ,[TOTAL_MNT_GOLD_PRODUCTS]
 
 ORDER BY
         [TOTAL_WINES] DESC
@@ -1418,17 +1495,16 @@ ORDER BY
 -- 203 clientes -> 2n Cycle -> 9% -> Wines: 40.231 -> Fruits: 5.878 -> Meat: 28.675 -> Fish: 9.639 -> Sweet: 6.953 -> Gold: 9.419
 -- 54 clientes -> Basic -> 2% -> Wines: 391 -> Fruits: 600 -> Meat: 618 -> Fish: 921 -> Sweet: 654 -> Gold: 1.233
 
------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------
 
 -- Quantidade de clientes pelo estado civil por quantidade de compras por produtos e total geral dos produtos somados.
+DECLARE @NUMBER_CLIENTS FLOAT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
 
-DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
-
-WITH [NUMBER_CUSTOMERS_EDUCATION]
+WITH [TBL_DATA]
 AS
 (
 SELECT 
-      COUNT([ID]) AS [NUMBER_CUSTOMERS]
+      COUNT([ID]) AS [NUMBER_CLIENTS]
      ,[MARITAL_STATUS]
      ,SUM([MNT_WINES]) AS [TOTAL_WINES]
      ,SUM([MNT_FRUITS]) AS [TOTAL_FRUITS]
@@ -1443,32 +1519,32 @@ GROUP BY
 		[MARITAL_STATUS]
 )
 SELECT 
-      [NUMBER_CUSTOMERS]
+      [NUMBER_CLIENTS]
      ,[MARITAL_STATUS]
-     ,([NUMBER_CUSTOMERS] * 100)/(@NUMBER_CLIENTS) AS [MARITAL_STATUS_PERCENT]
+     ,ROUND(([NUMBER_CLIENTS] * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTS_MARITAL_STATUS]
      ,[TOTAL_WINES]
      ,[TOTAL_FRUITS]
      ,[TOTAL_MNT_MEAT_PRODUCTS]
      ,[TOTAL_MNT_FISH_PRODUCTS]
      ,[TOTAL_MNT_SWEET_PRODUCTS]
      ,[TOTAL_MNT_GOLD_PRODUCTS]
-	 ,[TOTAL_WINES] + [TOTAL_FRUITS] + [TOTAL_MNT_MEAT_PRODUCTS] + [TOTAL_MNT_FISH_PRODUCTS] + [TOTAL_MNT_SWEET_PRODUCTS] + [TOTAL_MNT_GOLD_PRODUCTS] AS [TOTAL_PRODUCTS]
+     ,[TOTAL_WINES] + [TOTAL_FRUITS] + [TOTAL_MNT_MEAT_PRODUCTS] + [TOTAL_MNT_FISH_PRODUCTS] + [TOTAL_MNT_SWEET_PRODUCTS] + [TOTAL_MNT_GOLD_PRODUCTS] AS [TOTAL_PRODUCTS]
 
 
-FROM [NUMBER_CUSTOMERS_EDUCATION]
+FROM [TBL_DATA]
 
 GROUP BY
-       [NUMBER_CUSTOMERS]
-      ,[MARITAL_STATUS]
-      ,[TOTAL_WINES]
-      ,[TOTAL_FRUITS]
-      ,[TOTAL_MNT_MEAT_PRODUCTS]
-      ,[TOTAL_MNT_FISH_PRODUCTS]
-      ,[TOTAL_MNT_SWEET_PRODUCTS]
-      ,[TOTAL_MNT_GOLD_PRODUCTS]
+        [NUMBER_CLIENTS]
+       ,[MARITAL_STATUS]
+       ,[TOTAL_WINES]
+       ,[TOTAL_FRUITS]
+       ,[TOTAL_MNT_MEAT_PRODUCTS]
+       ,[TOTAL_MNT_FISH_PRODUCTS]
+       ,[TOTAL_MNT_SWEET_PRODUCTS]
+       ,[TOTAL_MNT_GOLD_PRODUCTS]
 
 ORDER BY
-         [TOTAL_WINES] DESC
+        [TOTAL_WINES] DESC
 	,[TOTAL_FRUITS] DESC
 	,[TOTAL_MNT_MEAT_PRODUCTS] DESC
 	,[TOTAL_MNT_FISH_PRODUCTS] DESC
@@ -1485,17 +1561,16 @@ ORDER BY
 -- 2 clientes -> YOLO -> 1% -> Wines: 644 -> Fruits: 6 -> Meat: 100 -> Fish: 8 -> Sweet: 6 -> Gold: 84.
 -- 3 clientes -> Alone -> 1% -> Wines: 554 -> Fruits: 554 -> Meat: 79 -> Fish: 23 -> Sweet: 21 -> Gold: 81.
 
------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------
 
 -- Quantidade de clientes pela quantidade de crianças por quantidade de compras por produtos e total geral dos produtos somados.
+DECLARE @NUMBER_CLIENTS FLOAT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
 
-DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
-
-WITH [NUMBER_CUSTOMERS_EDUCATION]
+WITH [TBL_DATA]
 AS
 (
 SELECT 
-      COUNT([ID]) AS [NUMBER_CUSTOMERS]
+      COUNT([ID]) AS [NUMBER_CLIENTS]
      ,[KIDHOME]
      ,SUM([MNT_WINES]) AS [TOTAL_WINES]
      ,SUM([MNT_FRUITS]) AS [TOTAL_FRUITS]
@@ -1510,9 +1585,9 @@ GROUP BY
        [KIDHOME]
 )
 SELECT 
-      [NUMBER_CUSTOMERS]
+      [NUMBER_CLIENTS]
      ,[KIDHOME]
-     ,([NUMBER_CUSTOMERS] * 100)/(@NUMBER_CLIENTS) AS [KIDHOME_PERCENT]
+     ,ROUND(([NUMBER_CLIENTS] * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTS_KIDHOME]
      ,[TOTAL_WINES]
      ,[TOTAL_FRUITS]
      ,[TOTAL_MNT_MEAT_PRODUCTS]
@@ -1521,20 +1596,20 @@ SELECT
      ,[TOTAL_MNT_GOLD_PRODUCTS]
      ,[TOTAL_WINES] + [TOTAL_FRUITS] + [TOTAL_MNT_MEAT_PRODUCTS] + [TOTAL_MNT_FISH_PRODUCTS] + [TOTAL_MNT_SWEET_PRODUCTS] + [TOTAL_MNT_GOLD_PRODUCTS] AS [TOTAL_PRODUCTS]
 
-FROM [NUMBER_CUSTOMERS_EDUCATION]
+FROM [TBL_DATA]
 
 GROUP BY
-       [NUMBER_CUSTOMERS]
-      ,[KIDHOME]
-      ,[TOTAL_WINES]
-      ,[TOTAL_FRUITS]
-      ,[TOTAL_MNT_MEAT_PRODUCTS]
-      ,[TOTAL_MNT_FISH_PRODUCTS]
-      ,[TOTAL_MNT_SWEET_PRODUCTS]
-      ,[TOTAL_MNT_GOLD_PRODUCTS]
+        [NUMBER_CLIENTS]
+       ,[KIDHOME]
+       ,[TOTAL_WINES]
+       ,[TOTAL_FRUITS]
+       ,[TOTAL_MNT_MEAT_PRODUCTS]
+       ,[TOTAL_MNT_FISH_PRODUCTS]
+       ,[TOTAL_MNT_SWEET_PRODUCTS]
+       ,[TOTAL_MNT_GOLD_PRODUCTS]
 
 ORDER BY
-	 [TOTAL_WINES] DESC
+	[TOTAL_WINES] DESC
 	,[TOTAL_FRUITS] DESC
 	,[TOTAL_MNT_MEAT_PRODUCTS] DESC
 	,[TOTAL_MNT_FISH_PRODUCTS] DESC
@@ -1546,17 +1621,16 @@ ORDER BY
 -- 899 clientes -> Kidhome: 1 -> 40% -> Wines: 93.859 -> Fruits: 7.657 -> Meat: 43.927 -> Fish: 11.068 -> Sweet: 8.030 -> Gold: 20.145.
 -- 48 clientes -> Kidhome: 2 -> 2% -> Wines: 3.590 -> Fruits: 325 -> Meat: 1.624 -> Fish: 371 -> Sweet: 226 -> Gold: 836.
 
------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------
 
 -- Quantidade de clientes pela quantidade de adolescentes por quantidade de compras por produtos e total geral dos produtos somados.
+DECLARE @NUMBER_CLIENTS FLOAT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
 
-DECLARE @NUMBER_CLIENTS INT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
-
-WITH [NUMBER_CUSTOMERS_EDUCATION]
+WITH [TBL_DATA]
 AS
 (
 SELECT 
-      COUNT([ID]) AS [NUMBER_CUSTOMERS]
+      COUNT([ID]) AS [NUMBER_CLIENTS]
      ,[TEENHOME]
      ,SUM([MNT_WINES]) AS [TOTAL_WINES]
      ,SUM([MNT_FRUITS]) AS [TOTAL_FRUITS]
@@ -1571,40 +1645,1396 @@ GROUP BY
        [TEENHOME]
 )
 SELECT 
-      [NUMBER_CUSTOMERS]
+      [NUMBER_CLIENTS]
      ,[TEENHOME]
-     ,([NUMBER_CUSTOMERS] * 100)/(@NUMBER_CLIENTS) AS [TEENHOME_PERCENT]
+     ,ROUND(([NUMBER_CLIENTS] * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTS_TEENHOME]
      ,[TOTAL_WINES]
      ,[TOTAL_FRUITS]
      ,[TOTAL_MNT_MEAT_PRODUCTS]
      ,[TOTAL_MNT_FISH_PRODUCTS]
      ,[TOTAL_MNT_SWEET_PRODUCTS]
      ,[TOTAL_MNT_GOLD_PRODUCTS]
-	 ,[TOTAL_WINES] + [TOTAL_FRUITS] + [TOTAL_MNT_MEAT_PRODUCTS] + [TOTAL_MNT_FISH_PRODUCTS] + [TOTAL_MNT_SWEET_PRODUCTS] + [TOTAL_MNT_GOLD_PRODUCTS] AS [TOTAL_PRODUCTS]
+     ,[TOTAL_WINES] + [TOTAL_FRUITS] + [TOTAL_MNT_MEAT_PRODUCTS] + [TOTAL_MNT_FISH_PRODUCTS] + [TOTAL_MNT_SWEET_PRODUCTS] + [TOTAL_MNT_GOLD_PRODUCTS] AS [TOTAL_PRODUCTS]
 
-FROM [NUMBER_CUSTOMERS_EDUCATION]
+FROM [TBL_DATA]
 
 GROUP BY
-       [NUMBER_CUSTOMERS]
-      ,[TEENHOME]
+        [NUMBER_CLIENTS]
+       ,[TEENHOME]
+       ,[TOTAL_WINES]
+       ,[TOTAL_FRUITS]
+       ,[TOTAL_MNT_MEAT_PRODUCTS]
+       ,[TOTAL_MNT_FISH_PRODUCTS]
+       ,[TOTAL_MNT_SWEET_PRODUCTS]
+       ,[TOTAL_MNT_GOLD_PRODUCTS]
+
+ORDER BY
+	[TOTAL_WINES] DESC
+	,[TOTAL_FRUITS] DESC
+	,[TOTAL_MNT_MEAT_PRODUCTS] DESC
+	,[TOTAL_MNT_FISH_PRODUCTS] DESC
+	,[TOTAL_MNT_SWEET_PRODUCTS] DESC
+	,[TOTAL_MNT_GOLD_PRODUCTS] DESC
+	,[TOTAL_WINES] + [TOTAL_FRUITS] + [TOTAL_MNT_MEAT_PRODUCTS] + [TOTAL_MNT_FISH_PRODUCTS] + [TOTAL_MNT_SWEET_PRODUCTS] + [TOTAL_MNT_GOLD_PRODUCTS] DESC
+
+-- 1158 clientes -> Teenhome: 0 -> 51% -> Wines: 352.985 -> Fruits: 38.573 -> Meat: 263.005 -> Fish: 56.346 -> Sweet: 38.945 -> Gold: 52.407.
+-- 1030 clientes -> Teenhome: 1 -> 45% -> Wines: 309.010 -> Fruits: 19.433 -> Meat: 104.475 -> Fish: 26.468 -> Sweet: 20.840 -> Gold: 43.865.
+-- 52 clientes -> Teenhome: 2 -> 2% -> Wines: 18.821 -> Fruits: 911 -> Meat: 6.488 -> Fish: 1.243 -> Sweet: 836 -> Gold: 2.337.
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+-- Quantidade de clientes pelo nível de educação pelas demais variáveis.
+DECLARE @NUMBER_CLIENTS FLOAT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
+
+WITH [TBL_DATA]
+AS
+(
+SELECT 
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+     ,[EDUCATION]
+     ,ROUND(AVG([YEARS_OLD]),0) AS [AVG_YEARS_OLD]
+     ,ROUND(AVG([MONTHLY_INCOME]),0) AS [AVG_MONTHLY_INCOME]
+     ,ROUND(AVG([INCOME]),0) AS [AVG_INCOME]
+     ,SUM([KIDHOME]) AS [SUM_KIDHOME]
+     ,ROUND(AVG([KIDHOME]),2) AS [AVG_KIDHOME]
+     ,SUM([TEENHOME]) AS [SUM_TEENHOME]
+     ,ROUND(AVG([TEENHOME]),2) AS [AVG_TEENHOME]
+     ,AVG([REGISTERED_CUSTOMER_TIME]) AS [AVG_REG_CUSTOMER_TIME]
+     ,ROUND(AVG([RECENCY]),0) AS [AVG_RECENCY]
+     ,SUM([NUM_DEALS_PURCHASES]) AS [SUM_NUM_DEALS_PURCHASES]
+     ,ROUND(AVG([NUM_DEALS_PURCHASES]),0) AS [AVG_NUM_DEALS_PURCHASES]
+     ,SUM([NUM_WEB_PURCHASES]) AS [SUM_WEB_PURCHASES]
+     ,ROUND(AVG([NUM_WEB_PURCHASES]),0) AS [AVG_WEB_PURCHASES]
+     ,SUM([NUM_CATALOG_PURCHASES]) AS [SUM_CATALOG_PURCHASES]
+     ,ROUND(AVG([NUM_CATALOG_PURCHASES]),0) AS [AVG_CATALOG_PURCHASES]
+     ,SUM([NUM_STORE_PURCHASES]) AS [SUM_STORE_PURCHASES]
+     ,ROUND(AVG([NUM_STORE_PURCHASES]),0) AS [AVG_STORE_PURCHASES]
+     ,SUM([NUM_WEB_VISITS_MONTH]) AS [SUM_NUM_WEB_VISITS_MONTH]
+     ,ROUND(AVG([NUM_WEB_VISITS_MONTH]),0) AS [AVG_NUM_WEB_VISITS_MONTH]
+     ,SUM([MNT_WINES]) AS [TOTAL_WINES]
+     ,SUM([MNT_FRUITS]) AS [TOTAL_FRUITS]
+     ,SUM([MNT_MEAT_PRODUCTS]) AS [TOTAL_MNT_MEAT_PRODUCTS]
+     ,SUM([MNT_FISH_PRODUCTS]) AS [TOTAL_MNT_FISH_PRODUCTS]
+     ,SUM([MNT_SWEET_PRODUCTS]) AS [TOTAL_MNT_SWEET_PRODUCTS]
+     ,SUM([MNT_GOLD_PRODS]) AS [TOTAL_MNT_GOLD_PRODUCTS]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+GROUP BY
+       [EDUCATION]
+)
+SELECT 
+      [NUMBER_CLIENTS]
+     ,[EDUCATION]
+     ,ROUND(([NUMBER_CLIENTS] * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTS_EDUCATION]
+     ,[AVG_YEARS_OLD]
+     ,[AVG_MONTHLY_INCOME]
+     ,[AVG_INCOME]
+     ,[SUM_KIDHOME]
+     ,[AVG_KIDHOME]
+     ,[SUM_TEENHOME]
+     ,[AVG_TEENHOME]
+     ,[AVG_REG_CUSTOMER_TIME]
+     ,[AVG_RECENCY]
+     ,[SUM_NUM_DEALS_PURCHASES]
+     ,[AVG_NUM_DEALS_PURCHASES]
+     ,[SUM_WEB_PURCHASES]
+     ,[AVG_WEB_PURCHASES]
+     ,[SUM_CATALOG_PURCHASES]
+     ,[AVG_CATALOG_PURCHASES]
+     ,[SUM_STORE_PURCHASES]
+     ,[AVG_STORE_PURCHASES]
+     ,[SUM_NUM_WEB_VISITS_MONTH]
+     ,[AVG_NUM_WEB_VISITS_MONTH]
+     ,[TOTAL_WINES]
+     ,[TOTAL_FRUITS]
+     ,[TOTAL_MNT_MEAT_PRODUCTS]
+     ,[TOTAL_MNT_FISH_PRODUCTS]
+     ,[TOTAL_MNT_SWEET_PRODUCTS]
+     ,[TOTAL_MNT_GOLD_PRODUCTS]
+     ,[TOTAL_WINES] + [TOTAL_FRUITS] + [TOTAL_MNT_MEAT_PRODUCTS] + [TOTAL_MNT_FISH_PRODUCTS] + [TOTAL_MNT_SWEET_PRODUCTS] + [TOTAL_MNT_GOLD_PRODUCTS] AS [TOTAL_PRODUCTS]
+
+FROM [TBL_DATA]
+
+GROUP BY
+        [NUMBER_CLIENTS]
+       ,[EDUCATION]
+       ,ROUND(([NUMBER_CLIENTS] * 100)/(@NUMBER_CLIENTS),2)
+       ,[AVG_YEARS_OLD]
+       ,[AVG_MONTHLY_INCOME]
+       ,[AVG_INCOME]
+       ,[SUM_KIDHOME]
+       ,[AVG_KIDHOME]
+       ,[SUM_TEENHOME]
+       ,[AVG_TEENHOME]
+       ,[AVG_REG_CUSTOMER_TIME]
+       ,[AVG_RECENCY]
+       ,[SUM_NUM_DEALS_PURCHASES]
+       ,[AVG_NUM_DEALS_PURCHASES]
+       ,[SUM_WEB_PURCHASES]
+       ,[AVG_WEB_PURCHASES]
+       ,[SUM_CATALOG_PURCHASES]
+       ,[AVG_CATALOG_PURCHASES]
+       ,[SUM_STORE_PURCHASES]
+       ,[AVG_STORE_PURCHASES]
+       ,[SUM_NUM_WEB_VISITS_MONTH]
+       ,[AVG_NUM_WEB_VISITS_MONTH]
+       ,[TOTAL_WINES]
+       ,[TOTAL_FRUITS]
+       ,[TOTAL_MNT_MEAT_PRODUCTS]
+       ,[TOTAL_MNT_FISH_PRODUCTS]
+       ,[TOTAL_MNT_SWEET_PRODUCTS]
+       ,[TOTAL_MNT_GOLD_PRODUCTS]
+       ,[TOTAL_WINES] + [TOTAL_FRUITS] + [TOTAL_MNT_MEAT_PRODUCTS] + [TOTAL_MNT_FISH_PRODUCTS] + [TOTAL_MNT_SWEET_PRODUCTS] + [TOTAL_MNT_GOLD_PRODUCTS]
+
+ORDER BY	   
+        [TOTAL_WINES] + [TOTAL_FRUITS] + [TOTAL_MNT_MEAT_PRODUCTS] + [TOTAL_MNT_FISH_PRODUCTS] + [TOTAL_MNT_SWEET_PRODUCTS] + [TOTAL_MNT_GOLD_PRODUCTS] DESC
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+-- Quantidade de clientes pelo estado civil pelas demais variáveis.
+DECLARE @NUMBER_CLIENTS FLOAT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
+
+WITH [TBL_DATA]
+AS
+(
+SELECT 
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+     ,[MARITAL_STATUS]
+     ,ROUND(AVG([YEARS_OLD]),0) AS [AVG_YEARS_OLD]
+     ,ROUND(AVG([MONTHLY_INCOME]),0) AS [AVG_MONTHLY_INCOME]
+     ,ROUND(AVG([INCOME]),0) AS [AVG_INCOME]
+     ,SUM([KIDHOME]) AS [SUM_KIDHOME]
+     ,ROUND(AVG([KIDHOME]),2) AS [AVG_KIDHOME]
+     ,SUM([TEENHOME]) AS [SUM_TEENHOME]
+     ,ROUND(AVG([TEENHOME]),2) AS [AVG_TEENHOME]
+     ,AVG([REGISTERED_CUSTOMER_TIME]) AS [AVG_REG_CUSTOMER_TIME]
+     ,ROUND(AVG([RECENCY]),0) AS [AVG_RECENCY]
+     ,SUM([NUM_DEALS_PURCHASES]) AS [SUM_NUM_DEALS_PURCHASES]
+     ,ROUND(AVG([NUM_DEALS_PURCHASES]),0) AS [AVG_NUM_DEALS_PURCHASES]
+     ,SUM([NUM_WEB_PURCHASES]) AS [SUM_WEB_PURCHASES]
+     ,ROUND(AVG([NUM_WEB_PURCHASES]),0) AS [AVG_WEB_PURCHASES]
+     ,SUM([NUM_CATALOG_PURCHASES]) AS [SUM_CATALOG_PURCHASES]
+     ,ROUND(AVG([NUM_CATALOG_PURCHASES]),0) AS [AVG_CATALOG_PURCHASES]
+     ,SUM([NUM_STORE_PURCHASES]) AS [SUM_STORE_PURCHASES]
+     ,ROUND(AVG([NUM_STORE_PURCHASES]),0) AS [AVG_STORE_PURCHASES]
+     ,SUM([NUM_WEB_VISITS_MONTH]) AS [SUM_NUM_WEB_VISITS_MONTH]
+     ,ROUND(AVG([NUM_WEB_VISITS_MONTH]),0) AS [AVG_NUM_WEB_VISITS_MONTH]
+     ,SUM([MNT_WINES]) AS [TOTAL_WINES]
+     ,SUM([MNT_FRUITS]) AS [TOTAL_FRUITS]
+     ,SUM([MNT_MEAT_PRODUCTS]) AS [TOTAL_MNT_MEAT_PRODUCTS]
+     ,SUM([MNT_FISH_PRODUCTS]) AS [TOTAL_MNT_FISH_PRODUCTS]
+     ,SUM([MNT_SWEET_PRODUCTS]) AS [TOTAL_MNT_SWEET_PRODUCTS]
+     ,SUM([MNT_GOLD_PRODS]) AS [TOTAL_MNT_GOLD_PRODUCTS]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+GROUP BY
+       [MARITAL_STATUS]
+)
+SELECT 
+      [NUMBER_CLIENTS]
+     ,[MARITAL_STATUS]
+     ,ROUND(([NUMBER_CLIENTS] * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTS_MARITAL_STATUS]
+     ,[AVG_YEARS_OLD]
+     ,[AVG_MONTHLY_INCOME]
+     ,[AVG_INCOME]
+     ,[SUM_KIDHOME]
+     ,[AVG_KIDHOME]
+     ,[SUM_TEENHOME]
+     ,[AVG_TEENHOME]
+     ,[AVG_REG_CUSTOMER_TIME]
+     ,[AVG_RECENCY]
+     ,[SUM_NUM_DEALS_PURCHASES]
+     ,[AVG_NUM_DEALS_PURCHASES]
+     ,[SUM_WEB_PURCHASES]
+     ,[AVG_WEB_PURCHASES]
+     ,[SUM_CATALOG_PURCHASES]
+     ,[AVG_CATALOG_PURCHASES]
+     ,[SUM_STORE_PURCHASES]
+     ,[AVG_STORE_PURCHASES]
+     ,[SUM_NUM_WEB_VISITS_MONTH]
+     ,[AVG_NUM_WEB_VISITS_MONTH]
+     ,[TOTAL_WINES]
+     ,[TOTAL_FRUITS]
+     ,[TOTAL_MNT_MEAT_PRODUCTS]
+     ,[TOTAL_MNT_FISH_PRODUCTS]
+     ,[TOTAL_MNT_SWEET_PRODUCTS]
+     ,[TOTAL_MNT_GOLD_PRODUCTS]
+     ,[TOTAL_WINES] + [TOTAL_FRUITS] + [TOTAL_MNT_MEAT_PRODUCTS] + [TOTAL_MNT_FISH_PRODUCTS] + [TOTAL_MNT_SWEET_PRODUCTS] + [TOTAL_MNT_GOLD_PRODUCTS] AS [TOTAL_PRODUCTS]
+
+FROM [TBL_DATA]
+
+GROUP BY
+        [NUMBER_CLIENTS]
+       ,[MARITAL_STATUS]
+       ,ROUND(([NUMBER_CLIENTS] * 100)/(@NUMBER_CLIENTS),2)
+       ,[AVG_YEARS_OLD]
+       ,[AVG_MONTHLY_INCOME]
+       ,[AVG_INCOME]
+       ,[SUM_KIDHOME]
+       ,[AVG_KIDHOME]
+       ,[SUM_TEENHOME]
+       ,[AVG_TEENHOME]
+       ,[AVG_REG_CUSTOMER_TIME]
+       ,[AVG_RECENCY]
+       ,[SUM_NUM_DEALS_PURCHASES]
+       ,[AVG_NUM_DEALS_PURCHASES]
+       ,[SUM_WEB_PURCHASES]
+       ,[AVG_WEB_PURCHASES]
+       ,[SUM_CATALOG_PURCHASES]
+       ,[AVG_CATALOG_PURCHASES]
+       ,[SUM_STORE_PURCHASES]
+       ,[AVG_STORE_PURCHASES]
+       ,[SUM_NUM_WEB_VISITS_MONTH]
+       ,[AVG_NUM_WEB_VISITS_MONTH]
+       ,[TOTAL_WINES]
+       ,[TOTAL_FRUITS]
+       ,[TOTAL_MNT_MEAT_PRODUCTS]
+       ,[TOTAL_MNT_FISH_PRODUCTS]
+       ,[TOTAL_MNT_SWEET_PRODUCTS]
+       ,[TOTAL_MNT_GOLD_PRODUCTS]
+       ,[TOTAL_WINES] + [TOTAL_FRUITS] + [TOTAL_MNT_MEAT_PRODUCTS] + [TOTAL_MNT_FISH_PRODUCTS] + [TOTAL_MNT_SWEET_PRODUCTS] + [TOTAL_MNT_GOLD_PRODUCTS]
+
+ORDER BY	   
+        [TOTAL_WINES] + [TOTAL_FRUITS] + [TOTAL_MNT_MEAT_PRODUCTS] + [TOTAL_MNT_FISH_PRODUCTS] + [TOTAL_MNT_SWEET_PRODUCTS] + [TOTAL_MNT_GOLD_PRODUCTS] DESC
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+-- Quantidade de clientes por crinças pelas demais variáveis.
+DECLARE @NUMBER_CLIENTS FLOAT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
+
+WITH [TBL_DATA]
+AS
+(
+SELECT 
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+     ,[KIDHOME]
+     ,ROUND(AVG([YEARS_OLD]),0) AS [AVG_YEARS_OLD]
+     ,ROUND(AVG([MONTHLY_INCOME]),0) AS [AVG_MONTHLY_INCOME]
+     ,ROUND(AVG([INCOME]),0) AS [AVG_INCOME]
+     ,SUM([KIDHOME]) AS [SUM_KIDHOME]
+     ,ROUND(AVG([KIDHOME]),2) AS [AVG_KIDHOME]
+     ,SUM([TEENHOME]) AS [SUM_TEENHOME]
+     ,ROUND(AVG([TEENHOME]),2) AS [AVG_TEENHOME]
+     ,AVG([REGISTERED_CUSTOMER_TIME]) AS [AVG_REG_CUSTOMER_TIME]
+     ,ROUND(AVG([RECENCY]),0) AS [AVG_RECENCY]
+     ,SUM([NUM_DEALS_PURCHASES]) AS [SUM_NUM_DEALS_PURCHASES]
+     ,ROUND(AVG([NUM_DEALS_PURCHASES]),0) AS [AVG_NUM_DEALS_PURCHASES]
+     ,SUM([NUM_WEB_PURCHASES]) AS [SUM_WEB_PURCHASES]
+     ,ROUND(AVG([NUM_WEB_PURCHASES]),0) AS [AVG_WEB_PURCHASES]
+     ,SUM([NUM_CATALOG_PURCHASES]) AS [SUM_CATALOG_PURCHASES]
+     ,ROUND(AVG([NUM_CATALOG_PURCHASES]),0) AS [AVG_CATALOG_PURCHASES]
+     ,SUM([NUM_STORE_PURCHASES]) AS [SUM_STORE_PURCHASES]
+     ,ROUND(AVG([NUM_STORE_PURCHASES]),0) AS [AVG_STORE_PURCHASES]
+     ,SUM([NUM_WEB_VISITS_MONTH]) AS [SUM_NUM_WEB_VISITS_MONTH]
+     ,ROUND(AVG([NUM_WEB_VISITS_MONTH]),0) AS [AVG_NUM_WEB_VISITS_MONTH]
+     ,SUM([MNT_WINES]) AS [TOTAL_WINES]
+     ,SUM([MNT_FRUITS]) AS [TOTAL_FRUITS]
+     ,SUM([MNT_MEAT_PRODUCTS]) AS [TOTAL_MNT_MEAT_PRODUCTS]
+     ,SUM([MNT_FISH_PRODUCTS]) AS [TOTAL_MNT_FISH_PRODUCTS]
+     ,SUM([MNT_SWEET_PRODUCTS]) AS [TOTAL_MNT_SWEET_PRODUCTS]
+     ,SUM([MNT_GOLD_PRODS]) AS [TOTAL_MNT_GOLD_PRODUCTS]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+GROUP BY
+       [KIDHOME]
+)
+SELECT 
+      [NUMBER_CLIENTS]
+     ,[KIDHOME]
+     ,ROUND(([NUMBER_CLIENTS] * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTS_KIDHOME]
+     ,[AVG_YEARS_OLD]
+     ,[AVG_MONTHLY_INCOME]
+     ,[AVG_INCOME]
+     ,[SUM_KIDHOME]
+     ,[AVG_KIDHOME]
+     ,[SUM_TEENHOME]
+     ,[AVG_TEENHOME]
+     ,[AVG_REG_CUSTOMER_TIME]
+     ,[AVG_RECENCY]
+     ,[SUM_NUM_DEALS_PURCHASES]
+     ,[AVG_NUM_DEALS_PURCHASES]
+     ,[SUM_WEB_PURCHASES]
+     ,[AVG_WEB_PURCHASES]
+     ,[SUM_CATALOG_PURCHASES]
+     ,[AVG_CATALOG_PURCHASES]
+     ,[SUM_STORE_PURCHASES]
+     ,[AVG_STORE_PURCHASES]
+     ,[SUM_NUM_WEB_VISITS_MONTH]
+     ,[AVG_NUM_WEB_VISITS_MONTH]
+     ,[TOTAL_WINES]
+     ,[TOTAL_FRUITS]
+     ,[TOTAL_MNT_MEAT_PRODUCTS]
+     ,[TOTAL_MNT_FISH_PRODUCTS]
+     ,[TOTAL_MNT_SWEET_PRODUCTS]
+     ,[TOTAL_MNT_GOLD_PRODUCTS]
+     ,[TOTAL_WINES] + [TOTAL_FRUITS] + [TOTAL_MNT_MEAT_PRODUCTS] + [TOTAL_MNT_FISH_PRODUCTS] + [TOTAL_MNT_SWEET_PRODUCTS] + [TOTAL_MNT_GOLD_PRODUCTS] AS [TOTAL_PRODUCTS]
+
+FROM [TBL_DATA]
+
+GROUP BY
+        [NUMBER_CLIENTS]
+       ,[KIDHOME]
+       ,ROUND(([NUMBER_CLIENTS] * 100)/(@NUMBER_CLIENTS),2)
+       ,[AVG_YEARS_OLD]
+       ,[AVG_MONTHLY_INCOME]
+       ,[AVG_INCOME]
+       ,[SUM_KIDHOME]
+       ,[AVG_KIDHOME]
+       ,[SUM_TEENHOME]
+       ,[AVG_TEENHOME]
+       ,[AVG_REG_CUSTOMER_TIME]
+       ,[AVG_RECENCY]
+       ,[SUM_NUM_DEALS_PURCHASES]
+       ,[AVG_NUM_DEALS_PURCHASES]
+       ,[SUM_WEB_PURCHASES]
+       ,[AVG_WEB_PURCHASES]
+       ,[SUM_CATALOG_PURCHASES]
+       ,[AVG_CATALOG_PURCHASES]
+       ,[SUM_STORE_PURCHASES]
+       ,[AVG_STORE_PURCHASES]
+       ,[SUM_NUM_WEB_VISITS_MONTH]
+       ,[AVG_NUM_WEB_VISITS_MONTH]
+       ,[TOTAL_WINES]
+       ,[TOTAL_FRUITS]
+       ,[TOTAL_MNT_MEAT_PRODUCTS]
+       ,[TOTAL_MNT_FISH_PRODUCTS]
+       ,[TOTAL_MNT_SWEET_PRODUCTS]
+       ,[TOTAL_MNT_GOLD_PRODUCTS]
+       ,[TOTAL_WINES] + [TOTAL_FRUITS] + [TOTAL_MNT_MEAT_PRODUCTS] + [TOTAL_MNT_FISH_PRODUCTS] + [TOTAL_MNT_SWEET_PRODUCTS] + [TOTAL_MNT_GOLD_PRODUCTS]
+
+ORDER BY	   
+        [TOTAL_WINES] + [TOTAL_FRUITS] + [TOTAL_MNT_MEAT_PRODUCTS] + [TOTAL_MNT_FISH_PRODUCTS] + [TOTAL_MNT_SWEET_PRODUCTS] + [TOTAL_MNT_GOLD_PRODUCTS] DESC
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+-- Quantidade de clientes por adolescentes pelas demais variáveis.
+DECLARE @NUMBER_CLIENTS FLOAT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
+
+WITH [TBL_DATA]
+AS
+(
+SELECT 
+      COUNT([ID]) AS [NUMBER_CLIENTS]
+     ,[TEENHOME]
+     ,ROUND(AVG([YEARS_OLD]),0) AS [AVG_YEARS_OLD]
+     ,ROUND(AVG([MONTHLY_INCOME]),0) AS [AVG_MONTHLY_INCOME]
+     ,ROUND(AVG([INCOME]),0) AS [AVG_INCOME]
+     ,SUM([KIDHOME]) AS [SUM_KIDHOME]
+     ,ROUND(AVG([KIDHOME]),2) AS [AVG_KIDHOME]
+     ,SUM([TEENHOME]) AS [SUM_TEENHOME]
+     ,ROUND(AVG([TEENHOME]),2) AS [AVG_TEENHOME]
+     ,AVG([REGISTERED_CUSTOMER_TIME]) AS [AVG_REG_CUSTOMER_TIME]
+     ,ROUND(AVG([RECENCY]),0) AS [AVG_RECENCY]
+     ,SUM([NUM_DEALS_PURCHASES]) AS [SUM_NUM_DEALS_PURCHASES]
+     ,ROUND(AVG([NUM_DEALS_PURCHASES]),0) AS [AVG_NUM_DEALS_PURCHASES]
+     ,SUM([NUM_WEB_PURCHASES]) AS [SUM_WEB_PURCHASES]
+     ,ROUND(AVG([NUM_WEB_PURCHASES]),0) AS [AVG_WEB_PURCHASES]
+     ,SUM([NUM_CATALOG_PURCHASES]) AS [SUM_CATALOG_PURCHASES]
+     ,ROUND(AVG([NUM_CATALOG_PURCHASES]),0) AS [AVG_CATALOG_PURCHASES]
+     ,SUM([NUM_STORE_PURCHASES]) AS [SUM_STORE_PURCHASES]
+     ,ROUND(AVG([NUM_STORE_PURCHASES]),0) AS [AVG_STORE_PURCHASES]
+     ,SUM([NUM_WEB_VISITS_MONTH]) AS [SUM_NUM_WEB_VISITS_MONTH]
+     ,ROUND(AVG([NUM_WEB_VISITS_MONTH]),0) AS [AVG_NUM_WEB_VISITS_MONTH]
+     ,SUM([MNT_WINES]) AS [TOTAL_WINES]
+     ,SUM([MNT_FRUITS]) AS [TOTAL_FRUITS]
+     ,SUM([MNT_MEAT_PRODUCTS]) AS [TOTAL_MNT_MEAT_PRODUCTS]
+     ,SUM([MNT_FISH_PRODUCTS]) AS [TOTAL_MNT_FISH_PRODUCTS]
+     ,SUM([MNT_SWEET_PRODUCTS]) AS [TOTAL_MNT_SWEET_PRODUCTS]
+     ,SUM([MNT_GOLD_PRODS]) AS [TOTAL_MNT_GOLD_PRODUCTS]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+GROUP BY
+       [TEENHOME]
+)
+SELECT 
+      [NUMBER_CLIENTS]
+     ,[TEENHOME]
+     ,ROUND(([NUMBER_CLIENTS] * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTS_TEENHOME]
+     ,[AVG_YEARS_OLD]
+     ,[AVG_MONTHLY_INCOME]
+     ,[AVG_INCOME]
+     ,[SUM_KIDHOME]
+     ,[AVG_KIDHOME]
+     ,[SUM_TEENHOME]
+     ,[AVG_TEENHOME]
+     ,[AVG_REG_CUSTOMER_TIME]
+     ,[AVG_RECENCY]
+     ,[SUM_NUM_DEALS_PURCHASES]
+     ,[AVG_NUM_DEALS_PURCHASES]
+     ,[SUM_WEB_PURCHASES]
+     ,[AVG_WEB_PURCHASES]
+     ,[SUM_CATALOG_PURCHASES]
+     ,[AVG_CATALOG_PURCHASES]
+     ,[SUM_STORE_PURCHASES]
+     ,[AVG_STORE_PURCHASES]
+     ,[SUM_NUM_WEB_VISITS_MONTH]
+     ,[AVG_NUM_WEB_VISITS_MONTH]
+     ,[TOTAL_WINES]
+     ,[TOTAL_FRUITS]
+     ,[TOTAL_MNT_MEAT_PRODUCTS]
+     ,[TOTAL_MNT_FISH_PRODUCTS]
+     ,[TOTAL_MNT_SWEET_PRODUCTS]
+     ,[TOTAL_MNT_GOLD_PRODUCTS]
+     ,[TOTAL_WINES] + [TOTAL_FRUITS] + [TOTAL_MNT_MEAT_PRODUCTS] + [TOTAL_MNT_FISH_PRODUCTS] + [TOTAL_MNT_SWEET_PRODUCTS] + [TOTAL_MNT_GOLD_PRODUCTS] AS [TOTAL_PRODUCTS]
+
+FROM [TBL_DATA]
+
+GROUP BY
+        [NUMBER_CLIENTS]
+       ,[TEENHOME]
+       ,ROUND(([NUMBER_CLIENTS] * 100)/(@NUMBER_CLIENTS),2)
+       ,[AVG_YEARS_OLD]
+       ,[AVG_MONTHLY_INCOME]
+       ,[AVG_INCOME]
+       ,[SUM_KIDHOME]
+       ,[AVG_KIDHOME]
+       ,[SUM_TEENHOME]
+       ,[AVG_TEENHOME]
+       ,[AVG_REG_CUSTOMER_TIME]
+       ,[AVG_RECENCY]
+       ,[SUM_NUM_DEALS_PURCHASES]
+       ,[AVG_NUM_DEALS_PURCHASES]
+       ,[SUM_WEB_PURCHASES]
+       ,[AVG_WEB_PURCHASES]
+       ,[SUM_CATALOG_PURCHASES]
+       ,[AVG_CATALOG_PURCHASES]
+       ,[SUM_STORE_PURCHASES]
+       ,[AVG_STORE_PURCHASES]
+       ,[SUM_NUM_WEB_VISITS_MONTH]
+       ,[AVG_NUM_WEB_VISITS_MONTH]
+       ,[TOTAL_WINES]
+       ,[TOTAL_FRUITS]
+       ,[TOTAL_MNT_MEAT_PRODUCTS]
+       ,[TOTAL_MNT_FISH_PRODUCTS]
+       ,[TOTAL_MNT_SWEET_PRODUCTS]
+       ,[TOTAL_MNT_GOLD_PRODUCTS]
+       ,[TOTAL_WINES] + [TOTAL_FRUITS] + [TOTAL_MNT_MEAT_PRODUCTS] + [TOTAL_MNT_FISH_PRODUCTS] + [TOTAL_MNT_SWEET_PRODUCTS] + [TOTAL_MNT_GOLD_PRODUCTS]
+
+ORDER BY	   
+        [TOTAL_WINES] + [TOTAL_FRUITS] + [TOTAL_MNT_MEAT_PRODUCTS] + [TOTAL_MNT_FISH_PRODUCTS] + [TOTAL_MNT_SWEET_PRODUCTS] + [TOTAL_MNT_GOLD_PRODUCTS] DESC
+		
+--------------------------------------------------------------------------------------------------------------------------------------
+-- Tabela padrão.
+
+DECLARE @NUMBER_CLIENTS FLOAT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
+
+WITH [TBL_DATA]
+AS
+(
+SELECT 
+       COUNT([ID]) AS [NUMBER_CLIENTS]
+      ,[EDUCATION]
+      ,[MARITAL_STATUS]
+      ,ROUND(AVG([YEARS_OLD]),0) AS [AVG_YEARS_OLD]
+      ,ROUND(AVG([MONTHLY_INCOME]),0) AS [AVG_MONTHLY_INCOME]
+      ,ROUND(AVG([INCOME]),0) AS [AVG_INCOME]
+      ,SUM([KIDHOME]) AS [SUM_KIDHOME]
+      ,ROUND(AVG([KIDHOME]),2) AS [AVG_KIDHOME]
+      ,SUM([TEENHOME]) AS [SUM_TEENHOME]
+      ,ROUND(AVG([TEENHOME]),2) AS [AVG_TEENHOME]
+      ,AVG([REGISTERED_CUSTOMER_TIME]) AS [AVG_REG_CUSTOMER_TIME]
+      ,ROUND(AVG([RECENCY]),0) AS [AVG_RECENCY]
+      ,SUM([NUM_DEALS_PURCHASES]) AS [SUM_NUM_DEALS_PURCHASES]
+      ,ROUND(AVG([NUM_DEALS_PURCHASES]),0) AS [AVG_NUM_DEALS_PURCHASES]
+      ,SUM([NUM_WEB_PURCHASES]) AS [SUM_WEB_PURCHASES]
+      ,ROUND(AVG([NUM_WEB_PURCHASES]),0) AS [AVG_WEB_PURCHASES]
+      ,SUM([NUM_CATALOG_PURCHASES]) AS [SUM_CATALOG_PURCHASES]
+      ,ROUND(AVG([NUM_CATALOG_PURCHASES]),0) AS [AVG_CATALOG_PURCHASES]
+      ,SUM([NUM_STORE_PURCHASES]) AS [SUM_STORE_PURCHASES]
+      ,ROUND(AVG([NUM_STORE_PURCHASES]),0) AS [AVG_STORE_PURCHASES]
+      ,SUM([NUM_WEB_VISITS_MONTH]) AS [SUM_NUM_WEB_VISITS_MONTH]
+      ,ROUND(AVG([NUM_WEB_VISITS_MONTH]),0) AS [AVG_NUM_WEB_VISITS_MONTH]
+      ,SUM([MNT_WINES]) AS [TOTAL_WINES]
+      ,SUM([MNT_FRUITS]) AS [TOTAL_FRUITS]
+      ,SUM([MNT_MEAT_PRODUCTS]) AS [TOTAL_MNT_MEAT_PRODUCTS]
+      ,SUM([MNT_FISH_PRODUCTS]) AS [TOTAL_MNT_FISH_PRODUCTS]
+      ,SUM([MNT_SWEET_PRODUCTS]) AS [TOTAL_MNT_SWEET_PRODUCTS]
+      ,SUM([MNT_GOLD_PRODS]) AS [TOTAL_MNT_GOLD_PRODUCTS]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+GROUP BY
+       [EDUCATION]
+      ,[MARITAL_STATUS]
+)
+SELECT
+       CONCAT(RANK() OVER (ORDER BY [TOTAL_WINES] + [TOTAL_FRUITS] + [TOTAL_MNT_MEAT_PRODUCTS] + [TOTAL_MNT_FISH_PRODUCTS] + [TOTAL_MNT_SWEET_PRODUCTS] + [TOTAL_MNT_GOLD_PRODUCTS] DESC), ' ', 'º') AS [RANK_CLIENT_PROFILE]
+      ,[NUMBER_CLIENTS]
+      ,[EDUCATION]
+      ,[MARITAL_STATUS]
+      ,ROUND(([NUMBER_CLIENTS] * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTS]
+      ,[AVG_YEARS_OLD]
+      ,[AVG_MONTHLY_INCOME]
+      ,[AVG_INCOME]
+      ,[SUM_KIDHOME]
+      ,[AVG_KIDHOME]
+      ,[SUM_TEENHOME]
+      ,[AVG_TEENHOME]
+      ,[AVG_REG_CUSTOMER_TIME]
+      ,[AVG_RECENCY]
+      ,[SUM_NUM_DEALS_PURCHASES]
+      ,[AVG_NUM_DEALS_PURCHASES]
+      ,[SUM_WEB_PURCHASES]
+      ,[AVG_WEB_PURCHASES]
+      ,[SUM_CATALOG_PURCHASES]
+      ,[AVG_CATALOG_PURCHASES]
+      ,[SUM_STORE_PURCHASES]
+      ,[AVG_STORE_PURCHASES]
+      ,[SUM_NUM_WEB_VISITS_MONTH]
+      ,[AVG_NUM_WEB_VISITS_MONTH]
       ,[TOTAL_WINES]
       ,[TOTAL_FRUITS]
       ,[TOTAL_MNT_MEAT_PRODUCTS]
       ,[TOTAL_MNT_FISH_PRODUCTS]
       ,[TOTAL_MNT_SWEET_PRODUCTS]
       ,[TOTAL_MNT_GOLD_PRODUCTS]
+      ,[TOTAL_WINES] + [TOTAL_FRUITS] + [TOTAL_MNT_MEAT_PRODUCTS] + [TOTAL_MNT_FISH_PRODUCTS] + [TOTAL_MNT_SWEET_PRODUCTS] + [TOTAL_MNT_GOLD_PRODUCTS] AS [TOTAL_PRODUCTS]
 
-ORDER BY
-         [TOTAL_WINES] DESC
-	 ,[TOTAL_FRUITS] DESC
-	 ,[TOTAL_MNT_MEAT_PRODUCTS] DESC
-	 ,[TOTAL_MNT_FISH_PRODUCTS] DESC
-	 ,[TOTAL_MNT_SWEET_PRODUCTS] DESC
-	 ,[TOTAL_MNT_GOLD_PRODUCTS] DESC
-	 ,[TOTAL_WINES] + [TOTAL_FRUITS] + [TOTAL_MNT_MEAT_PRODUCTS] + [TOTAL_MNT_FISH_PRODUCTS] + [TOTAL_MNT_SWEET_PRODUCTS] + [TOTAL_MNT_GOLD_PRODUCTS] DESC
+FROM [TBL_DATA]
 
--- 1158 clientes -> Teenhome: 0 -> 51% -> Wines: 352.985 -> Fruits: 38.573 -> Meat: 263.005 -> Fish: 56.346 -> Sweet: 38.945 -> Gold: 52.407.
--- 1030 clientes -> Teenhome: 1 -> 45% -> Wines: 309.010 -> Fruits: 19.433 -> Meat: 104.475 -> Fish: 26.468 -> Sweet: 20.840 -> Gold: 43.865.
--- 52 clientes -> Teenhome: 2 -> 2% -> Wines: 18.821 -> Fruits: 911 -> Meat: 6.488 -> Fish: 1.243 -> Sweet: 836 -> Gold: 2.337.
+GROUP BY
+        [NUMBER_CLIENTS]
+       ,[EDUCATION]
+       ,[MARITAL_STATUS]
+       ,ROUND(([NUMBER_CLIENTS] * 100)/(@NUMBER_CLIENTS),2)
+       ,[AVG_YEARS_OLD]
+       ,[AVG_MONTHLY_INCOME]
+       ,[AVG_INCOME]
+       ,[SUM_KIDHOME]
+       ,[AVG_KIDHOME]
+       ,[SUM_TEENHOME]
+       ,[AVG_TEENHOME]
+       ,[AVG_REG_CUSTOMER_TIME]
+       ,[AVG_RECENCY]
+       ,[SUM_NUM_DEALS_PURCHASES]
+       ,[AVG_NUM_DEALS_PURCHASES]
+       ,[SUM_WEB_PURCHASES]
+       ,[AVG_WEB_PURCHASES]
+       ,[SUM_CATALOG_PURCHASES]
+       ,[AVG_CATALOG_PURCHASES]
+       ,[SUM_STORE_PURCHASES]
+       ,[AVG_STORE_PURCHASES]
+       ,[SUM_NUM_WEB_VISITS_MONTH]
+       ,[AVG_NUM_WEB_VISITS_MONTH]
+       ,[TOTAL_WINES]
+       ,[TOTAL_FRUITS]
+       ,[TOTAL_MNT_MEAT_PRODUCTS]
+       ,[TOTAL_MNT_FISH_PRODUCTS]
+       ,[TOTAL_MNT_SWEET_PRODUCTS]
+       ,[TOTAL_MNT_GOLD_PRODUCTS]
+       ,[TOTAL_WINES] + [TOTAL_FRUITS] + [TOTAL_MNT_MEAT_PRODUCTS] + [TOTAL_MNT_FISH_PRODUCTS] + [TOTAL_MNT_SWEET_PRODUCTS] + [TOTAL_MNT_GOLD_PRODUCTS]
 
------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ORDER BY	   
+        [TOTAL_WINES] + [TOTAL_FRUITS] + [TOTAL_MNT_MEAT_PRODUCTS] + [TOTAL_MNT_FISH_PRODUCTS] + [TOTAL_MNT_SWEET_PRODUCTS] + [TOTAL_MNT_GOLD_PRODUCTS] DESC
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+-- Tabela com colunas traduzidas.
+
+DECLARE @NUMBER_CLIENTS FLOAT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]);
+
+WITH [TBL_DATA]
+AS
+(
+SELECT 
+       COUNT([ID]) AS [NUMBER_CLIENTS]
+      ,[EDUCATION]
+      ,[MARITAL_STATUS]
+      ,ROUND(AVG([YEARS_OLD]),0) AS [AVG_YEARS_OLD]
+      ,ROUND(AVG([MONTHLY_INCOME]),0) AS [AVG_MONTHLY_INCOME]
+      ,ROUND(AVG([INCOME]),0) AS [AVG_INCOME]
+      ,SUM([KIDHOME]) AS [SUM_KIDHOME]
+      ,ROUND(AVG([KIDHOME]),2) AS [AVG_KIDHOME]
+      ,SUM([TEENHOME]) AS [SUM_TEENHOME]
+      ,ROUND(AVG([TEENHOME]),2) AS [AVG_TEENHOME]
+      ,AVG([REGISTERED_CUSTOMER_TIME]) AS [AVG_REG_CUSTOMER_TIME]
+      ,ROUND(AVG([RECENCY]),0) AS [AVG_RECENCY]
+      ,SUM([NUM_DEALS_PURCHASES]) AS [SUM_NUM_DEALS_PURCHASES]
+      ,ROUND(AVG([NUM_DEALS_PURCHASES]),0) AS [AVG_NUM_DEALS_PURCHASES]
+      ,SUM([NUM_WEB_PURCHASES]) AS [SUM_WEB_PURCHASES]
+      ,ROUND(AVG([NUM_WEB_PURCHASES]),0) AS [AVG_WEB_PURCHASES]
+      ,SUM([NUM_CATALOG_PURCHASES]) AS [SUM_CATALOG_PURCHASES]
+      ,ROUND(AVG([NUM_CATALOG_PURCHASES]),0) AS [AVG_CATALOG_PURCHASES]
+      ,SUM([NUM_STORE_PURCHASES]) AS [SUM_STORE_PURCHASES]
+      ,ROUND(AVG([NUM_STORE_PURCHASES]),0) AS [AVG_STORE_PURCHASES]
+      ,SUM([NUM_WEB_VISITS_MONTH]) AS [SUM_NUM_WEB_VISITS_MONTH]
+      ,ROUND(AVG([NUM_WEB_VISITS_MONTH]),0) AS [AVG_NUM_WEB_VISITS_MONTH]
+      ,SUM([MNT_WINES]) AS [TOTAL_WINES]
+      ,SUM([MNT_FRUITS]) AS [TOTAL_FRUITS]
+      ,SUM([MNT_MEAT_PRODUCTS]) AS [TOTAL_MNT_MEAT_PRODUCTS]
+      ,SUM([MNT_FISH_PRODUCTS]) AS [TOTAL_MNT_FISH_PRODUCTS]
+      ,SUM([MNT_SWEET_PRODUCTS]) AS [TOTAL_MNT_SWEET_PRODUCTS]
+      ,SUM([MNT_GOLD_PRODS]) AS [TOTAL_MNT_GOLD_PRODUCTS]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+GROUP BY
+       [EDUCATION]
+      ,[MARITAL_STATUS]
+)
+SELECT
+       CONCAT(RANK() OVER (ORDER BY [TOTAL_WINES] + [TOTAL_FRUITS] + [TOTAL_MNT_MEAT_PRODUCTS] + [TOTAL_MNT_FISH_PRODUCTS] + [TOTAL_MNT_SWEET_PRODUCTS] + [TOTAL_MNT_GOLD_PRODUCTS] DESC), ' ', 'º') AS [RANKIN_PERFIL_CLIENTE]
+      ,[NUMBER_CLIENTS] AS [QTDE_CLIENTES]
+      ,[EDUCATION] AS [NIVEL_EDUCACAO]
+      ,[MARITAL_STATUS] AS [ESTADO_CIVIL]
+      ,ROUND(([NUMBER_CLIENTS] * 100)/(@NUMBER_CLIENTS),2) AS [PORCENTAGEM_CLIENTES]
+      ,[AVG_YEARS_OLD] AS [IDADE_MEDIA]
+      ,[AVG_MONTHLY_INCOME] AS [RENDA_MEDIA_MENSAL_FAMILIAR]
+      ,[AVG_INCOME] AS [RENDA_MEDIA_ANUAL_FAMILIAR]
+      ,[SUM_KIDHOME] AS [TOTAL_CRIANCAS]
+      ,[AVG_KIDHOME] AS [MEDIA_CRIANCAS]
+      ,[SUM_TEENHOME] AS [TOTAL_ADOLESCENTES]
+      ,[AVG_TEENHOME] AS [MEDIA_ADOLESCENTES]
+      ,[AVG_REG_CUSTOMER_TIME] AS [MEDIA_TEMPO_CLIENTE_REGISTRADO_EMPRESA]
+      ,[AVG_RECENCY] AS [MEDIA_DIAS_DESDE_ULT_COMPRA]
+      ,[SUM_NUM_DEALS_PURCHASES] AS [TOTAL_COMPRAS_COM_DESCONTO]
+      ,[AVG_NUM_DEALS_PURCHASES] AS [MEDIA_COMPRAS_COM_DESCONTO]
+      ,[SUM_WEB_PURCHASES] AS [TOTAL_COMPRAS_SITE]
+      ,[AVG_WEB_PURCHASES] AS [MEDIA_COMPRAS_SITE]
+      ,[SUM_CATALOG_PURCHASES] AS [TOTAL_COMPRAS_CATALOGO]
+      ,[AVG_CATALOG_PURCHASES] AS [MEDIA_COMPRAS_CATALOGO]
+      ,[SUM_STORE_PURCHASES] AS [TOTAL_COMPRAS_LOJA]
+      ,[AVG_STORE_PURCHASES] AS [MEDIA_COMPRAS_LOJA]
+      ,[SUM_NUM_WEB_VISITS_MONTH] AS [TOTAL_VISITAS_SITE_ULT_MES]
+      ,[AVG_NUM_WEB_VISITS_MONTH] AS [MEDIA_VISITAS_SITE_ULT_MES]
+      ,[TOTAL_WINES] AS [TOTAL_VENDAS_CATEGORIA_VINHOS]
+      ,[TOTAL_FRUITS] AS [TOTAL_VENDAS_CATEGORIA_FRUTAS]
+      ,[TOTAL_MNT_MEAT_PRODUCTS] AS [TOTAL_VENDAS_CATEGORIA_CARNES]
+      ,[TOTAL_MNT_FISH_PRODUCTS] AS [TOTAL_VENDAS_CATEGORIA_PEIXES]
+      ,[TOTAL_MNT_SWEET_PRODUCTS] AS [TOTAL_VENDAS_CATEGORIA_DOCES]
+      ,[TOTAL_MNT_GOLD_PRODUCTS] AS [TOTAL_VENDAS_CATEGORIA_GOLD]
+      ,[TOTAL_WINES] + [TOTAL_FRUITS] + [TOTAL_MNT_MEAT_PRODUCTS] + [TOTAL_MNT_FISH_PRODUCTS] + [TOTAL_MNT_SWEET_PRODUCTS] + [TOTAL_MNT_GOLD_PRODUCTS] AS [TOTAL_PRODUTOS_VENDIDOS]
+
+FROM [TBL_DATA]
+
+GROUP BY
+        [NUMBER_CLIENTS]
+       ,[EDUCATION]
+       ,[MARITAL_STATUS]
+       ,ROUND(([NUMBER_CLIENTS] * 100)/(@NUMBER_CLIENTS),2)
+       ,[AVG_YEARS_OLD]
+       ,[AVG_MONTHLY_INCOME]
+       ,[AVG_INCOME]
+       ,[SUM_KIDHOME]
+       ,[AVG_KIDHOME]
+       ,[SUM_TEENHOME]
+       ,[AVG_TEENHOME]
+       ,[AVG_REG_CUSTOMER_TIME]
+       ,[AVG_RECENCY]
+       ,[SUM_NUM_DEALS_PURCHASES]
+       ,[AVG_NUM_DEALS_PURCHASES]
+       ,[SUM_WEB_PURCHASES]
+       ,[AVG_WEB_PURCHASES]
+       ,[SUM_CATALOG_PURCHASES]
+       ,[AVG_CATALOG_PURCHASES]
+       ,[SUM_STORE_PURCHASES]
+       ,[AVG_STORE_PURCHASES]
+       ,[SUM_NUM_WEB_VISITS_MONTH]
+       ,[AVG_NUM_WEB_VISITS_MONTH]
+       ,[TOTAL_WINES]
+       ,[TOTAL_FRUITS]
+       ,[TOTAL_MNT_MEAT_PRODUCTS]
+       ,[TOTAL_MNT_FISH_PRODUCTS]
+       ,[TOTAL_MNT_SWEET_PRODUCTS]
+       ,[TOTAL_MNT_GOLD_PRODUCTS]
+       ,[TOTAL_WINES] + [TOTAL_FRUITS] + [TOTAL_MNT_MEAT_PRODUCTS] + [TOTAL_MNT_FISH_PRODUCTS] + [TOTAL_MNT_SWEET_PRODUCTS] + [TOTAL_MNT_GOLD_PRODUCTS]
+
+ORDER BY	   
+        [TOTAL_WINES] + [TOTAL_FRUITS] + [TOTAL_MNT_MEAT_PRODUCTS] + [TOTAL_MNT_FISH_PRODUCTS] + [TOTAL_MNT_SWEET_PRODUCTS] + [TOTAL_MNT_GOLD_PRODUCTS] DESC
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+-- Clientes que aceitaram a campanha 1, com base no script do 12º passo.
+DECLARE @NUMBER_CLIENTS FLOAT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW] WHERE [ACCEPTED_CMP1] = 1);
+
+WITH [TBL_DATA]
+AS
+(
+SELECT 
+       COUNT([ID]) AS [NUMBER_CLIENTS]
+      ,[EDUCATION]
+      ,[MARITAL_STATUS]
+      ,ROUND(AVG([YEARS_OLD]),0) AS [AVG_YEARS_OLD]
+      ,ROUND(AVG([MONTHLY_INCOME]),0) AS [AVG_MONTHLY_INCOME]
+      ,ROUND(AVG([INCOME]),0) AS [AVG_INCOME]
+      ,SUM([KIDHOME]) AS [SUM_KIDHOME]
+      ,ROUND(AVG([KIDHOME]),2) AS [AVG_KIDHOME]
+      ,SUM([TEENHOME]) AS [SUM_TEENHOME]
+      ,ROUND(AVG([TEENHOME]),2) AS [AVG_TEENHOME]
+      ,AVG([REGISTERED_CUSTOMER_TIME]) AS [AVG_REG_CUSTOMER_TIME]
+      ,ROUND(AVG([RECENCY]),0) AS [AVG_RECENCY]
+      ,SUM([NUM_DEALS_PURCHASES]) AS [SUM_NUM_DEALS_PURCHASES]
+      ,ROUND(AVG([NUM_DEALS_PURCHASES]),0) AS [AVG_NUM_DEALS_PURCHASES]
+      ,SUM([NUM_WEB_PURCHASES]) AS [SUM_WEB_PURCHASES]
+      ,ROUND(AVG([NUM_WEB_PURCHASES]),0) AS [AVG_WEB_PURCHASES]
+      ,SUM([NUM_CATALOG_PURCHASES]) AS [SUM_CATALOG_PURCHASES]
+      ,ROUND(AVG([NUM_CATALOG_PURCHASES]),0) AS [AVG_CATALOG_PURCHASES]
+      ,SUM([NUM_STORE_PURCHASES]) AS [SUM_STORE_PURCHASES]
+      ,ROUND(AVG([NUM_STORE_PURCHASES]),0) AS [AVG_STORE_PURCHASES]
+      ,SUM([NUM_WEB_VISITS_MONTH]) AS [SUM_NUM_WEB_VISITS_MONTH]
+      ,ROUND(AVG([NUM_WEB_VISITS_MONTH]),0) AS [AVG_NUM_WEB_VISITS_MONTH]
+      ,SUM([MNT_WINES]) AS [TOTAL_WINES]
+      ,SUM([MNT_FRUITS]) AS [TOTAL_FRUITS]
+      ,SUM([MNT_MEAT_PRODUCTS]) AS [TOTAL_MNT_MEAT_PRODUCTS]
+      ,SUM([MNT_FISH_PRODUCTS]) AS [TOTAL_MNT_FISH_PRODUCTS]
+      ,SUM([MNT_SWEET_PRODUCTS]) AS [TOTAL_MNT_SWEET_PRODUCTS]
+      ,SUM([MNT_GOLD_PRODS]) AS [TOTAL_MNT_GOLD_PRODUCTS]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [ACCEPTED_CMP1] = 1
+
+GROUP BY
+       [EDUCATION]
+      ,[MARITAL_STATUS]
+)
+SELECT 
+       [NUMBER_CLIENTS]
+      ,[EDUCATION]
+      ,[MARITAL_STATUS]
+      ,ROUND(([NUMBER_CLIENTS] * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTS]
+      ,[AVG_YEARS_OLD]
+      ,[AVG_MONTHLY_INCOME]
+      ,[AVG_INCOME]
+      ,[SUM_KIDHOME]
+      ,[AVG_KIDHOME]
+      ,[SUM_TEENHOME]
+      ,[AVG_TEENHOME]
+      ,[AVG_REG_CUSTOMER_TIME]
+      ,[AVG_RECENCY]
+      ,[SUM_NUM_DEALS_PURCHASES]
+      ,[AVG_NUM_DEALS_PURCHASES]
+      ,[SUM_WEB_PURCHASES]
+      ,[AVG_WEB_PURCHASES]
+      ,[SUM_CATALOG_PURCHASES]
+      ,[AVG_CATALOG_PURCHASES]
+      ,[SUM_STORE_PURCHASES]
+      ,[AVG_STORE_PURCHASES]
+      ,[SUM_NUM_WEB_VISITS_MONTH]
+      ,[AVG_NUM_WEB_VISITS_MONTH]
+      ,[TOTAL_WINES]
+      ,[TOTAL_FRUITS]
+      ,[TOTAL_MNT_MEAT_PRODUCTS]
+      ,[TOTAL_MNT_FISH_PRODUCTS]
+      ,[TOTAL_MNT_SWEET_PRODUCTS]
+      ,[TOTAL_MNT_GOLD_PRODUCTS]
+      ,[TOTAL_WINES] + [TOTAL_FRUITS] + [TOTAL_MNT_MEAT_PRODUCTS] + [TOTAL_MNT_FISH_PRODUCTS] + [TOTAL_MNT_SWEET_PRODUCTS] + [TOTAL_MNT_GOLD_PRODUCTS] AS [TOTAL_PRODUCTS]
+
+FROM [TBL_DATA]
+
+GROUP BY
+        [NUMBER_CLIENTS]
+       ,[EDUCATION]
+       ,[MARITAL_STATUS]
+       ,ROUND(([NUMBER_CLIENTS] * 100)/(@NUMBER_CLIENTS),2)
+       ,[AVG_YEARS_OLD]
+       ,[AVG_MONTHLY_INCOME]
+       ,[AVG_INCOME]
+       ,[SUM_KIDHOME]
+       ,[AVG_KIDHOME]
+       ,[SUM_TEENHOME]
+       ,[AVG_TEENHOME]
+       ,[AVG_REG_CUSTOMER_TIME]
+       ,[AVG_RECENCY]
+       ,[SUM_NUM_DEALS_PURCHASES]
+       ,[AVG_NUM_DEALS_PURCHASES]
+       ,[SUM_WEB_PURCHASES]
+       ,[AVG_WEB_PURCHASES]
+       ,[SUM_CATALOG_PURCHASES]
+       ,[AVG_CATALOG_PURCHASES]
+       ,[SUM_STORE_PURCHASES]
+       ,[AVG_STORE_PURCHASES]
+       ,[SUM_NUM_WEB_VISITS_MONTH]
+       ,[AVG_NUM_WEB_VISITS_MONTH]
+       ,[TOTAL_WINES]
+       ,[TOTAL_FRUITS]
+       ,[TOTAL_MNT_MEAT_PRODUCTS]
+       ,[TOTAL_MNT_FISH_PRODUCTS]
+       ,[TOTAL_MNT_SWEET_PRODUCTS]
+       ,[TOTAL_MNT_GOLD_PRODUCTS]
+       ,[TOTAL_WINES] + [TOTAL_FRUITS] + [TOTAL_MNT_MEAT_PRODUCTS] + [TOTAL_MNT_FISH_PRODUCTS] + [TOTAL_MNT_SWEET_PRODUCTS] + [TOTAL_MNT_GOLD_PRODUCTS]
+
+ORDER BY	   
+        [TOTAL_WINES] + [TOTAL_FRUITS] + [TOTAL_MNT_MEAT_PRODUCTS] + [TOTAL_MNT_FISH_PRODUCTS] + [TOTAL_MNT_SWEET_PRODUCTS] + [TOTAL_MNT_GOLD_PRODUCTS] DESC
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+-- Clientes que aceitaram a campanha 2, com base no script do 12º passo.
+DECLARE @NUMBER_CLIENTS FLOAT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW] WHERE [ACCEPTED_CMP2] = 1);
+
+WITH [TBL_DATA]
+AS
+(
+SELECT 
+       COUNT([ID]) AS [NUMBER_CLIENTS]
+      ,[EDUCATION]
+      ,[MARITAL_STATUS]
+      ,ROUND(AVG([YEARS_OLD]),0) AS [AVG_YEARS_OLD]
+      ,ROUND(AVG([MONTHLY_INCOME]),0) AS [AVG_MONTHLY_INCOME]
+      ,ROUND(AVG([INCOME]),0) AS [AVG_INCOME]
+      ,SUM([KIDHOME]) AS [SUM_KIDHOME]
+      ,ROUND(AVG([KIDHOME]),2) AS [AVG_KIDHOME]
+      ,SUM([TEENHOME]) AS [SUM_TEENHOME]
+      ,ROUND(AVG([TEENHOME]),2) AS [AVG_TEENHOME]
+      ,AVG([REGISTERED_CUSTOMER_TIME]) AS [AVG_REG_CUSTOMER_TIME]
+      ,ROUND(AVG([RECENCY]),0) AS [AVG_RECENCY]
+      ,SUM([NUM_DEALS_PURCHASES]) AS [SUM_NUM_DEALS_PURCHASES]
+      ,ROUND(AVG([NUM_DEALS_PURCHASES]),0) AS [AVG_NUM_DEALS_PURCHASES]
+      ,SUM([NUM_WEB_PURCHASES]) AS [SUM_WEB_PURCHASES]
+      ,ROUND(AVG([NUM_WEB_PURCHASES]),0) AS [AVG_WEB_PURCHASES]
+      ,SUM([NUM_CATALOG_PURCHASES]) AS [SUM_CATALOG_PURCHASES]
+      ,ROUND(AVG([NUM_CATALOG_PURCHASES]),0) AS [AVG_CATALOG_PURCHASES]
+      ,SUM([NUM_STORE_PURCHASES]) AS [SUM_STORE_PURCHASES]
+      ,ROUND(AVG([NUM_STORE_PURCHASES]),0) AS [AVG_STORE_PURCHASES]
+      ,SUM([NUM_WEB_VISITS_MONTH]) AS [SUM_NUM_WEB_VISITS_MONTH]
+      ,ROUND(AVG([NUM_WEB_VISITS_MONTH]),0) AS [AVG_NUM_WEB_VISITS_MONTH]
+      ,SUM([MNT_WINES]) AS [TOTAL_WINES]
+      ,SUM([MNT_FRUITS]) AS [TOTAL_FRUITS]
+      ,SUM([MNT_MEAT_PRODUCTS]) AS [TOTAL_MNT_MEAT_PRODUCTS]
+      ,SUM([MNT_FISH_PRODUCTS]) AS [TOTAL_MNT_FISH_PRODUCTS]
+      ,SUM([MNT_SWEET_PRODUCTS]) AS [TOTAL_MNT_SWEET_PRODUCTS]
+      ,SUM([MNT_GOLD_PRODS]) AS [TOTAL_MNT_GOLD_PRODUCTS]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [ACCEPTED_CMP2] = 1
+
+GROUP BY
+       [EDUCATION]
+      ,[MARITAL_STATUS]
+)
+SELECT 
+       [NUMBER_CLIENTS]
+      ,[EDUCATION]
+      ,[MARITAL_STATUS]
+      ,ROUND(([NUMBER_CLIENTS] * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTS]
+      ,[AVG_YEARS_OLD]
+      ,[AVG_MONTHLY_INCOME]
+      ,[AVG_INCOME]
+      ,[SUM_KIDHOME]
+      ,[AVG_KIDHOME]
+      ,[SUM_TEENHOME]
+      ,[AVG_TEENHOME]
+      ,[AVG_REG_CUSTOMER_TIME]
+      ,[AVG_RECENCY]
+      ,[SUM_NUM_DEALS_PURCHASES]
+      ,[AVG_NUM_DEALS_PURCHASES]
+      ,[SUM_WEB_PURCHASES]
+      ,[AVG_WEB_PURCHASES]
+      ,[SUM_CATALOG_PURCHASES]
+      ,[AVG_CATALOG_PURCHASES]
+      ,[SUM_STORE_PURCHASES]
+      ,[AVG_STORE_PURCHASES]
+      ,[SUM_NUM_WEB_VISITS_MONTH]
+      ,[AVG_NUM_WEB_VISITS_MONTH]
+      ,[TOTAL_WINES]
+      ,[TOTAL_FRUITS]
+      ,[TOTAL_MNT_MEAT_PRODUCTS]
+      ,[TOTAL_MNT_FISH_PRODUCTS]
+      ,[TOTAL_MNT_SWEET_PRODUCTS]
+      ,[TOTAL_MNT_GOLD_PRODUCTS]
+      ,[TOTAL_WINES] + [TOTAL_FRUITS] + [TOTAL_MNT_MEAT_PRODUCTS] + [TOTAL_MNT_FISH_PRODUCTS] + [TOTAL_MNT_SWEET_PRODUCTS] + [TOTAL_MNT_GOLD_PRODUCTS] AS [TOTAL_PRODUCTS]
+
+FROM [TBL_DATA]
+
+GROUP BY
+        [NUMBER_CLIENTS]
+       ,[EDUCATION]
+       ,[MARITAL_STATUS]
+       ,ROUND(([NUMBER_CLIENTS] * 100)/(@NUMBER_CLIENTS),2)
+       ,[AVG_YEARS_OLD]
+       ,[AVG_MONTHLY_INCOME]
+       ,[AVG_INCOME]
+       ,[SUM_KIDHOME]
+       ,[AVG_KIDHOME]
+       ,[SUM_TEENHOME]
+       ,[AVG_TEENHOME]
+       ,[AVG_REG_CUSTOMER_TIME]
+       ,[AVG_RECENCY]
+       ,[SUM_NUM_DEALS_PURCHASES]
+       ,[AVG_NUM_DEALS_PURCHASES]
+       ,[SUM_WEB_PURCHASES]
+       ,[AVG_WEB_PURCHASES]
+       ,[SUM_CATALOG_PURCHASES]
+       ,[AVG_CATALOG_PURCHASES]
+       ,[SUM_STORE_PURCHASES]
+       ,[AVG_STORE_PURCHASES]
+       ,[SUM_NUM_WEB_VISITS_MONTH]
+       ,[AVG_NUM_WEB_VISITS_MONTH]
+       ,[TOTAL_WINES]
+       ,[TOTAL_FRUITS]
+       ,[TOTAL_MNT_MEAT_PRODUCTS]
+       ,[TOTAL_MNT_FISH_PRODUCTS]
+       ,[TOTAL_MNT_SWEET_PRODUCTS]
+       ,[TOTAL_MNT_GOLD_PRODUCTS]
+       ,[TOTAL_WINES] + [TOTAL_FRUITS] + [TOTAL_MNT_MEAT_PRODUCTS] + [TOTAL_MNT_FISH_PRODUCTS] + [TOTAL_MNT_SWEET_PRODUCTS] + [TOTAL_MNT_GOLD_PRODUCTS]
+
+ORDER BY	   
+        [TOTAL_WINES] + [TOTAL_FRUITS] + [TOTAL_MNT_MEAT_PRODUCTS] + [TOTAL_MNT_FISH_PRODUCTS] + [TOTAL_MNT_SWEET_PRODUCTS] + [TOTAL_MNT_GOLD_PRODUCTS] DESC
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+-- Clientes que aceitaram a campanha 3, com base no script do 12º passo.
+DECLARE @NUMBER_CLIENTS FLOAT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW] WHERE [ACCEPTED_CMP3] = 1);
+
+WITH [TBL_DATA]
+AS
+(
+SELECT 
+       COUNT([ID]) AS [NUMBER_CLIENTS]
+      ,[EDUCATION]
+      ,[MARITAL_STATUS]
+      ,ROUND(AVG([YEARS_OLD]),0) AS [AVG_YEARS_OLD]
+      ,ROUND(AVG([MONTHLY_INCOME]),0) AS [AVG_MONTHLY_INCOME]
+      ,ROUND(AVG([INCOME]),0) AS [AVG_INCOME]
+      ,SUM([KIDHOME]) AS [SUM_KIDHOME]
+      ,ROUND(AVG([KIDHOME]),2) AS [AVG_KIDHOME]
+      ,SUM([TEENHOME]) AS [SUM_TEENHOME]
+      ,ROUND(AVG([TEENHOME]),2) AS [AVG_TEENHOME]
+      ,AVG([REGISTERED_CUSTOMER_TIME]) AS [AVG_REG_CUSTOMER_TIME]
+      ,ROUND(AVG([RECENCY]),0) AS [AVG_RECENCY]
+      ,SUM([NUM_DEALS_PURCHASES]) AS [SUM_NUM_DEALS_PURCHASES]
+      ,ROUND(AVG([NUM_DEALS_PURCHASES]),0) AS [AVG_NUM_DEALS_PURCHASES]
+      ,SUM([NUM_WEB_PURCHASES]) AS [SUM_WEB_PURCHASES]
+      ,ROUND(AVG([NUM_WEB_PURCHASES]),0) AS [AVG_WEB_PURCHASES]
+      ,SUM([NUM_CATALOG_PURCHASES]) AS [SUM_CATALOG_PURCHASES]
+      ,ROUND(AVG([NUM_CATALOG_PURCHASES]),0) AS [AVG_CATALOG_PURCHASES]
+      ,SUM([NUM_STORE_PURCHASES]) AS [SUM_STORE_PURCHASES]
+      ,ROUND(AVG([NUM_STORE_PURCHASES]),0) AS [AVG_STORE_PURCHASES]
+      ,SUM([NUM_WEB_VISITS_MONTH]) AS [SUM_NUM_WEB_VISITS_MONTH]
+      ,ROUND(AVG([NUM_WEB_VISITS_MONTH]),0) AS [AVG_NUM_WEB_VISITS_MONTH]
+      ,SUM([MNT_WINES]) AS [TOTAL_WINES]
+      ,SUM([MNT_FRUITS]) AS [TOTAL_FRUITS]
+      ,SUM([MNT_MEAT_PRODUCTS]) AS [TOTAL_MNT_MEAT_PRODUCTS]
+      ,SUM([MNT_FISH_PRODUCTS]) AS [TOTAL_MNT_FISH_PRODUCTS]
+      ,SUM([MNT_SWEET_PRODUCTS]) AS [TOTAL_MNT_SWEET_PRODUCTS]
+      ,SUM([MNT_GOLD_PRODS]) AS [TOTAL_MNT_GOLD_PRODUCTS]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [ACCEPTED_CMP3] = 1
+
+GROUP BY
+       [EDUCATION]
+      ,[MARITAL_STATUS]
+)
+SELECT 
+       [NUMBER_CLIENTS]
+      ,[EDUCATION]
+      ,[MARITAL_STATUS]
+      ,ROUND(([NUMBER_CLIENTS] * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTS]
+      ,[AVG_YEARS_OLD]
+      ,[AVG_MONTHLY_INCOME]
+      ,[AVG_INCOME]
+      ,[SUM_KIDHOME]
+      ,[AVG_KIDHOME]
+      ,[SUM_TEENHOME]
+      ,[AVG_TEENHOME]
+      ,[AVG_REG_CUSTOMER_TIME]
+      ,[AVG_RECENCY]
+      ,[SUM_NUM_DEALS_PURCHASES]
+      ,[AVG_NUM_DEALS_PURCHASES]
+      ,[SUM_WEB_PURCHASES]
+      ,[AVG_WEB_PURCHASES]
+      ,[SUM_CATALOG_PURCHASES]
+      ,[AVG_CATALOG_PURCHASES]
+      ,[SUM_STORE_PURCHASES]
+      ,[AVG_STORE_PURCHASES]
+      ,[SUM_NUM_WEB_VISITS_MONTH]
+      ,[AVG_NUM_WEB_VISITS_MONTH]
+      ,[TOTAL_WINES]
+      ,[TOTAL_FRUITS]
+      ,[TOTAL_MNT_MEAT_PRODUCTS]
+      ,[TOTAL_MNT_FISH_PRODUCTS]
+      ,[TOTAL_MNT_SWEET_PRODUCTS]
+      ,[TOTAL_MNT_GOLD_PRODUCTS]
+      ,[TOTAL_WINES] + [TOTAL_FRUITS] + [TOTAL_MNT_MEAT_PRODUCTS] + [TOTAL_MNT_FISH_PRODUCTS] + [TOTAL_MNT_SWEET_PRODUCTS] + [TOTAL_MNT_GOLD_PRODUCTS] AS [TOTAL_PRODUCTS]
+
+FROM [TBL_DATA]
+
+GROUP BY
+        [NUMBER_CLIENTS]
+       ,[EDUCATION]
+       ,[MARITAL_STATUS]
+       ,ROUND(([NUMBER_CLIENTS] * 100)/(@NUMBER_CLIENTS),2)
+       ,[AVG_YEARS_OLD]
+       ,[AVG_MONTHLY_INCOME]
+       ,[AVG_INCOME]
+       ,[SUM_KIDHOME]
+       ,[AVG_KIDHOME]
+       ,[SUM_TEENHOME]
+       ,[AVG_TEENHOME]
+       ,[AVG_REG_CUSTOMER_TIME]
+       ,[AVG_RECENCY]
+       ,[SUM_NUM_DEALS_PURCHASES]
+       ,[AVG_NUM_DEALS_PURCHASES]
+       ,[SUM_WEB_PURCHASES]
+       ,[AVG_WEB_PURCHASES]
+       ,[SUM_CATALOG_PURCHASES]
+       ,[AVG_CATALOG_PURCHASES]
+       ,[SUM_STORE_PURCHASES]
+       ,[AVG_STORE_PURCHASES]
+       ,[SUM_NUM_WEB_VISITS_MONTH]
+       ,[AVG_NUM_WEB_VISITS_MONTH]
+       ,[TOTAL_WINES]
+       ,[TOTAL_FRUITS]
+       ,[TOTAL_MNT_MEAT_PRODUCTS]
+       ,[TOTAL_MNT_FISH_PRODUCTS]
+       ,[TOTAL_MNT_SWEET_PRODUCTS]
+       ,[TOTAL_MNT_GOLD_PRODUCTS]
+       ,[TOTAL_WINES] + [TOTAL_FRUITS] + [TOTAL_MNT_MEAT_PRODUCTS] + [TOTAL_MNT_FISH_PRODUCTS] + [TOTAL_MNT_SWEET_PRODUCTS] + [TOTAL_MNT_GOLD_PRODUCTS]
+
+ORDER BY	   
+        [TOTAL_WINES] + [TOTAL_FRUITS] + [TOTAL_MNT_MEAT_PRODUCTS] + [TOTAL_MNT_FISH_PRODUCTS] + [TOTAL_MNT_SWEET_PRODUCTS] + [TOTAL_MNT_GOLD_PRODUCTS] DESC
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+-- Clientes que aceitaram a campanha 4, com base no script do 12º passo.
+DECLARE @NUMBER_CLIENTS FLOAT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW] WHERE [ACCEPTED_CMP4] = 1);
+
+WITH [TBL_DATA]
+AS
+(
+SELECT 
+       COUNT([ID]) AS [NUMBER_CLIENTS]
+      ,[EDUCATION]
+      ,[MARITAL_STATUS]
+      ,ROUND(AVG([YEARS_OLD]),0) AS [AVG_YEARS_OLD]
+      ,ROUND(AVG([MONTHLY_INCOME]),0) AS [AVG_MONTHLY_INCOME]
+      ,ROUND(AVG([INCOME]),0) AS [AVG_INCOME]
+      ,SUM([KIDHOME]) AS [SUM_KIDHOME]
+      ,ROUND(AVG([KIDHOME]),2) AS [AVG_KIDHOME]
+      ,SUM([TEENHOME]) AS [SUM_TEENHOME]
+      ,ROUND(AVG([TEENHOME]),2) AS [AVG_TEENHOME]
+      ,AVG([REGISTERED_CUSTOMER_TIME]) AS [AVG_REG_CUSTOMER_TIME]
+      ,ROUND(AVG([RECENCY]),0) AS [AVG_RECENCY]
+      ,SUM([NUM_DEALS_PURCHASES]) AS [SUM_NUM_DEALS_PURCHASES]
+      ,ROUND(AVG([NUM_DEALS_PURCHASES]),0) AS [AVG_NUM_DEALS_PURCHASES]
+      ,SUM([NUM_WEB_PURCHASES]) AS [SUM_WEB_PURCHASES]
+      ,ROUND(AVG([NUM_WEB_PURCHASES]),0) AS [AVG_WEB_PURCHASES]
+      ,SUM([NUM_CATALOG_PURCHASES]) AS [SUM_CATALOG_PURCHASES]
+      ,ROUND(AVG([NUM_CATALOG_PURCHASES]),0) AS [AVG_CATALOG_PURCHASES]
+      ,SUM([NUM_STORE_PURCHASES]) AS [SUM_STORE_PURCHASES]
+      ,ROUND(AVG([NUM_STORE_PURCHASES]),0) AS [AVG_STORE_PURCHASES]
+      ,SUM([NUM_WEB_VISITS_MONTH]) AS [SUM_NUM_WEB_VISITS_MONTH]
+      ,ROUND(AVG([NUM_WEB_VISITS_MONTH]),0) AS [AVG_NUM_WEB_VISITS_MONTH]
+      ,SUM([MNT_WINES]) AS [TOTAL_WINES]
+      ,SUM([MNT_FRUITS]) AS [TOTAL_FRUITS]
+      ,SUM([MNT_MEAT_PRODUCTS]) AS [TOTAL_MNT_MEAT_PRODUCTS]
+      ,SUM([MNT_FISH_PRODUCTS]) AS [TOTAL_MNT_FISH_PRODUCTS]
+      ,SUM([MNT_SWEET_PRODUCTS]) AS [TOTAL_MNT_SWEET_PRODUCTS]
+      ,SUM([MNT_GOLD_PRODS]) AS [TOTAL_MNT_GOLD_PRODUCTS]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [ACCEPTED_CMP4] = 1
+
+GROUP BY
+       [EDUCATION]
+      ,[MARITAL_STATUS]
+)
+SELECT 
+       [NUMBER_CLIENTS]
+      ,[EDUCATION]
+      ,[MARITAL_STATUS]
+      ,ROUND(([NUMBER_CLIENTS] * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTS]
+      ,[AVG_YEARS_OLD]
+      ,[AVG_MONTHLY_INCOME]
+      ,[AVG_INCOME]
+      ,[SUM_KIDHOME]
+      ,[AVG_KIDHOME]
+      ,[SUM_TEENHOME]
+      ,[AVG_TEENHOME]
+      ,[AVG_REG_CUSTOMER_TIME]
+      ,[AVG_RECENCY]
+      ,[SUM_NUM_DEALS_PURCHASES]
+      ,[AVG_NUM_DEALS_PURCHASES]
+      ,[SUM_WEB_PURCHASES]
+      ,[AVG_WEB_PURCHASES]
+      ,[SUM_CATALOG_PURCHASES]
+      ,[AVG_CATALOG_PURCHASES]
+      ,[SUM_STORE_PURCHASES]
+      ,[AVG_STORE_PURCHASES]
+      ,[SUM_NUM_WEB_VISITS_MONTH]
+      ,[AVG_NUM_WEB_VISITS_MONTH]
+      ,[TOTAL_WINES]
+      ,[TOTAL_FRUITS]
+      ,[TOTAL_MNT_MEAT_PRODUCTS]
+      ,[TOTAL_MNT_FISH_PRODUCTS]
+      ,[TOTAL_MNT_SWEET_PRODUCTS]
+      ,[TOTAL_MNT_GOLD_PRODUCTS]
+      ,[TOTAL_WINES] + [TOTAL_FRUITS] + [TOTAL_MNT_MEAT_PRODUCTS] + [TOTAL_MNT_FISH_PRODUCTS] + [TOTAL_MNT_SWEET_PRODUCTS] + [TOTAL_MNT_GOLD_PRODUCTS] AS [TOTAL_PRODUCTS]
+
+FROM [TBL_DATA]
+
+GROUP BY
+        [NUMBER_CLIENTS]
+       ,[EDUCATION]
+       ,[MARITAL_STATUS]
+       ,ROUND(([NUMBER_CLIENTS] * 100)/(@NUMBER_CLIENTS),2)
+       ,[AVG_YEARS_OLD]
+       ,[AVG_MONTHLY_INCOME]
+       ,[AVG_INCOME]
+       ,[SUM_KIDHOME]
+       ,[AVG_KIDHOME]
+       ,[SUM_TEENHOME]
+       ,[AVG_TEENHOME]
+       ,[AVG_REG_CUSTOMER_TIME]
+       ,[AVG_RECENCY]
+       ,[SUM_NUM_DEALS_PURCHASES]
+       ,[AVG_NUM_DEALS_PURCHASES]
+       ,[SUM_WEB_PURCHASES]
+       ,[AVG_WEB_PURCHASES]
+       ,[SUM_CATALOG_PURCHASES]
+       ,[AVG_CATALOG_PURCHASES]
+       ,[SUM_STORE_PURCHASES]
+       ,[AVG_STORE_PURCHASES]
+       ,[SUM_NUM_WEB_VISITS_MONTH]
+       ,[AVG_NUM_WEB_VISITS_MONTH]
+       ,[TOTAL_WINES]
+       ,[TOTAL_FRUITS]
+       ,[TOTAL_MNT_MEAT_PRODUCTS]
+       ,[TOTAL_MNT_FISH_PRODUCTS]
+       ,[TOTAL_MNT_SWEET_PRODUCTS]
+       ,[TOTAL_MNT_GOLD_PRODUCTS]
+       ,[TOTAL_WINES] + [TOTAL_FRUITS] + [TOTAL_MNT_MEAT_PRODUCTS] + [TOTAL_MNT_FISH_PRODUCTS] + [TOTAL_MNT_SWEET_PRODUCTS] + [TOTAL_MNT_GOLD_PRODUCTS]
+
+ORDER BY	   
+        [TOTAL_WINES] + [TOTAL_FRUITS] + [TOTAL_MNT_MEAT_PRODUCTS] + [TOTAL_MNT_FISH_PRODUCTS] + [TOTAL_MNT_SWEET_PRODUCTS] + [TOTAL_MNT_GOLD_PRODUCTS] DESC
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+-- Clientes que aceitaram a campanha 5, com base no script do 12º passo.
+DECLARE @NUMBER_CLIENTS FLOAT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW] WHERE [ACCEPTED_CMP5] = 1);
+
+WITH [TBL_DATA]
+AS
+(
+SELECT 
+       COUNT([ID]) AS [NUMBER_CLIENTS]
+      ,[EDUCATION]
+      ,[MARITAL_STATUS]
+      ,ROUND(AVG([YEARS_OLD]),0) AS [AVG_YEARS_OLD]
+      ,ROUND(AVG([MONTHLY_INCOME]),0) AS [AVG_MONTHLY_INCOME]
+      ,ROUND(AVG([INCOME]),0) AS [AVG_INCOME]
+      ,SUM([KIDHOME]) AS [SUM_KIDHOME]
+      ,ROUND(AVG([KIDHOME]),2) AS [AVG_KIDHOME]
+      ,SUM([TEENHOME]) AS [SUM_TEENHOME]
+      ,ROUND(AVG([TEENHOME]),2) AS [AVG_TEENHOME]
+      ,AVG([REGISTERED_CUSTOMER_TIME]) AS [AVG_REG_CUSTOMER_TIME]
+      ,ROUND(AVG([RECENCY]),0) AS [AVG_RECENCY]
+      ,SUM([NUM_DEALS_PURCHASES]) AS [SUM_NUM_DEALS_PURCHASES]
+      ,ROUND(AVG([NUM_DEALS_PURCHASES]),0) AS [AVG_NUM_DEALS_PURCHASES]
+      ,SUM([NUM_WEB_PURCHASES]) AS [SUM_WEB_PURCHASES]
+      ,ROUND(AVG([NUM_WEB_PURCHASES]),0) AS [AVG_WEB_PURCHASES]
+      ,SUM([NUM_CATALOG_PURCHASES]) AS [SUM_CATALOG_PURCHASES]
+      ,ROUND(AVG([NUM_CATALOG_PURCHASES]),0) AS [AVG_CATALOG_PURCHASES]
+      ,SUM([NUM_STORE_PURCHASES]) AS [SUM_STORE_PURCHASES]
+      ,ROUND(AVG([NUM_STORE_PURCHASES]),0) AS [AVG_STORE_PURCHASES]
+      ,SUM([NUM_WEB_VISITS_MONTH]) AS [SUM_NUM_WEB_VISITS_MONTH]
+      ,ROUND(AVG([NUM_WEB_VISITS_MONTH]),0) AS [AVG_NUM_WEB_VISITS_MONTH]
+      ,SUM([MNT_WINES]) AS [TOTAL_WINES]
+      ,SUM([MNT_FRUITS]) AS [TOTAL_FRUITS]
+      ,SUM([MNT_MEAT_PRODUCTS]) AS [TOTAL_MNT_MEAT_PRODUCTS]
+      ,SUM([MNT_FISH_PRODUCTS]) AS [TOTAL_MNT_FISH_PRODUCTS]
+      ,SUM([MNT_SWEET_PRODUCTS]) AS [TOTAL_MNT_SWEET_PRODUCTS]
+      ,SUM([MNT_GOLD_PRODS]) AS [TOTAL_MNT_GOLD_PRODUCTS]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [ACCEPTED_CMP5] = 1
+
+GROUP BY
+       [EDUCATION]
+      ,[MARITAL_STATUS]
+)
+SELECT 
+       [NUMBER_CLIENTS]
+      ,[EDUCATION]
+      ,[MARITAL_STATUS]
+      ,ROUND(([NUMBER_CLIENTS] * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTS]
+      ,[AVG_YEARS_OLD]
+      ,[AVG_MONTHLY_INCOME]
+      ,[AVG_INCOME]
+      ,[SUM_KIDHOME]
+      ,[AVG_KIDHOME]
+      ,[SUM_TEENHOME]
+      ,[AVG_TEENHOME]
+      ,[AVG_REG_CUSTOMER_TIME]
+      ,[AVG_RECENCY]
+      ,[SUM_NUM_DEALS_PURCHASES]
+      ,[AVG_NUM_DEALS_PURCHASES]
+      ,[SUM_WEB_PURCHASES]
+      ,[AVG_WEB_PURCHASES]
+      ,[SUM_CATALOG_PURCHASES]
+      ,[AVG_CATALOG_PURCHASES]
+      ,[SUM_STORE_PURCHASES]
+      ,[AVG_STORE_PURCHASES]
+      ,[SUM_NUM_WEB_VISITS_MONTH]
+      ,[AVG_NUM_WEB_VISITS_MONTH]
+      ,[TOTAL_WINES]
+      ,[TOTAL_FRUITS]
+      ,[TOTAL_MNT_MEAT_PRODUCTS]
+      ,[TOTAL_MNT_FISH_PRODUCTS]
+      ,[TOTAL_MNT_SWEET_PRODUCTS]
+      ,[TOTAL_MNT_GOLD_PRODUCTS]
+      ,[TOTAL_WINES] + [TOTAL_FRUITS] + [TOTAL_MNT_MEAT_PRODUCTS] + [TOTAL_MNT_FISH_PRODUCTS] + [TOTAL_MNT_SWEET_PRODUCTS] + [TOTAL_MNT_GOLD_PRODUCTS] AS [TOTAL_PRODUCTS]
+
+FROM [TBL_DATA]
+
+GROUP BY
+        [NUMBER_CLIENTS]
+       ,[EDUCATION]
+       ,[MARITAL_STATUS]
+       ,ROUND(([NUMBER_CLIENTS] * 100)/(@NUMBER_CLIENTS),2)
+       ,[AVG_YEARS_OLD]
+       ,[AVG_MONTHLY_INCOME]
+       ,[AVG_INCOME]
+       ,[SUM_KIDHOME]
+       ,[AVG_KIDHOME]
+       ,[SUM_TEENHOME]
+       ,[AVG_TEENHOME]
+       ,[AVG_REG_CUSTOMER_TIME]
+       ,[AVG_RECENCY]
+       ,[SUM_NUM_DEALS_PURCHASES]
+       ,[AVG_NUM_DEALS_PURCHASES]
+       ,[SUM_WEB_PURCHASES]
+       ,[AVG_WEB_PURCHASES]
+       ,[SUM_CATALOG_PURCHASES]
+       ,[AVG_CATALOG_PURCHASES]
+       ,[SUM_STORE_PURCHASES]
+       ,[AVG_STORE_PURCHASES]
+       ,[SUM_NUM_WEB_VISITS_MONTH]
+       ,[AVG_NUM_WEB_VISITS_MONTH]
+       ,[TOTAL_WINES]
+       ,[TOTAL_FRUITS]
+       ,[TOTAL_MNT_MEAT_PRODUCTS]
+       ,[TOTAL_MNT_FISH_PRODUCTS]
+       ,[TOTAL_MNT_SWEET_PRODUCTS]
+       ,[TOTAL_MNT_GOLD_PRODUCTS]
+       ,[TOTAL_WINES] + [TOTAL_FRUITS] + [TOTAL_MNT_MEAT_PRODUCTS] + [TOTAL_MNT_FISH_PRODUCTS] + [TOTAL_MNT_SWEET_PRODUCTS] + [TOTAL_MNT_GOLD_PRODUCTS]
+
+ORDER BY	   
+        [TOTAL_WINES] + [TOTAL_FRUITS] + [TOTAL_MNT_MEAT_PRODUCTS] + [TOTAL_MNT_FISH_PRODUCTS] + [TOTAL_MNT_SWEET_PRODUCTS] + [TOTAL_MNT_GOLD_PRODUCTS] DESC
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+-- Clientes que aceitaram a última campanha, com taxa de 15º de sucesso, com base no script do 12º passo.
+DECLARE @NUMBER_CLIENTS FLOAT = (SELECT COUNT([ID]) FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW] WHERE [RESPONSE] = 1);
+
+WITH [TBL_DATA]
+AS
+(
+SELECT 
+       COUNT([ID]) AS [NUMBER_CLIENTS]
+      ,[EDUCATION]
+      ,[MARITAL_STATUS]
+      ,ROUND(AVG([YEARS_OLD]),0) AS [AVG_YEARS_OLD]
+      ,ROUND(AVG([MONTHLY_INCOME]),0) AS [AVG_MONTHLY_INCOME]
+      ,ROUND(AVG([INCOME]),0) AS [AVG_INCOME]
+      ,SUM([KIDHOME]) AS [SUM_KIDHOME]
+      ,ROUND(AVG([KIDHOME]),2) AS [AVG_KIDHOME]
+      ,SUM([TEENHOME]) AS [SUM_TEENHOME]
+      ,ROUND(AVG([TEENHOME]),2) AS [AVG_TEENHOME]
+      ,AVG([REGISTERED_CUSTOMER_TIME]) AS [AVG_REG_CUSTOMER_TIME]
+      ,ROUND(AVG([RECENCY]),0) AS [AVG_RECENCY]
+      ,SUM([NUM_DEALS_PURCHASES]) AS [SUM_NUM_DEALS_PURCHASES]
+      ,ROUND(AVG([NUM_DEALS_PURCHASES]),0) AS [AVG_NUM_DEALS_PURCHASES]
+      ,SUM([NUM_WEB_PURCHASES]) AS [SUM_WEB_PURCHASES]
+      ,ROUND(AVG([NUM_WEB_PURCHASES]),0) AS [AVG_WEB_PURCHASES]
+      ,SUM([NUM_CATALOG_PURCHASES]) AS [SUM_CATALOG_PURCHASES]
+      ,ROUND(AVG([NUM_CATALOG_PURCHASES]),0) AS [AVG_CATALOG_PURCHASES]
+      ,SUM([NUM_STORE_PURCHASES]) AS [SUM_STORE_PURCHASES]
+      ,ROUND(AVG([NUM_STORE_PURCHASES]),0) AS [AVG_STORE_PURCHASES]
+      ,SUM([NUM_WEB_VISITS_MONTH]) AS [SUM_NUM_WEB_VISITS_MONTH]
+      ,ROUND(AVG([NUM_WEB_VISITS_MONTH]),0) AS [AVG_NUM_WEB_VISITS_MONTH]
+      ,SUM([MNT_WINES]) AS [TOTAL_WINES]
+      ,SUM([MNT_FRUITS]) AS [TOTAL_FRUITS]
+      ,SUM([MNT_MEAT_PRODUCTS]) AS [TOTAL_MNT_MEAT_PRODUCTS]
+      ,SUM([MNT_FISH_PRODUCTS]) AS [TOTAL_MNT_FISH_PRODUCTS]
+      ,SUM([MNT_SWEET_PRODUCTS]) AS [TOTAL_MNT_SWEET_PRODUCTS]
+      ,SUM([MNT_GOLD_PRODS]) AS [TOTAL_MNT_GOLD_PRODUCTS]
+
+FROM [MARKETING].[MARKETING_ANALISE_CAMPANHA].[TBL_DADOS_CAMPANHA_VW]
+
+WHERE [RESPONSE] = 1
+
+GROUP BY
+       [EDUCATION]
+      ,[MARITAL_STATUS]
+)
+SELECT 
+       [NUMBER_CLIENTS]
+      ,[EDUCATION]
+      ,[MARITAL_STATUS]
+      ,ROUND(([NUMBER_CLIENTS] * 100)/(@NUMBER_CLIENTS),2) AS [PERCENT_CLIENTS]
+      ,[AVG_YEARS_OLD]
+      ,[AVG_MONTHLY_INCOME]
+      ,[AVG_INCOME]
+      ,[SUM_KIDHOME]
+      ,[AVG_KIDHOME]
+      ,[SUM_TEENHOME]
+      ,[AVG_TEENHOME]
+      ,[AVG_REG_CUSTOMER_TIME]
+      ,[AVG_RECENCY]
+      ,[SUM_NUM_DEALS_PURCHASES]
+      ,[AVG_NUM_DEALS_PURCHASES]
+      ,[SUM_WEB_PURCHASES]
+      ,[AVG_WEB_PURCHASES]
+      ,[SUM_CATALOG_PURCHASES]
+      ,[AVG_CATALOG_PURCHASES]
+      ,[SUM_STORE_PURCHASES]
+      ,[AVG_STORE_PURCHASES]
+      ,[SUM_NUM_WEB_VISITS_MONTH]
+      ,[AVG_NUM_WEB_VISITS_MONTH]
+      ,[TOTAL_WINES]
+      ,[TOTAL_FRUITS]
+      ,[TOTAL_MNT_MEAT_PRODUCTS]
+      ,[TOTAL_MNT_FISH_PRODUCTS]
+      ,[TOTAL_MNT_SWEET_PRODUCTS]
+      ,[TOTAL_MNT_GOLD_PRODUCTS]
+      ,[TOTAL_WINES] + [TOTAL_FRUITS] + [TOTAL_MNT_MEAT_PRODUCTS] + [TOTAL_MNT_FISH_PRODUCTS] + [TOTAL_MNT_SWEET_PRODUCTS] + [TOTAL_MNT_GOLD_PRODUCTS] AS [TOTAL_PRODUCTS]
+
+FROM [TBL_DATA]
+
+GROUP BY
+        [NUMBER_CLIENTS]
+       ,[EDUCATION]
+       ,[MARITAL_STATUS]
+       ,ROUND(([NUMBER_CLIENTS] * 100)/(@NUMBER_CLIENTS),2)
+       ,[AVG_YEARS_OLD]
+       ,[AVG_MONTHLY_INCOME]
+       ,[AVG_INCOME]
+       ,[SUM_KIDHOME]
+       ,[AVG_KIDHOME]
+       ,[SUM_TEENHOME]
+       ,[AVG_TEENHOME]
+       ,[AVG_REG_CUSTOMER_TIME]
+       ,[AVG_RECENCY]
+       ,[SUM_NUM_DEALS_PURCHASES]
+       ,[AVG_NUM_DEALS_PURCHASES]
+       ,[SUM_WEB_PURCHASES]
+       ,[AVG_WEB_PURCHASES]
+       ,[SUM_CATALOG_PURCHASES]
+       ,[AVG_CATALOG_PURCHASES]
+       ,[SUM_STORE_PURCHASES]
+       ,[AVG_STORE_PURCHASES]
+       ,[SUM_NUM_WEB_VISITS_MONTH]
+       ,[AVG_NUM_WEB_VISITS_MONTH]
+       ,[TOTAL_WINES]
+       ,[TOTAL_FRUITS]
+       ,[TOTAL_MNT_MEAT_PRODUCTS]
+       ,[TOTAL_MNT_FISH_PRODUCTS]
+       ,[TOTAL_MNT_SWEET_PRODUCTS]
+       ,[TOTAL_MNT_GOLD_PRODUCTS]
+       ,[TOTAL_WINES] + [TOTAL_FRUITS] + [TOTAL_MNT_MEAT_PRODUCTS] + [TOTAL_MNT_FISH_PRODUCTS] + [TOTAL_MNT_SWEET_PRODUCTS] + [TOTAL_MNT_GOLD_PRODUCTS]
+
+ORDER BY	   
+        [TOTAL_WINES] + [TOTAL_FRUITS] + [TOTAL_MNT_MEAT_PRODUCTS] + [TOTAL_MNT_FISH_PRODUCTS] + [TOTAL_MNT_SWEET_PRODUCTS] + [TOTAL_MNT_GOLD_PRODUCTS] DESC
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
