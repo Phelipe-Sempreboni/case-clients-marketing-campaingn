@@ -414,6 +414,10 @@ ORDER BY
 # Lê o script (query) que gera a tabela de análise final no banco de dados.
 df_result = pd.read_sql_query(query, conexao)
 
+# Modifica a quantidade de linhas e colunas que irão aparecer no terminal como resultado. Para utilização dos comandos de controle de quantidade de linhas e colunas é só descomentar os comandos.
+#pd.set_option("display.max_rows", 40) # Limite de linhas está em 40.
+#pd.set_option("display.max_columns", 30) # Limite de colunas está em 30.
+
 # Imprimir os resultados das 5 primeiros do script (query) executada no banco de dados.
 print(df_result.head())
 
