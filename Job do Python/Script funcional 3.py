@@ -340,7 +340,7 @@ GROUP BY
       ,[MARITAL_STATUS]
 )
 SELECT
-       CONCAT(RANK() OVER (ORDER BY [TOTAL_WINES] + [TOTAL_FRUITS] + [TOTAL_MNT_MEAT_PRODUCTS] + [TOTAL_MNT_FISH_PRODUCTS] + [TOTAL_MNT_SWEET_PRODUCTS] + [TOTAL_MNT_GOLD_PRODUCTS] DESC), ' ', 'º') AS [RANKIN_PERFIL_CLIENTE]
+       CONCAT(RANK() OVER (ORDER BY [TOTAL_WINES] + [TOTAL_FRUITS] + [TOTAL_MNT_MEAT_PRODUCTS] + [TOTAL_MNT_FISH_PRODUCTS] + [TOTAL_MNT_SWEET_PRODUCTS] + [TOTAL_MNT_GOLD_PRODUCTS] DESC), ' ', 'º') AS [RANKING_PERFIL_CLIENTE]
       ,[NUMBER_CLIENTS] AS [QTDE_CLIENTES]
       ,[EDUCATION] AS [NIVEL_EDUCACAO]
       ,[MARITAL_STATUS] AS [ESTADO_CIVIL]
@@ -413,6 +413,10 @@ ORDER BY
 
 # Lê o script (query) que gera a tabela de análise final no banco de dados.
 df_result = pd.read_sql_query(query, conexao)
+
+# Modifica a quantidade de linhas e colunas que irão aparecer no terminal como resultado. Para utilização dos comandos de controle de quantidade de linhas e colunas é só descomentar os comandos.
+#pd.set_option("display.max_rows", 40) # Limite de linhas está em 40.
+#pd.set_option("display.max_columns", 30) # Limite de colunas está em 30.
 
 # Imprimir os resultados das 5 primeiros do script (query) executada no banco de dados.
 print(df_result.head())
