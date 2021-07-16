@@ -24,7 +24,7 @@
 
 ### Observação sobre o método de análise:
 
-Os métodos de análise I e II, utilizam o Microsoft SQL Server como banco de dados pelos motivos abaixo: 
+O método utiliza o Microsoft SQL Server como banco de dados pelos motivos abaixo:
 
 - Segurança dos dados: Por exemplo, rastreamento de usuários, tanto nominais, quanto de aplicação, onde é possível verificar qual database, schema ou tabela foi acessado.
 
