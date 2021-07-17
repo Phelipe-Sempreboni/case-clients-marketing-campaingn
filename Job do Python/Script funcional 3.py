@@ -3,6 +3,30 @@
 # Biblioteca (csv) é nativa do Python.
 # Biblioteca (time) é nativa do Python.
 
+# ----- # ----- # ----- # ----- # ----- # ----- # ----- # ----- # ----- # ----- # ----- # ----- # ----- # ----- # ----- # ----- # ----- # ----- # ----- # ----- # ----- # ----- # ----- # ----- # ----- # ----- # ----- # ----- # ----- # ----- # ----- # ----- #
+
+# COnfigurações:
+
+# Instalar a biblioteca de conexão do Python com o banco de dados: pip install pyodbc
+# Instalar a biblioteca para manipulação dos dados chamada pandas: pip install pandas
+# Instalar a biblioteca, por precaução, para leitura de arquivos Excel, chamada openpyxl: pip install openpyxl
+
+# Preencha as seguintes linhas do código com as informações do banco de dados:
+# linha: 39.
+# linha: 40.
+# linha: 41.
+# linha: 42.
+
+# Preencha as seguintes linhas com o caminho do arquivo csv que é a base para a análise:
+# linha: 153.
+# linha: 154.
+# linha: 160.
+
+# Preencha a seguinte linha que realiza a importação do arquivo excel:
+# linha: 449.
+
+# ----- # ----- # ----- # ----- # ----- # ----- # ----- # ----- # ----- # ----- # ----- # ----- # ----- # ----- # ----- # ----- # ----- # ----- # ----- # ----- # ----- # ----- # ----- # ----- # ----- # ----- # ----- # ----- # ----- # ----- # ----- # ----- #
+
 # Importações de bibliotecas.
 import pyodbc
 import pandas as pd
