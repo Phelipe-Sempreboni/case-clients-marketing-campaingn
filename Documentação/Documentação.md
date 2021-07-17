@@ -3728,6 +3728,13 @@ ORDER BY
 - Resultado: 
 
 ---
-- Comparaçõe da análise final realizada pelos resultados das campanhas anteriores.
+- Comparações da análise final realizada pelos resultados das campanhas anteriores.
 ![image](https://user-images.githubusercontent.com/57469401/125724899-8b48eef4-a59c-474b-86d2-567252db116f.png)
+---
+
+15º - Resultado da análise final dos perfis dos clientes, chegando ao resultado da visualização.
+![image](https://user-images.githubusercontent.com/57469401/126021113-c7b37bbb-c4d5-48ee-bd43-683644772231.png)
+---
+
+16º - Finalização das análises e da documentação.
 ---
