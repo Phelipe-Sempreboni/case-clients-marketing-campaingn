@@ -43,7 +43,7 @@ O método utiliza o Microsoft SQL Server como banco de dados pelos motivos abaix
 Lembrando que, cada análise tem sua peculiaridade, criticidade e tempo de entrega, logo, terá que ser analisado como fazer esse processo de análise com os dados.
 
 ---
-- Resumo dos passos que foram realizados para essa análise de dados do case da campanha de martketing:
+Resumo dos passos que foram realizados para essa análise de dados do case da campanha de martketing:
 
 1º - Ter um usuário e login com privilégios para criação, inserção, drop e delete de databases, schema e tabelas.
 
