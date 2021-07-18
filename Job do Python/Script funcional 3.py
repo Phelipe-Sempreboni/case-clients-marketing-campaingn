@@ -446,7 +446,7 @@ df_result = pd.read_sql_query(query, conexao)
 print(df_result.head())
 
 # Gera um arquivo em formato Excel do script (query) executado no banco de dados.
-df_result.to_excel(r'', index=False) # Insira o caminho do local de destino e não esqueça de inserir um nome para o arquivo com sua extensão, por exemplo (\resultado_analise_campanha.xlsx).
+df_result.to_excel(r'', index=False) # Insira o caminho do local de destino e não esqueça de inserir um nome para o arquivo com sua extensão, por exemplo (\caderno_resultado_analise_campanha_marketing.xlsx).
 
 # Imprmir a mensagem que o processo foi finalizado.
 print('Processo finalizado.')
