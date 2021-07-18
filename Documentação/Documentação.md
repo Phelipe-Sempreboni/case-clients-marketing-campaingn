@@ -20,7 +20,7 @@
 
 - Linguagem utilizada para análise dos dados: Python (Google Colab), onde, neste caso, a análise final foi feita por SQL e essa mesma análise feita por Python, sem utilização do banco de dados, só o arquivo CSV.
 
-- Apresentação dos dados: Power BI Desktop para algumas construções de tabelas internas e visualizações. Power Point e auxilio com o Miro.
+- Apresentação dos dados: Power BI Desktop para algumas construções de tabelas internas e visualizações.
 
 - Apresentação dos dados: Miro para auxiliar com as construções de visões e escritas.
 
