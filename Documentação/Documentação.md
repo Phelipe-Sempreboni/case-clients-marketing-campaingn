@@ -18,7 +18,13 @@
 
 - Linguagem utilizada para análise dos dados: Microsoft SQL Server 2019 - (DQL, DML, DDL, DTL), principalmente T-SQL.
 
-- Apresentação dos dados: Power BI Desktop, Power Point e auxilio com o Miro.
+- Linguagem utilizada para análise dos dados: Python (Google Colab).
+
+- Apresentação dos dados: Power BI Desktop para algumas construções de tabelas internas e visualizações. Power Point e auxilio com o Miro.
+
+- Apresentação dos dados: Miro para auxiliar com as construções de visões e escritas.
+
+- Apresentação dos dados: Power Point para apresentação da análise final.
 
 ---
 
@@ -35,6 +41,40 @@ O método utiliza o Microsoft SQL Server como banco de dados pelos motivos abaix
 - Backup dos dados: Por exemplo, se o banco for bem gerenciado pelo Administrador ou DBA, com um plano de execução de backups, haverá um backup para restauração dos dados.
 
 Lembrando que, cada análise tem sua peculiaridade, criticidade e tempo de entrega, logo, terá que ser analisado como fazer esse processo de análise com os dados.
+
+---
+- Resumo dos passos que foram realizados para essa análise de dados do case da campanha de martketing:
+1º - Ter um usuário e login com privilégios para criação, inserção, drop e delete de databases, schema e tabelas.
+
+2º - Conectar-se na ferramenta Microsoft SQL Server 2019.
+
+3º - Criar um database que irá alocar o schema e a tabela. O comando abaixo irá criar um database de forma padrão, espelhado no database de sistema chamado (model), pois, não iremos destacar parâmetros neste caso.
+
+4º - Criação do schema que alocará a tabela.
+
+5º - Criação da tabela que alocará os dados para posteriormente realizar a análise. Nesta etapa, temos alguns passos adicionais conforme explicação abaixo. Esses passos entram como o tratamento de dados antes da realização da análise, para que seja a mais assertiva possível e os dados sejam de qualidade no momento da análise.
+
+6º - Input dos dados na tabela criada no banco de dados Microsoft SQL Server com um job do Python.
+
+7º - Criação de uma view com algumas adições de novas colunas conforme explicado abaixo.
+
+8º - Job do Python que realiza desde a criação do database até a view que será utilizada para análise.
+
+9º - Levantamento inicial dos KPI's.
+
+10º - Primeira etapa das análises mais profundas e assertivas dos perfis dos clientes com base nos KPI's inciais levantados no 8º passo.
+
+11º - Segunda etapa das análises mais profundas e assertivas dos perfis dos clientes, porém, iremos inserir as demais variáveis para verificação.
+
+12º - Terceira etapa das análises mais profundas e assertivas dos perfis dos clientes, porém, iremos inserir as demais variáveis para verificação e realizaremos os agrupamentos unificados das variáveis (Educação e Estado Civil) e iremos inserir as variáveis (Crianças e Adolescentes) com somas e médias, logo, teremos todas variáveis unificadas das análises dos passos anteriores.
+
+13º - Quarta etapa das análises mais profundas e assertivas dos perfis dos clientes, onde iremos analisar as campanhas que obtiveram respostas positivas dos clientes com o mesmo script do 12º passo, porém, por campanha.
+
+14º - Comparação dos perfis dos clientes da análise realizada no 12º e 13º passo com as campanhas que obtiveram respostas positivas dos clientes.
+
+15º - Resultado da análise final dos perfis dos clientes, chegando ao resultado da visualização abaixo com o perfil mais significativo da análise.
+
+16º - Finalização das análises e da documentação.
 
 ---
 
