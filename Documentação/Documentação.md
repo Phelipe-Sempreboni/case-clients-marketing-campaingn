@@ -44,6 +44,7 @@ Lembrando que, cada análise tem sua peculiaridade, criticidade e tempo de entre
 
 ---
 - Resumo dos passos que foram realizados para essa análise de dados do case da campanha de martketing:
+
 1º - Ter um usuário e login com privilégios para criação, inserção, drop e delete de databases, schema e tabelas.
 
 2º - Conectar-se na ferramenta Microsoft SQL Server 2019.
