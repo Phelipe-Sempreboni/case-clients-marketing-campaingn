@@ -4277,6 +4277,13 @@ print('Processo finalizado.')
 
 # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- #
 
+# Copie ele e cole este script uma linha antes ou junto com o script geral.
+# Este script é para instalar a biblioteca pandas no Google Colab caso ela não exista.
+
+!pip install pandas
+
+# ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- #
+
 # Importa a biblioca do pandas.
 import pandas as pd
 from datetime import datetime
