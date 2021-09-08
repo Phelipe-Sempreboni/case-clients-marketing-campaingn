@@ -1,22 +1,22 @@
-# ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- #
+'''
 
-# Caderno de resultados da análise da campanha de marketing.
+Caderno de resultados da análise da campanha de marketing.
 
-# Python.
+Python.
 
-# Este script importa para algum local desejado o resultado.
+Este script importa para algum local desejado o resultado.
 
-# ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- #
+Instruções para utilização desse script.
 
-# Instruções para utilização desse script.
+1º - É necessário importar o arquivo que contém as informações do GitHub para um arquivo csv, pois, utilizamos o pandas com padrão csv para essa análise.
+2º - Se possível nomeie o arquivo como (data.csv), e, caso escolha outro nome, altere o campo que contém o seguinte script (df = pd.read_csv(r'data.csv')) com o nome escolhido.
+3º - Após importar para um arquivo csv, é necessário salvar em algum local em sua máquina.
+4º - Altere o caminho origem do arquivo que foi salvo na sua máquina na linha 31.
+5º - Altere o caminho destino do arquivo que será exportado em formato Exel na linha 141.
+8º - Execute o script.
+9º - Resultado será exibido em formato de tabela no terminal e será exportado para um arquivo em formato Excel.
 
-# 1º - É necessário importar o arquivo que contém as informações do GitHub para um arquivo csv, pois, utilizamos o pandas com padrão csv para essa análise.
-# 2º - Se possível nomeie o arquivo como (data.csv), e, caso escolha outro nome, altere o campo que contém o seguinte script (df = pd.read_csv(r'data.csv')) com o nome escolhido.
-# 3º - Após importar para um arquivo csv, é necessário salvar em algum local em sua máquina.
-# 4º - Altere o caminho origem do arquivo que foi salvo na sua máquina na linha 31.
-# 5º - Altere o caminho destino do arquivo que será exportado em formato Exel na linha 141.
-# 8º - Execute o script.
-# 9º - Resultado será exibido em formato de tabela no terminal e será exportado para um arquivo em formato Excel.
+'''
 
 # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- #
 
