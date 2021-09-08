@@ -1,20 +1,20 @@
 '''
 
-# Caderno de resultados da análise da campanha de marketing.
+Caderno de resultados da análise da campanha de marketing.
 
-# Google Colab com Python.
+Google Colab com Python.
 
-# Instruções para utilização desse script.
+Instruções para utilização desse script.
 
-# 1º - É necessário importar o arquivo que contém as informações do GitHub para um arquivo csv, pois, utilizamos o pandas com padrão csv para essa análise.
-# 2º - Se possível nomeie o arquivo como (data.csv), e, caso escolha outro nome, altere o campo que contém o seguinte script (df = pd.read_csv(r'data.csv')) com o nome escolhido.
-# 3º - Após importar para um arquivo csv, é necessário importar esse arquivo para o Google Colab.
-# 4º - Abra o Google Colab na web -> (research.google.com/colaboratory).
-# 5º - Utilize este script, que esta no formato (.py), copie e cole este scritp no Google Colab.
-# 6º - Visando garantir a execução correta do script, uma linha antes, utilize o script (!pip install pandas) para instalar a biblioteca pandas no Google Colab.
-# 7º - Para importar para o Google Colab, vá na aba esquerda, clique nas três linhas da parte superior, clique na pasta (arquivos) e clique na figura de um arquivo com uma seta pra cima, chamado (Fazer upload para armazenamento da sessão).
-# 8º - Execute o script.
-# 9º - Resultado será exibido em formato de tabela.
+1º - É necessário importar o arquivo que contém as informações do GitHub para um arquivo csv, pois, utilizamos o pandas com padrão csv para essa análise.
+2º - Se possível nomeie o arquivo como (data.csv), e, caso escolha outro nome, altere o campo que contém o seguinte script (df = pd.read_csv(r'data.csv')) com o nome escolhido.
+3º - Após importar para um arquivo csv, é necessário importar esse arquivo para o Google Colab.
+4º - Abra o Google Colab na web -> (research.google.com/colaboratory).
+5º - Utilize este script, que esta no formato (.py), copie e cole este scritp no Google Colab.
+6º - Visando garantir a execução correta do script, uma linha antes, utilize o script (!pip install pandas) para instalar a biblioteca pandas no Google Colab.
+7º - Para importar para o Google Colab, vá na aba esquerda, clique nas três linhas da parte superior, clique na pasta (arquivos) e clique na figura de um arquivo com uma seta pra cima, chamado (Fazer upload para armazenamento da sessão).
+8º - Execute o script.
+9º - Resultado será exibido em formato de tabela.
 
 '''
 
