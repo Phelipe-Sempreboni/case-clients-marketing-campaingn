@@ -1,10 +1,8 @@
-# ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- #
+'''
 
 # Caderno de resultados da análise da campanha de marketing.
 
 # Google Colab com Python.
-
-# ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- #
 
 # Instruções para utilização desse script.
 
@@ -17,6 +15,8 @@
 # 7º - Para importar para o Google Colab, vá na aba esquerda, clique nas três linhas da parte superior, clique na pasta (arquivos) e clique na figura de um arquivo com uma seta pra cima, chamado (Fazer upload para armazenamento da sessão).
 # 8º - Execute o script.
 # 9º - Resultado será exibido em formato de tabela.
+
+'''
 
 # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- # ---- #
 
